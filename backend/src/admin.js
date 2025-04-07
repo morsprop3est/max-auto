@@ -1,7 +1,8 @@
 import AdminJS from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
 import AdminJSSequelize from '@adminjs/sequelize';
-import { sequelize, models } from './database.js';
+import sequelize from './database.js';
+import { User, Order, Component, Calculator, Review, Region, Stat } from './models/index.js'; 
 
 AdminJS.registerAdapter(AdminJSSequelize);
 
@@ -10,37 +11,35 @@ const adminJs = new AdminJS({
   rootPath: '/admin',
   resources: [
     {
-      resource: models.User, 
+      resource: User, 
       options: { navigation: 'Користувачі' },
     },
     {
-      resource: models.Order,
+      resource: Order,
       options: { navigation: 'Заявки' },
     },
     {
-      resource: models.Component,
+      resource: Component,
       options: { navigation: 'Компоненти' },
     },
     {
-      resource: models.Calculator,
+      resource: Calculator,
       options: { navigation: 'Калькулятор' },
     },
     {
-      resource: models.Review,
+      resource: Review,
       options: { navigation: 'Відгуки' },
     },
     {
-      resource: models.Stat,
+      resource: Stat,
       options: { navigation: 'Статистика', actions: null },
     },
     {
-      resource: models.Region,
+      resource: Region,
       options: { navigation: 'Регіони' },
     },
   ],
 });
-
-// const adminRouter = AdminJSExpress.buildRouter(adminJs);
 
 const adminRouter = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   authenticate: async (email, password) => {
@@ -60,5 +59,4 @@ const adminRouter = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   secret: process.env.ADMIN_COOKIE_SECRET || 'admin-secret',
 });
 
-  
 export { adminJs, adminRouter };

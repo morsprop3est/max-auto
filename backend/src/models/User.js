@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize';
+import sequelize from '../database.js'; 
 
 export default (sequelize) => {
   return sequelize.define('User', {

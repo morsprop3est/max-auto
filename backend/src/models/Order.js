@@ -1,4 +1,5 @@
 import { DataTypes } from 'sequelize';
+import sequelize from '../database.js'; 
 
 export default (sequelize) => {
   return sequelize.define('Order', {
@@ -23,11 +24,8 @@ export default (sequelize) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
-    userId: { 
-      type: DataTypes.INTEGER,
-      allowNull: true,
-    },
   }, {
     tableName: 'Orders',
+    timestamps: false, 
   });
 };

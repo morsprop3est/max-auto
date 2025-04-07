@@ -1,7 +1,9 @@
 import Component from '../models/Component.js';
 import Calculator from '../models/Calculator.js';
-import Order from '../models/Order.js';
+import { Order } from '../models/index.js';
 import Review from '../models/Review.js';
+import { sendMessageToTelegram } from '../services/telegramService.js';
+import { sendOrderToCRM } from '../services/crmService.js';
 
 export const getComponents = async (req, res) => {
   try {
@@ -23,11 +25,22 @@ export const getCalculator = async (req, res) => {
 
 export const postOrder = async (req, res) => {
   const { name, phone, carDetails, totalPrice } = req.body;
+
+  if (!name || !phone || !carDetails || !totalPrice) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
   try {
-    const order = await Order.create({ name, phone, carDetails, totalPrice });
-    res.json(order);
+    const newOrder = await Order.create({ name, phone, carDetails, totalPrice });
+
+    await sendMessageToTelegram({ name, phone, carDetails, totalPrice });
+
+    // await sendOrderToCRM({ name, phone, carDetails, totalPrice });
+
+    res.status(200).json({ success: 'Order processed successfully', order: newOrder });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to create order' });
+    console.error('Error processing order:', error);
+    res.status(500).json({ error: 'Failed to process order' });
   }
 };
 
