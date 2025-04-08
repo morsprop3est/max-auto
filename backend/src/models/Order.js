@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js'; 
+import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Order', {
@@ -20,12 +20,8 @@ export default (sequelize) => {
     totalPrice: { 
       type: DataTypes.FLOAT,
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   }, {
     tableName: 'Orders',
-    timestamps: false, 
+    timestamps: true,
   });
 };

@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js'; 
+import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Review', {
@@ -23,11 +23,8 @@ export default (sequelize) => {
     regionId: { 
       type: DataTypes.INTEGER,
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   }, {
     tableName: 'Reviews',
+    timestamps: true,
   });
 };

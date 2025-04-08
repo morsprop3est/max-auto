@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js'; 
+import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Region', {
@@ -16,5 +16,6 @@ export default (sequelize) => {
     },
   }, {
     tableName: 'Regions',
+    timestamps: true,
   });
 };

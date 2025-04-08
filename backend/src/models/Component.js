@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js'; 
+import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Component', {
@@ -21,11 +21,8 @@ export default (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   }, {
     tableName: 'Components',
+    timestamps: true,
   });
 };

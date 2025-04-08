@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js'; 
+import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Calculator', {
@@ -14,11 +14,8 @@ export default (sequelize) => {
     coeffs: { 
       type: DataTypes.JSON,
     },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   }, {
     tableName: 'Calculators',
+    timestamps: true, 
   });
 };

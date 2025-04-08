@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js'; 
+import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Stat', {
@@ -14,11 +14,8 @@ export default (sequelize) => {
     value: { 
       type: DataTypes.STRING,
     },
-    updatedAt: {
-      type: DataTypes.DATE,
-      defaultValue: DataTypes.NOW,
-    },
   }, {
     tableName: 'Stats',
+    timestamps: true,
   });
 };
