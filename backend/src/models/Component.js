@@ -1,5 +1,4 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Component', {
@@ -9,6 +8,9 @@ export default (sequelize) => {
       autoIncrement: true,
     },
     slug: { 
+      type: DataTypes.STRING,
+    },
+    group: { 
       type: DataTypes.STRING,
     },
     text: { 
