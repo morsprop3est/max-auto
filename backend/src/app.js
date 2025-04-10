@@ -14,7 +14,7 @@ app.use(cookieParser());
 
 app.use('/public', express.static('public'));
 
-await sequelize.sync({ alter: true });
+// await sequelize.sync({ alter: true });
 
 app.use('/auth', authRoutes);
 app.use('/public', publicRoutes);

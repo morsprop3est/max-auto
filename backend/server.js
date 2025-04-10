@@ -9,7 +9,7 @@ const startServer = async () => {
     await sequelize.sync();
     console.log('Database synchronized.');
 
-    await seedDatabase();
+    // await seedDatabase();
 
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   } catch (error) {
