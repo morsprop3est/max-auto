@@ -19,10 +19,6 @@ export default (sequelize) => {
     photoUrl: { 
       type: DataTypes.STRING,
     },
-    videoUrl: { 
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
   }, {
     tableName: 'Components',
     timestamps: true,

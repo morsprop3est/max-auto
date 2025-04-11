@@ -1,20 +1,17 @@
-import { sequelize, Component, Calculator, Region, Review, Stat } from './models/index.js';
+import { sequelize, Component, Calculator, Region, Review } from './models/index.js';
 
 const seedDatabase = async () => {
   try {
     await sequelize.sync();
 
-    // Вимкнення перевірки зовнішніх ключів
     console.log('Disabling foreign key checks...');
     await sequelize.query('SET FOREIGN_KEY_CHECKS = 0;');
 
-    // Очистка таблиць перед додаванням нових даних
     console.log('Clearing tables...');
     await Component.destroy({ where: {}, truncate: true });
     await Calculator.destroy({ where: {}, truncate: true });
     await Review.destroy({ where: {}, truncate: true });
     await Region.destroy({ where: {}, truncate: true });
-    await Stat.destroy({ where: {}, truncate: true });
     console.log('Tables cleared.');
 
     console.log('Enabling foreign key checks...');
@@ -22,16 +19,37 @@ const seedDatabase = async () => {
 
     console.log('Seeding components...');
     await Component.bulkCreate([
-      { group: 'main', slug: 'main_h1', text: 'MAKS AUTO', photoUrl: '/images/main.jpg' },
+      { group: 'main', slug: 'main_h1', text: 'MAKS AUTO', photoUrl: '' },
       { group: 'main', slug: 'main_h2', text: 'Авто з Європи та США під ключ!', photoUrl: '' },
       { group: 'main', slug: 'main_p1', text: 'Привеземо для вас авто з Європи та США за вигідною ціною! Замовляйте мрію вже сьогодні!', photoUrl: '' },
       { group: 'main', slug: 'main_button', text: 'Хочу замовити!', photoUrl: '' },
-      { group: 'about_us', slug: 'about_us_h1', text: 'Про нас', photoUrl: '/images/about_us_1.jpg' },
-      { group: 'about_us', slug: 'about_us_p1', text: 'Ми спеціалізуємось на підборі, доставці та оформленні авто з Європи та США.', photoUrl: '' },
-      { group: 'stats', slug: 'stat_1', text: 'років досвіду на ринку', photoUrl: '', value: '8+' },
-      { group: 'stats', slug: 'stat_2', text: 'задоволених клієнтів', photoUrl: '', value: '1,234' },
-      { group: 'stats', slug: 'stat_3', text: 'доставлених автомобілів', photoUrl: '', value: '5 тис' },
-      { group: 'stats', slug: 'stat_4', text: 'середній час доставки', photoUrl: '', value: '21 день' },
+
+      { group: 'about_us', slug: 'about_us_h1', text: 'Про нас', photoUrl: '' },
+      { group: 'about_us', slug: 'about_us_p1', text: 'Ми спеціалізуємось на підборі, доставці та оформленні авто з Європи та США. Працюємо чесно, швидко та без зайвих клопотів для вас. Перевіряємо кожен автомобіль перед покупкою, щоб ви отримали тільки найкращі варіанти.', photoUrl: '' },
+      { group: 'about_us', slug: 'about_us_stat_1', text: 'Великий вибір авто під замовлення', photoUrl: '' },
+      { group: 'about_us', slug: 'about_us_stat_2', text: 'Прозорість на всіх етапах угоди', photoUrl: '' },
+      { group: 'about_us', slug: 'about_us_stat_3', text: 'Офіційне оформлення та страхування', photoUrl: '' },
+      { group: 'about_us', slug: 'about_us_stat_4', text: 'Доставка у будь-який регіон України', photoUrl: '' },
+      { group: 'about_us', slug: 'about_us_image1', text: null, photoUrl: 'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg' },
+      { group: 'about_us', slug: 'about_us_image2', text: null, photoUrl: 'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg' },
+
+      { group: 'service', slug: 'service_h1_1', text: 'Підбір авто', photoUrl: 'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg' },
+      { group: 'service', slug: 'service_h1_2', text: 'Доставка авто', photoUrl: 'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg' },
+      { group: 'service', slug: 'service_h1_3', text: 'Розмитнення та сертифікація', photoUrl: 'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg' },
+      { group: 'service', slug: 'service_p1_1', text: 'Знайдемо авто з Європи чи США відповідно до вашого бюджету та побажань. Тільки перевірені варіанти з офіційною історією.', photoUrl: null },
+      { group: 'service', slug: 'service_p1_2', text: 'Знайдемо авто з Європи чи США відповідно до вашого бюджету та побажань. Тільки перевірені варіанти з офіційною історією.', photoUrl: null },
+      { group: 'service', slug: 'service_p1_3', text: 'Знайдемо авто з Європи чи США відповідно до вашого бюджету та побажань. Тільки перевірені варіанти з офіційною історією.', photoUrl: null },
+      { group: 'service', slug: 'service_h1', text: 'Наші послуги', photoUrl: null },
+      { group: 'service', slug: 'service_p1', text: 'Ми пропонуємо повний комплекс послуг, щоб ви отримали своє авто швидко, вигідно та без зайвих клопотів. MAKS AUTO супроводжує кожен етап – від підбору до повного оформлення в Україні.', photoUrl: null },
+
+      { group: 'stats', slug: 'stat_h1_1', text: '8+', photoUrl: '', },
+      { group: 'stats', slug: 'stat_p1_1', text: 'років досвіду на ринку', photoUrl: '', },
+      { group: 'stats', slug: 'stat_h1_2', text: '1,234', photoUrl: '', },
+      { group: 'stats', slug: 'stat_p1_2', text: 'задоволених клієнтів', photoUrl: '',},
+      { group: 'stats', slug: 'stat_p1_3', text: '5 тис', photoUrl: '',},
+      { group: 'stats', slug: 'stat_h1_3', text: 'доставлених автомобілів', photoUrl: '', },
+      { group: 'stats', slug: 'stat_h1_4', text: '21 день', photoUrl: '', },
+      { group: 'stats', slug: 'stat_p1_4', text: 'середній час доставки', photoUrl: '', },
     ]);
     console.log('Default components added.');
 
@@ -74,19 +92,10 @@ const seedDatabase = async () => {
 
     console.log('Seeding reviews...');
     await Review.bulkCreate([
-      { name: 'John Doe', rating: 5, comment: 'Great service!', photo: '/images/review1.jpg', regionId: 1 },
-      { name: 'Jane Smith', rating: 4, comment: 'Good experience.', photo: '/images/review2.jpg', regionId: 2 },
+      { name: 'John Doe', rating: 5, comment: 'Great service!', photo: '/images/review1.jpg' },
+      { name: 'Jane Smith', rating: 4, comment: 'Good experience.', photo: '/images/review2.jpg' },
     ]);
     console.log('Default reviews added.');
-
-    console.log('Seeding stats...');
-    await Stat.bulkCreate([
-      { name: 'років досвіду на ринку', value: '8+' },
-      { name: 'задоволених клієнтів', value: '1,234' },
-      { name: 'доставлених автомобілів', value: '5 тис' },
-      { name: 'середній час доставки', value: '21 день' },
-    ]);
-    console.log('Default stats added.');
 
     console.log('Seeding completed successfully.');
   } catch (error) {

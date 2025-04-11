@@ -1,17 +1,7 @@
-import Stat from '../models/Stat.js';
 import Component from '../models/Component.js';
 import Calculator from '../models/Calculator.js';
 import Order from '../models/Order.js';
 import Review from '../models/Review.js';
-
-export const getStats = async (req, res) => {
-  try {
-    const stats = await Stat.findOne();
-    res.json(stats);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch stats' });
-  }
-};
 
 export const updateComponent = async (req, res) => {
   const { slug } = req.params;

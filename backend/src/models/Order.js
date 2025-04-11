@@ -1,24 +1,25 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Order', {
-    id: { 
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: { 
+    name: {
       type: DataTypes.STRING,
     },
-    phone: { 
+    phone: {
       type: DataTypes.STRING,
     },
-    carDetails: { 
-      type: DataTypes.STRING,
+    lotIds: {
+      type: DataTypes.JSON, 
+      allowNull: true,
     },
-    totalPrice: { 
-      type: DataTypes.FLOAT,
+    comment: {
+      type: DataTypes.TEXT,
+      allowNull: true,
     },
   }, {
     tableName: 'Orders',

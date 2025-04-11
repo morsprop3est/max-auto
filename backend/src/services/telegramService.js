@@ -1,21 +1,36 @@
 import axios from 'axios';
+import { Lot } from '../models/index.js';
 
 const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID;
 
-// Формирование сообщения для Telegram
-export const formatTelegramMessage = ({ name, phone, carDetails, totalPrice }) => {
-  return `New Order Received:
-  - Name: ${name}
-  - Phone: ${phone}
-  - Car Details: ${carDetails}
-  - Total Price: $${totalPrice}`;
+export const formatTelegramMessage = async ({ name, phone, lotIds, comment }) => {
+  let lotDetails = '';
+
+  if (Array.isArray(lotIds) && lotIds.length > 0) {
+    const lots = await Lot.findAll({ where: { id: lotIds } });
+
+    lotDetails = lots
+      .map(
+        (lot) =>
+          `  - ID: ${lot.id}\n    Назва: ${lot.title}\n    Ціна: ${lot.priceNew} ${lot.currency}\n    Локація: ${lot.location}`
+      )
+      .join('\n\n');
+  } else {
+    lotDetails = '  - Лоти не вказані';
+  }
+
+  return `Нове замовлення:
+  - Ім'я: ${name}
+  - Телефон: ${phone}
+  - Лоти:
+${lotDetails}
+  - Коментар: ${comment || 'Відсутній'}`;
 };
 
-// Отправка сообщения в Telegram
 export const sendMessageToTelegram = async (orderData) => {
-  const message = formatTelegramMessage(orderData);
   try {
+    const message = await formatTelegramMessage(orderData);
     await axios.post(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
       chat_id: TELEGRAM_CHAT_ID,
       text: message,

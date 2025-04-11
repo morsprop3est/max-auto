@@ -1,9 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { sequelize } from './models/index.js'; // Додано імпорт sequelize
+import { sequelize } from './models/index.js';
 import { adminJs, adminRouter } from './admin.js';
-import authRoutes from './routes/authRoutes.js';
 import publicRoutes from './routes/publicRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 
@@ -14,9 +13,8 @@ app.use(cookieParser());
 
 app.use('/public', express.static('public'));
 
-// await sequelize.sync({ alter: true });
+await sequelize.sync({ alter: true });
 
-app.use('/auth', authRoutes);
 app.use('/public', publicRoutes);
 app.use('/admin', adminRoutes);
 app.use(adminJs.options.rootPath, adminRouter);

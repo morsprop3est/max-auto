@@ -2,7 +2,7 @@ import AdminJS from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
 import AdminJSSequelize from '@adminjs/sequelize';
 import sequelize from './database.js';
-import { User, Order, Component, Calculator, Review, Region, Stat } from './models/index.js'; 
+import { Order, Lot, Component, Calculator, Review, Region } from './models/index.js';
 
 AdminJS.registerAdapter(AdminJSSequelize);
 
@@ -24,16 +24,14 @@ const adminJs = new AdminJS({
     },
   },
   resources: [
-    { resource: User, options: { navigation: 'Користувачі' } },
     { resource: Order, options: { navigation: 'Заявки' } },
+    { resource: Lot, options: { navigation: 'Лоти' } },
     { resource: Component, options: { navigation: 'Компоненти' } },
     { resource: Calculator, options: { navigation: 'Калькулятор' } },
     { resource: Review, options: { navigation: 'Відгуки' } },
-    { resource: Stat, options: { navigation: 'Статистика', actions: null } },
     { resource: Region, options: { navigation: 'Регіони' } },
   ],
 });
-
 
 const adminRouter = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   authenticate: async (email, password) => {
@@ -48,7 +46,7 @@ const adminRouter = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   cookieName: 'adminjs',
   cookiePassword: process.env.COOKIE_SECRET,
 }, null, {
-  resave: false, 
+  resave: false,
   saveUninitialized: false,
   secret: process.env.ADMIN_COOKIE_SECRET,
 });
