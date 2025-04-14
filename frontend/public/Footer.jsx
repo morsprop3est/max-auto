@@ -1,7 +1,7 @@
 'use client';
 
 import styles from "./Footer.module.scss";
-import Logo from "../../../backend/public/logo.svg"; // Імпорт вашого логотипу
+import Logo from "../../../backend/public/logo.svg"; 
 import FacebookIcon from "../../../backend/public/socialNetworkIcons/facebook.svg";
 import InstagramIcon from "../../../backend/public/socialNetworkIcons/instagram.svg";
 import TelegramIcon from "../../../backend/public/socialNetworkIcons/telegram.svg";

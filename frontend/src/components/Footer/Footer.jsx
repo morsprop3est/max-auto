@@ -14,7 +14,6 @@ export default function Footer() {
   };
 
   useEffect(() => {
-    // Анімація для іконок соцмереж при наведенні
     socialIconsRef.current.forEach((icon) => {
       icon.addEventListener('mouseenter', () => {
         gsap.to(icon, { scale: 1.1, duration: 0.2 });
@@ -25,7 +24,6 @@ export default function Footer() {
       });
     });
 
-    // Анімація для кнопки "Scroll to top" при наведенні
     if (scrollTopRef.current) {
       scrollTopRef.current.addEventListener('mouseenter', () => {
         gsap.to(scrollTopRef.current, { scale: 1.1, duration: 0.2 });
@@ -40,12 +38,10 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        {/* Логотип */}
         <div className={styles.logoBlock}>
           <Image src="/logo.svg" alt="Logo" className={styles.logo} width={200} height={200} />
         </div>
 
-        {/* Соцмережі та кнопка повернення наверх */}
         <div className={styles.socialBlock}>
           <div className={styles.empty}></div>
           <div className={styles.socialIcons}>

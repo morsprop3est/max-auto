@@ -5,6 +5,7 @@ import { sequelize } from './models/index.js';
 import { adminJs, adminRouter } from './admin.js';
 import publicRoutes from './routes/publicRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
+import lotRoutes from './routes/lotRoutes.js';
 
 const app = express();
 app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
@@ -17,6 +18,7 @@ await sequelize.sync({ alter: true });
 
 app.use('/public', publicRoutes);
 app.use('/admin', adminRoutes);
+app.use('/api', lotRoutes);
 app.use(adminJs.options.rootPath, adminRouter);
 
 export default app;
