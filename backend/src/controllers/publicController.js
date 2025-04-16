@@ -55,7 +55,6 @@ export const getCalculator = async (req, res) => {
 export const postOrder = async (req, res) => {
   const { name, phone, lotIds, comment } = req.body;
 
-  // Перевірка обов'язкових полів
   if (!name || !phone) {
     return res.status(400).json({ error: 'Name and phone are required' });
   }
@@ -91,6 +90,18 @@ export const getReviews = async (req, res) => {
     const reviews = await Review.findAll();
     res.json(reviews);
   } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch reviews' });
+  }
+};
+
+export const getReviewsByRegion = async (req, res) => {
+  const { regionId } = req.query;
+
+  try {
+    const reviews = await Review.findAll({ where: { regionId } });
+    res.status(200).json({ reviews });
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
     res.status(500).json({ error: 'Failed to fetch reviews' });
   }
 };

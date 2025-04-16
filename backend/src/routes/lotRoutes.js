@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { getLots } from '../controllers/lotController.js';
+import { getLots, postLot } from '../controllers/lotController.js';
 
 const router = Router();
 
-router.get('/lots', getLots);
+router.get('/', getLots);
+router.post('/', postLot);
 
 export default router;
