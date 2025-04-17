@@ -8,12 +8,10 @@ export default function AboutUs({ component }) {
         description: component.find((item) => item.slug === "about_us_p1")?.text || "",
         image1: component.find((item) => item.slug === "about_us_image1")?.photoUrl || "",
         image2: component.find((item) => item.slug === "about_us_image2")?.photoUrl || "",
-        advantages: [
-          component.find((item) => item.slug === "about_us_stat_1")?.text || "",
-          component.find((item) => item.slug === "about_us_stat_2")?.text || "",
-          component.find((item) => item.slug === "about_us_stat_3")?.text || "",
-          component.find((item) => item.slug === "about_us_stat_4")?.text || "",
-        ],
+        advantage1: component.find((item) => item.slug === "about_us_stat_1")?.text || "",
+        advantage2: component.find((item) => item.slug === "about_us_stat_2")?.text || "",
+        advantage3: component.find((item) => item.slug === "about_us_stat_3")?.text || "",
+        advantage4: component.find((item) => item.slug === "about_us_stat_4")?.text || "",
       }
     : {};
 
@@ -34,7 +32,7 @@ export default function AboutUs({ component }) {
                 height={32}
               />
             </div>
-            <p className={styles.advantageText}>{aboutUsData.advantages[0]}</p>
+            <p className={styles.advantageText}>{aboutUsData.advantage1}</p>
           </div>
           <div className={styles.advantageItem}>
             <div className={styles.icon}>
@@ -45,7 +43,7 @@ export default function AboutUs({ component }) {
                 height={32}
               />
             </div>
-            <p className={styles.advantageText}>{aboutUsData.advantages[1]}</p>
+            <p className={styles.advantageText}>{aboutUsData.advantage2}</p>
           </div>
           <div className={styles.advantageItem}>
             <div className={styles.icon}>
@@ -56,7 +54,7 @@ export default function AboutUs({ component }) {
                 height={32}
               />
             </div>
-            <p className={styles.advantageText}>{aboutUsData.advantages[2]}</p>
+            <p className={styles.advantageText}>{aboutUsData.advantage3}</p>
           </div>
           <div className={styles.advantageItem}>
             <div className={styles.icon}>
@@ -67,7 +65,7 @@ export default function AboutUs({ component }) {
                 height={24}
               />
             </div>
-            <p className={styles.advantageText}>{aboutUsData.advantages[3]}</p>
+            <p className={styles.advantageText}>{aboutUsData.advantage4}</p>
           </div>
         </div>
       </div>

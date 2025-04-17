@@ -13,6 +13,19 @@ import Navbar from "@/components/Navbar/Navbar";
 
 export default async function Home() {
   const components = await fetchComponents();
+  console.log("components", components);
+
+  if (!components) {
+    return (
+      <>
+        <Navbar />
+        <main>
+          <p>Не вдалося завантажити компоненти. Спробуйте пізніше.</p>
+        </main>
+        <Footer />
+      </>
+    );
+  }
 
   return (
     <>
@@ -23,8 +36,9 @@ export default async function Home() {
         <Stats component={components.stats} />
         <Services component={components.services} />
         <Calculator component={components.calculator} />
-        <Reviews reviews={components.reviews} />
+        <Reviews />
       </main>
+      <ContactUs />
       <Footer />
     </>
   );

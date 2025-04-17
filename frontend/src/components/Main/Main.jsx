@@ -11,6 +11,8 @@ export default function Main({ component }) {
       }
     : {};
 
+    console.log(mainData);
+
   return (
     <div className={styles.mainContainer}>
       <div className={styles.carImages}>
