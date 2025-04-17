@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { animateScaleUp, animateScaleDown, animatePress, animateRelease } from "../../utils/animation";
+import { gsap } from "gsap";
 import regions from "../../data/regions";
 import styles from "./Map.module.scss";
 
@@ -10,21 +10,46 @@ export default function Map({ onRegionClick, selectedRegion }) {
     regions.forEach((region) => {
       const element = document.getElementById(`region-${region.id}`);
       if (element) {
+        element.style.transformOrigin = "end end";
+
         element.addEventListener("mouseenter", () => {
-          animateScaleUp(element, 1.1, 0.3);
+          gsap.to(element, { scale: 1.05, duration: 0.3, ease: "power2.out" });
           setHoveredRegion(region);
         });
 
         element.addEventListener("mouseleave", () => {
-          animateScaleDown(element, 1, 0.3);
+          gsap.to(element, { scale: 1, duration: 0.3, ease: "power2.out" });
           setHoveredRegion(null);
         });
 
-        element.addEventListener("mousedown", () => animatePress(element, 0.9, 0.1));
-        element.addEventListener("mouseup", () => animateRelease(element, 1.1, 0.1));
+        element.addEventListener("mousedown", () => {
+          gsap.to(element, { scale: 0.975, duration: 0.3, ease: "power2.out" });
+        });
+
+        element.addEventListener("mouseup", () => {
+          gsap.to(element, { scale: 1.05, duration: 0.5, ease: "power2.out" });
+        });
       }
     });
   }, []);
+
+  useEffect(() => {
+    if (selectedRegion) {
+      const selectedElement = document.getElementById(`region-${selectedRegion.id}`);
+      if (selectedElement) {
+        gsap.to(selectedElement, { zIndex: 9999, duration: 0 });
+      }
+    }
+
+    regions.forEach((region) => {
+      if (!selectedRegion || region.id !== selectedRegion.id) {
+        const element = document.getElementById(`region-${region.id}`);
+        if (element) {
+          gsap.to(element, { zIndex: 0, duration: 0 }); 
+        }
+      }
+    });
+  }, [selectedRegion]);
 
   return (
     <div className={styles.mapContainer}>

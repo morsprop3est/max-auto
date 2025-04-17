@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react';
 import { fetchReviewsByRegion } from '../../api/reviews';
 import Map from './Map';
 import ReviewCard from './ReviewCard';
-import { animateScaleUp, animateScaleDown } from '../../utils/animation';
+import { gsap } from 'gsap';
 import styles from './Reviews.module.scss';
 
 export default function Reviews() {
@@ -25,8 +25,20 @@ export default function Reviews() {
   };
 
   const handleRegionClick = (region) => {
-    setSelectedRegion(region);
-    fetchReviews(region.id);
+    if (reviewCardRef.current) {
+      gsap.to(reviewCardRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.3,
+        onComplete: () => {
+          setSelectedRegion(region);
+          fetchReviews(region.id);
+        },
+      });
+    } else {
+      setSelectedRegion(region);
+      fetchReviews(region.id);
+    }
   };
 
   const handleNextReview = () => {
@@ -40,13 +52,26 @@ export default function Reviews() {
   };
 
   const closeReviewCard = () => {
-    setSelectedRegion(null);
-    setReviews([]);
+    if (reviewCardRef.current) {
+      gsap.to(reviewCardRef.current, {
+        opacity: 0,
+        scale: 0.9,
+        duration: 0.3,
+        onComplete: () => {
+          setSelectedRegion(null);
+          setReviews([]);
+        },
+      });
+    }
   };
 
   useEffect(() => {
-    if (reviewCardRef.current) {
-      animateScaleUp(reviewCardRef.current, 1, 0.3);
+    if (reviewCardRef.current && selectedRegion) {
+      gsap.fromTo(
+        reviewCardRef.current,
+        { opacity: 0, scale: 0.9, top: `${selectedRegion.y + 100}px`, left: `${selectedRegion.x + 100}px` },
+        { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }
+      );
     }
   }, [selectedRegion]);
 
@@ -60,28 +85,16 @@ export default function Reviews() {
           ref={reviewCardRef}
           className={styles.reviewCardContainer}
           style={{
-            top: `${selectedRegion.y - 150}px`,
-            left: `${selectedRegion.x}px`,
+            position: 'absolute',
           }}
         >
-          <button className={styles.closeButton} onClick={closeReviewCard}>
-            ✖
-          </button>
-          {reviews.length > 0 ? (
-            <>
-              <button onClick={handlePrevReview} className={styles.navButton}>
-                &lt;
-              </button>
-              <ReviewCard {...reviews[currentReviewIndex]} />
-              <button onClick={handleNextReview} className={styles.navButton}>
-                &gt;
-              </button>
-            </>
-          ) : (
-            <div className={styles.noReviews}>
-              <p>Поки немає відгуків для цієї області.</p>
-            </div>
-          )}
+          <ReviewCard
+            {...(reviews[currentReviewIndex] || {})}
+            hasReviews={reviews.length > 0}
+            onClose={closeReviewCard}
+            onPrev={handlePrevReview}
+            onNext={handleNextReview}
+          />
         </div>
       )}
     </div>

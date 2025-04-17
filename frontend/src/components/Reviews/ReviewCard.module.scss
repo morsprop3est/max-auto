@@ -1,43 +1,112 @@
 .card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #fff;
-  }
-  
-  .photo {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 8px;
-  }
-  
-  .placeholder {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: #ccc; 
-    margin-bottom: 8px;
-  }
-  
-  .name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 4px;
-  }
-  
-  .rating {
-    font-size: 14px;
-    color: #666;
-    margin-bottom: 4px;
-  }
-  
-  .comment {
-    font-size: 14px;
-    color: #333;
-    text-align: center;
-  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  background-color: #EAEAEA;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.topBlock {
+  display: flex;
+  justify-content: flex-end;
+  padding: 8px;
+  background-color: #EAEAEA;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.closeButton:hover {
+  transform: scale(1.1);
+  color: #ff4d4d;
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  color: #888;
+  transition: color 0.3s ease;
+}
+
+.closeButton:hover .closeIcon {
+  color: #ff4d4d;
+}
+
+.bottomBlock {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  height: 100%;
+}
+
+.sliderButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.sliderButton:hover {
+  transform: scale(1.1);
+}
+
+.sliderIcon {
+  width: 24px;
+  height: 24px;
+}
+
+.mirrored {
+  transform: scaleX(-1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 16px;
+}
+
+.photo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.comment {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.rating {
+  display: flex;
+  gap: 4px;
+}
+
+.star {
+  width: 20px;
+  height: 20px;
+}
+
+.noReviews {
+  font-size: 16px;
+  color: #666;
+  text-align: center;
+}
