@@ -11,19 +11,26 @@ export default function Main({ component }) {
       }
     : {};
 
-    console.log(mainData);
+  console.log(mainData);
 
   return (
-    <div className={styles.mainContainer}>
-      <div className={styles.carImages}>
-        <div className={styles.car1}>
-          <Image src="/main/car1.png" alt="Car 1" width={800} height={500} />
+    <div className={styles.mainWrapper}>
+      <div className={styles.contentWrapper}>
+      <div className={styles.contentBlock}>
+          <Image src="/logo.svg" alt="Logo" width={150} height={150} className={styles.logo} />
+          <h1>{mainData.title}</h1>
+          <h2>{mainData.subtitle}</h2>
+          <p>{mainData.description}</p>
+          <button className={styles.greenButton}>{mainData.buttonText}</button>
         </div>
-        <div className={styles.car2}>
-          <Image src="/main/car2.png" alt="Car 2" width={800} height={500} />
-        </div>
-        <div className={styles.car3}>
-          <Image src="/main/car3.png" alt="Car 3" width={800} height={500} />
+
+        <div className={styles.carImages}>
+          <div className={styles.car1}>
+            <Image src="/main/car1.png" alt="Car 1" width={800} height={500} />
+          </div>
+          <div className={styles.car2}>
+            <Image src="/main/car2.png" alt="Car 2" width={800} height={500} />
+          </div>
         </div>
       </div>
 
@@ -35,14 +42,6 @@ export default function Main({ component }) {
           objectFit="cover"
           className={styles.trapezoidImage}
         />
-      </div>
-
-      <div className={styles.contentBlock}>
-        <Image src="/logo.svg" alt="Logo" width={150} height={150} className={styles.logo} />
-        <h1>{mainData.title}</h1>
-        <h2>{mainData.subtitle}</h2>
-        <p>{mainData.description}</p>
-        <button className={styles.greenButton}>{mainData.buttonText}</button>
       </div>
     </div>
   );

@@ -46,10 +46,14 @@ const seedDatabase = async () => {
       { group: 'stats', slug: 'stat_p1_1', text: 'років досвіду на ринку', photoUrl: '', },
       { group: 'stats', slug: 'stat_h1_2', text: '1,234', photoUrl: '', },
       { group: 'stats', slug: 'stat_p1_2', text: 'задоволених клієнтів', photoUrl: '',},
-      { group: 'stats', slug: 'stat_p1_3', text: '5 тис', photoUrl: '',},
-      { group: 'stats', slug: 'stat_h1_3', text: 'доставлених автомобілів', photoUrl: '', },
+      { group: 'stats', slug: 'stat_h11_3', text: '5 тис', photoUrl: '',},
+      { group: 'stats', slug: 'stat_p1_3', text: 'доставлених автомобілів', photoUrl: '', },
       { group: 'stats', slug: 'stat_h1_4', text: '21 день', photoUrl: '', },
       { group: 'stats', slug: 'stat_p1_4', text: 'середній час доставки', photoUrl: '', },
+
+
+      { group: 'millitary', slug: 'millitary_h1', text: 'Допомага військовим', photoUrl: '', },
+      { group: 'millitary', slug: 'millitary_p1', text: 'MAKS AUTO не лише допомагає цивільним знайти ідеальне авто, а й активно працює для наших захисників. Ми організовуємо доставку надійних військових позашляховиків, пікапів і спеціалізованих авто з Європи та США для потреб ЗСУ, волонтерів і територіальної оборони.', photoUrl: '', },
     ]);
     console.log('Default components added.');
 

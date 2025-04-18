@@ -24,18 +24,34 @@ export default function Stats({ component }) {
 
   if (!statsData.length) return null;
 
+  const splitValue = (value) => {
+    const match = value.match(/^([0-9]+)\s*([^+\-*/%,]*)$/);
+    if (match) {
+      return { number: match[1], text: match[2] };
+    }
+    return { number: value, text: "" };
+  };
+  
+
   return (
-    <div className={styles.container}>
-      {statsData.map((stat, index) => (
-        <div key={index} className={styles.statItem}>
-          <div className={styles.trapezoid}>
-            <div className={styles.content}>
-              <h3 className={styles.value}>{stat.value}</h3>
-              <p className={styles.name}>{stat.name}</p>
+    <div className={styles.statsWrapper}>
+      <div className="container">
+        {statsData.map((stat, index) => {
+          const { number, text } = splitValue(stat.value); 
+          return (
+            <div key={index} className={styles.statItem}>
+              <div className={styles.trapezoid}>
+                <div className={styles.content}>
+                  <div className={styles.valueWrapper}>
+                    <h3 className={styles.number}>{number} {text && <span className={styles.text}>{text}</span>}</h3>
+                  </div>
+                  <p className={styles.name}>{stat.name}</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      ))}
+          );
+        })}
+      </div>
     </div>
   );
 }

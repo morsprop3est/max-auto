@@ -1,22 +1,27 @@
-.map {
-  width: 1500px;
-  height: 1000px;
-}
-
-.region {
-  cursor: pointer;
-  fill: #ccc; /* Базовый цвет региона */
-}
-
-.selected {
-  fill: #026b03; /* Цвет выбранного региона */
-}
-
 .mapContainer {
   width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+
+  .map {
+    width: 1500px;
+    height: 1000px;
+
+    .region {
+      cursor: pointer;
+      fill: #ccc;
+      transition: transform 0.3s ease, fill 0.3s ease;
+
+      &:hover {
+        fill: #038405;
+      }
+
+      &.selected {
+        fill: #026b03;
+        z-index: 10;
+      }
+    }
+  }
 }

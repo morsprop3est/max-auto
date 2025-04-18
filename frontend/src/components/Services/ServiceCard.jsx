@@ -1,27 +1,40 @@
 import styles from "./ServiceCard.module.scss";
-import Image from "next/image";
 
 export default function ServiceCard({ service }) {
   return (
     <div className={styles.card}>
       <div className={styles.background}>
-        <Image
-          src={service.photoUrl}
-          alt={service.title}
-          layout="fill"
-          objectFit="cover"
-          className={styles.backgroundImage}
-        />
+        {service.photoUrl ? (
+          <img
+            src={service.photoUrl}
+            alt={service.title}
+            className={styles.backgroundImage}
+          />
+        ) : null}
       </div>
       <div className={styles.overlay}>
-        <div className={styles.logo}>
-          <Image src="/logo.svg" alt="Logo" width={50} height={50} />
+        <div className={styles.descriptionWrapper}>
+        <h2
+          className={styles.title}
+          title={service.title}
+        >
+          {service.title}
+        </h2>
+        <p
+          className={styles.description}
+          title={service.description}
+        >
+          {service.description}
+        </p>
         </div>
-        <h2 className={styles.title}>{service.title}</h2>
-        <div className={styles.hiddenContent}>
-          <p className={styles.description}>{service.description}</p>
-          <button className={styles.learnMore}>Дізнатись більше</button>
-        </div>
+        <a href="#" className={styles.learnMore}>
+          Дізнатись більше
+          <img
+            src="/slideButton2.svg"
+            alt="Arrow"
+            className={styles.learnMoreIcon}
+          />
+        </a>
       </div>
     </div>
   );

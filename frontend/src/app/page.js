@@ -34,7 +34,8 @@ export default async function Home() {
         <Main component={components.main} />
         <AboutUs component={components.about_us} />
         <Stats component={components.stats} />
-        <Services component={components.services} />
+        <Services component={components.service} />
+        <Millitary component={components.millitary} />
         <Calculator component={components.calculator} />
         <Reviews />
       </main>

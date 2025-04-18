@@ -69,34 +69,38 @@ export default function Reviews() {
     if (reviewCardRef.current && selectedRegion) {
       gsap.fromTo(
         reviewCardRef.current,
-        { opacity: 0, scale: 0.9, top: `${selectedRegion.y + 100}px`, left: `${selectedRegion.x + 100}px` },
+        { opacity: 0, scale: 0.9, top: `${selectedRegion.y + 600}px`, left: `${selectedRegion.x + 200}px` },
         { opacity: 1, scale: 1, duration: 0.3, ease: 'power2.out' }
       );
     }
   }, [selectedRegion]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.mapContainer}>
-        <Map onRegionClick={handleRegionClick} selectedRegion={selectedRegion} />
-      </div>
-      {selectedRegion && (
-        <div
-          ref={reviewCardRef}
-          className={styles.reviewCardContainer}
-          style={{
-            position: 'absolute',
-          }}
-        >
-          <ReviewCard
-            {...(reviews[currentReviewIndex] || {})}
-            hasReviews={reviews.length > 0}
-            onClose={closeReviewCard}
-            onPrev={handlePrevReview}
-            onNext={handleNextReview}
-          />
+    <div className={styles.reviewsWrapper}>
+      <div className="container">
+        <div className={styles.reviewsWrapper2}>
+          <div className={styles.mapContainer}>
+            <Map onRegionClick={handleRegionClick} selectedRegion={selectedRegion} />
+          </div>
+          {selectedRegion && (
+            <div
+              ref={reviewCardRef}
+              className={styles.reviewCardContainer}
+              style={{
+                position: 'absolute',
+              }}
+            >
+              <ReviewCard
+                {...(reviews[currentReviewIndex] || {})}
+                hasReviews={reviews.length > 0}
+                onClose={closeReviewCard}
+                onPrev={handlePrevReview}
+                onNext={handleNextReview}
+              />
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 }

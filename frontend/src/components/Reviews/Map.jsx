@@ -10,7 +10,7 @@ export default function Map({ onRegionClick, selectedRegion }) {
     regions.forEach((region) => {
       const element = document.getElementById(`region-${region.id}`);
       if (element) {
-        element.style.transformOrigin = "end end";
+        element.style.transformOrigin = "center center";
 
         element.addEventListener("mouseenter", () => {
           gsap.to(element, { scale: 1.05, duration: 0.3, ease: "power2.out" });
@@ -45,7 +45,7 @@ export default function Map({ onRegionClick, selectedRegion }) {
       if (!selectedRegion || region.id !== selectedRegion.id) {
         const element = document.getElementById(`region-${region.id}`);
         if (element) {
-          gsap.to(element, { zIndex: 0, duration: 0 }); 
+          gsap.to(element, { zIndex: 0, duration: 0 });
         }
       }
     });

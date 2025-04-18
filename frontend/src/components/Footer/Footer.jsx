@@ -36,52 +36,54 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        <div className={styles.logoBlock}>
-          <Image src="/logo.svg" alt="Logo" className={styles.logo} width={200} height={200} />
-        </div>
-
-        <div className={styles.socialBlock}>
-          <div className={styles.empty}></div>
-          <div className={styles.socialIcons}>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              ref={(el) => (socialIconsRef.current[0] = el)}
-            >
-              <Image src="/socialNetworkIcons/facebook.svg" alt="Facebook" className={styles.icon} width={32} height={32} />
-            </a>
-            <a
-              href="https://instagram.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              ref={(el) => (socialIconsRef.current[1] = el)}
-            >
-              <Image src="/socialNetworkIcons/instagram.svg" alt="Instagram" className={styles.icon} width={32} height={32} />
-            </a>
-            <a
-              href="https://telegram.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              ref={(el) => (socialIconsRef.current[2] = el)}
-            >
-              <Image src="/socialNetworkIcons/telegram.svg" alt="Telegram" className={styles.icon} width={32} height={32} />
-            </a>
+    <footer className={styles.footerWrapper}>
+      <div className="container">
+        <div className={styles.footerWrapper2}>
+          <div className={styles.logoBlock}>
+            <Image src="/logo.svg" alt="Logo" className={styles.logo} width={200} height={200} />
           </div>
-          <div
-            className={styles.scrollTop}
-            onClick={scrollToTop}
-            ref={scrollTopRef}
-          >
-            <Image src="/scrollTop.svg" alt="Scroll to top" width={32} height={32} />
-          </div>
-        </div>
 
-        <div className={styles.line}></div>
-        <div className={styles.copyright}>
-          Maks-Auto © All Rights Reserved.
+          <div className={styles.socialBlock}>
+            <div className={styles.empty}></div>
+            <div className={styles.socialIcons}>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                ref={(el) => (socialIconsRef.current[0] = el)}
+              >
+                <Image src="/socialNetworkIcons/facebook.svg" alt="Facebook" className={styles.icon} width={32} height={32} />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                ref={(el) => (socialIconsRef.current[1] = el)}
+              >
+                <Image src="/socialNetworkIcons/instagram.svg" alt="Instagram" className={styles.icon} width={32} height={32} />
+              </a>
+              <a
+                href="https://telegram.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                ref={(el) => (socialIconsRef.current[2] = el)}
+              >
+                <Image src="/socialNetworkIcons/telegram.svg" alt="Telegram" className={styles.icon} width={32} height={32} />
+              </a>
+            </div>
+            <div
+              className={styles.scrollTop}
+              onClick={scrollToTop}
+              ref={scrollTopRef}
+            >
+              <Image src="/scrollTop.svg" alt="Scroll to top" width={32} height={32} />
+            </div>
+          </div>
+
+          <div className={styles.line}></div>
+          <div className={styles.copyright}>
+            Maks-Auto © All Rights Reserved.
+          </div>
         </div>
       </div>
     </footer>

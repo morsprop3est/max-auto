@@ -14,7 +14,7 @@ export default (sequelize) => {
       type: DataTypes.STRING,
     },
     text: { 
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     photoUrl: { 
       type: DataTypes.STRING,

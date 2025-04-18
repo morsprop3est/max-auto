@@ -1,61 +1,60 @@
-.footer {
-    width: 100%;
-    background-color: #121212;
-    color: #e6e6e6;
-    padding: 20px 0;
-  }
-  
-  .container {
-    width: 1440px;
-    margin: 0 auto;
+.footerWrapper {
+  width: 100%;
+  background-color: #121212;
+  color: #e6e6e6;
+  padding: 20px 0;
+
+  .footerWrapper2 {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 20px;
-  }
-  
-  .logoBlock {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .socialBlock {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
+
+    .logoBlock {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .socialBlock {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .empty {
+        width: 32px;
+        height: 32px;
+      }
+
+      .socialIcons {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+
+        .icon {
+          width: 32px;
+          height: 32px;
+          cursor: pointer;
+        }
+      }
+
+      .scrollTop {
+        display: block;
+        cursor: pointer;
+      }
+    }
+
+    .line {
+      width: 100%;
+      height: 2px;
+      background-color: #e6e6e6;
+    }
+
+    .copyright {
+      text-align: center;
+      font-size: 14px;
+    }
   }
-  
-  .empty {
-    width: 32px;
-    height: 32px;
-  }
-  
-  .socialIcons {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-  }
-  
-  .icon {
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-  }
-  
-  .scrollTop {
-    display: block;
-    cursor: pointer;
-  }
-    
-  .line {
-    width: 100%;
-    height: 2px;
-    background-color: #e6e6e6;
-  }
-  
-  .copyright {
-    text-align: center;
-    font-size: 14px;
-  }
+}

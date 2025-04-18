@@ -1,19 +1,8 @@
-.container {
-    width: 1440px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .statItem {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
+.statsWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   .trapezoid {
     position: relative;
     width: 200px;
@@ -26,20 +15,35 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     color: white;
     text-align: center;
+
+    .content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .valueWrapper {
+        .number {
+          font-size: 36px;
+          font-family: Montserrat;
+          font-weight: 800;
+          letter-spacing: 0%;
+          text-align: right;
+          margin: 0;
+        }
+
+        .text {
+          font-size: 16px;
+        }
+      }
+
+      .name {
+        font-size: 14px;
+        margin: 0;
+        margin-top: 5px;
+        max-width: 100px;
+        text-align: left;
+      }
+    }
   }
-  
-  .content {
-    text-align: center;
-  }
-  
-  .value {
-    font-size: 32px;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .name {
-    font-size: 14px;
-    margin: 0;
-    margin-top: 5px;
-  }
+}

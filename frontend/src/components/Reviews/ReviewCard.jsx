@@ -1,8 +1,22 @@
-import { useEffect, useRef } from "react";
-import { animateScaleUp, animateScaleDown, animatePress, animateRelease } from "../../utils/animation";
+import { useRef } from "react";
+import {
+  animateScaleUp,
+  animateScaleDown,
+  animatePress,
+  animateRelease,
+} from "../../utils/animation";
 import styles from "./ReviewCard.module.scss";
 
-export default function ReviewCard({ name, rating, comment, photo, onClose, onPrev, onNext, hasReviews }) {
+export default function ReviewCard({
+  name,
+  rating,
+  comment,
+  photo,
+  onClose,
+  onPrev,
+  onNext,
+  hasReviews,
+}) {
   const cardRef = useRef(null);
 
   const renderStars = () => {
@@ -14,7 +28,7 @@ export default function ReviewCard({ name, rating, comment, photo, onClose, onPr
           src={i <= rating ? "/starFilled.svg" : "/star.svg"}
           alt={i <= rating ? "Filled Star" : "Empty Star"}
           className={styles.star}
-          onMouseEnter={(e) => animateScaleUp(e.target, 1.2, 0.2)} 
+          onMouseEnter={(e) => animateScaleUp(e.target, 1.2, 0.2)}
           onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)}
         />
       );
@@ -28,8 +42,8 @@ export default function ReviewCard({ name, rating, comment, photo, onClose, onPr
         <button
           className={styles.closeButton}
           onClick={onClose}
-          onMouseEnter={(e) => animateScaleUp(e.target, 1.1, 0.2)} 
-          onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)} 
+          onMouseEnter={(e) => animateScaleUp(e.target, 1.1, 0.2)}
+          onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)}
           onMouseDown={(e) => animatePress(e.target, 0.9, 0.1)}
           onMouseUp={(e) => animateRelease(e.target, 1.1, 0.2)}
         >
@@ -55,12 +69,16 @@ export default function ReviewCard({ name, rating, comment, photo, onClose, onPr
             <button
               className={styles.sliderButton}
               onClick={onPrev}
-              onMouseEnter={(e) => animateScaleUp(e.target, 1.1, 0.2)} 
-              onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)} 
-              onMouseDown={(e) => animatePress(e.target, 0.9, 0.1)} 
+              onMouseEnter={(e) => animateScaleUp(e.target, 1.1, 0.2)}
+              onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)}
+              onMouseDown={(e) => animatePress(e.target, 0.9, 0.1)}
               onMouseUp={(e) => animateRelease(e.target, 1.1, 0.2)}
             >
-              <img src="/slideButton.svg" alt="Previous" className={styles.sliderIcon} />
+              <img
+                src="/slideButton.svg"
+                alt="Previous"
+                className={styles.sliderIcon}
+              />
             </button>
 
             <div className={styles.content}>
@@ -74,9 +92,9 @@ export default function ReviewCard({ name, rating, comment, photo, onClose, onPr
               className={styles.sliderButton}
               onClick={onNext}
               onMouseEnter={(e) => animateScaleUp(e.target, 1.1, 0.2)}
-              onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)} 
-              onMouseDown={(e) => animatePress(e.target, 0.9, 0.1)} 
-              onMouseUp={(e) => animateRelease(e.target, 1.1, 0.2)} 
+              onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)}
+              onMouseDown={(e) => animatePress(e.target, 0.9, 0.1)}
+              onMouseUp={(e) => animateRelease(e.target, 1.1, 0.2)}
             >
               <img
                 src="/slideButton.svg"
