@@ -1,22 +1,39 @@
 .mainWrapper {
   position: relative;
   width: 100%;
-  height: 1080px;
+  height: 100vh;
+  max-height: 1080px;
   overflow: hidden;
+}
+
+.invisibleBlock {
+  height: 50px;
 }
 
 .contentWrapper {
   position: relative;
   max-width: 1440px;
+  height: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
+  height: calc(100% - 100px);
   z-index: 2;
 }
 
+.leftBlock {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+}
+
 .carImages {
+  will-change: transform;
+
+  
   .car1,
   .car2,
   .car3 {
@@ -27,14 +44,14 @@
 
   .car1 {
     position: relative;
-    top: 500px;
+    top: 450px;
     z-index: 2;
   }
 
   .car2 {
     position: relative;
     left: 400px;
-    top: 130px;
+    top: 80px;
     z-index: 2;
   }
 }
@@ -65,7 +82,7 @@
     letter-spacing: 0%;
   }
 
-  p {
+  .description {
     font-family: 'Montserrat', sans-serif;
     font-size: 20px;
     font-weight: 300;
@@ -89,6 +106,20 @@
 
   &:hover {
     background-color: #026c03;
+  }
+}
+
+.socialBlock {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px 0;
+  z-index: 2;
+
+  a {
+    display: inline-block;
+    width: 32px;
+    height: 32px;
   }
 }
 

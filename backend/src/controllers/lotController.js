@@ -1,9 +1,35 @@
 import { Lot } from '../models/index.js';
+import { Op } from 'sequelize';
 
 export const getLots = async (req, res) => {
   try {
-    const lots = await Lot.findAll();
-    res.status(200).json({ lots });
+    const { page = 1, limit = 10, bodyType, fuelType, minPrice, maxPrice } = req.query;
+
+    const offset = (page - 1) * limit;
+
+    const where = {};
+
+    if (bodyType) {
+      where.vehicleType = bodyType;
+    }
+
+    if (fuelType) {
+      where.fuel = fuelType;
+    }
+
+    if (minPrice || maxPrice) {
+      where.priceNew = {};
+      if (minPrice) where.priceNew[Op.gte] = parseFloat(minPrice);
+      if (maxPrice) where.priceNew[Op.lte] = parseFloat(maxPrice);
+    }
+
+    const { rows: lots, count: totalLots } = await Lot.findAndCountAll({
+      where,
+      offset,
+      limit: parseInt(limit),
+    });
+
+    res.status(200).json({ lots, totalLots });
   } catch (error) {
     console.error('Error fetching lots:', error);
     res.status(500).json({ error: 'Failed to fetch lots' });

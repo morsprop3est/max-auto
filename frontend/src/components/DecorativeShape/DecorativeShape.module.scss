@@ -1,0 +1,37 @@
+.decorativeShape {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  
+    .leftTriangle {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: transparent #038405 transparent transparent;
+      transform: scaleY(-1);
+
+    }
+  
+    .centerBlock {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #038405;
+      color: #fff;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      z-index: 1;
+    }
+  
+    .rightTriangle {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      transform: scaleX(-1);
+      border-color: #038405 transparent transparent transparent;
+    }
+  }
+  

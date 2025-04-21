@@ -1,0 +1,11 @@
+.textWrapper {
+    display: inline-block;
+    overflow: hidden;
+  }
+  
+  .word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  

@@ -1,0 +1,110 @@
+.filtersWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  
+    .filterRow {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  
+      .filterButton {
+        width: 100%; /* Кнопки на всю ширину */
+        padding: 10px 20px;
+        background-color: #038405; /* Зелений фон */
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        font-size: 16px;
+  
+        &:hover {
+          background-color: #026c03; /* Темніший зелений при наведенні */
+        }
+      }
+    }
+  
+    .sliderWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+  
+      .slider {
+        position: relative;
+        width: 100%;
+        height: 6px;
+        background-color: #D9D9D9;
+  
+        .sliderTrack {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 6px;
+          background-color: #D9D9D9;
+          z-index: 1;
+        }
+  
+        .sliderRange {
+          position: absolute;
+          top: 0;
+          height: 6px;
+          background-color: #038405;
+          z-index: 2;
+        }
+  
+        .rangeSlider {
+          position: absolute;
+          width: 100%;
+          height: 6px;
+          background: transparent;
+          appearance: none;
+          pointer-events: none;
+  
+          &::-webkit-slider-thumb {
+            appearance: none;
+            width: 16px;
+            height: 16px;
+            background-color: #121212;
+            border: 2px solid #EAEAEA;
+            pointer-events: auto;
+            cursor: pointer;
+            z-index: 3;
+            position: relative;
+          }
+  
+          &::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            background-color: #121212;
+            border: 2px solid #EAEAEA;
+            pointer-events: auto;
+            cursor: pointer;
+            z-index: 3;
+            position: relative;
+          }
+        }
+      }
+  
+      .priceRange {
+        display: flex;
+        justify-content: space-between;
+        font-size: 14px;
+        color: #121212;
+      }
+    }
+  
+    .applyButton {
+      padding: 10px 20px;
+      background-color: #038405;
+      color: #EAEAEA;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+  
+      &:hover {
+        background-color: #026c03;
+      }
+    }
+  }

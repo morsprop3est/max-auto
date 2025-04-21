@@ -7,49 +7,54 @@ export default function Map({ onRegionClick, selectedRegion }) {
   const [hoveredRegion, setHoveredRegion] = useState(null);
 
   useEffect(() => {
-    regions.forEach((region) => {
-      const element = document.getElementById(`region-${region.id}`);
-      if (element) {
-        element.style.transformOrigin = "center center";
+    const svgElement = document.querySelector(`.${styles.map}`);
 
-        element.addEventListener("mouseenter", () => {
-          gsap.to(element, { scale: 1.05, duration: 0.3, ease: "power2.out" });
-          setHoveredRegion(region);
-        });
-
-        element.addEventListener("mouseleave", () => {
-          gsap.to(element, { scale: 1, duration: 0.3, ease: "power2.out" });
-          setHoveredRegion(null);
-        });
-
-        element.addEventListener("mousedown", () => {
-          gsap.to(element, { scale: 0.975, duration: 0.3, ease: "power2.out" });
-        });
-
-        element.addEventListener("mouseup", () => {
-          gsap.to(element, { scale: 1.05, duration: 0.5, ease: "power2.out" });
-        });
+    const handleMouseEnter = (event) => {
+      const region = event.target.closest(`.${styles.region}`);
+      if (region) {
+        gsap.to(region, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+        setHoveredRegion(region.id);
       }
-    });
-  }, []);
+    };
 
-  useEffect(() => {
-    if (selectedRegion) {
-      const selectedElement = document.getElementById(`region-${selectedRegion.id}`);
-      if (selectedElement) {
-        gsap.to(selectedElement, { zIndex: 9999, duration: 0 });
+    const handleMouseLeave = (event) => {
+      const region = event.target.closest(`.${styles.region}`);
+      if (region) {
+        gsap.to(region, { scale: 1, duration: 0.3, ease: "power2.out" });
+        setHoveredRegion(null);
       }
+    };
+
+    const handleMouseDown = (event) => {
+      const region = event.target.closest(`.${styles.region}`);
+      if (region) {
+        gsap.to(region, { scale: 0.975, duration: 0.3, ease: "power2.out" });
+      }
+    };
+
+    const handleMouseUp = (event) => {
+      const region = event.target.closest(`.${styles.region}`);
+      if (region) {
+        gsap.to(region, { scale: 1.05, duration: 0.3, ease: "power2.out" });
+      }
+    };
+
+    if (svgElement) {
+      svgElement.addEventListener("mouseenter", handleMouseEnter, true);
+      svgElement.addEventListener("mouseleave", handleMouseLeave, true);
+      svgElement.addEventListener("mousedown", handleMouseDown, true);
+      svgElement.addEventListener("mouseup", handleMouseUp, true);
     }
 
-    regions.forEach((region) => {
-      if (!selectedRegion || region.id !== selectedRegion.id) {
-        const element = document.getElementById(`region-${region.id}`);
-        if (element) {
-          gsap.to(element, { zIndex: 0, duration: 0 });
-        }
+    return () => {
+      if (svgElement) {
+        svgElement.removeEventListener("mouseenter", handleMouseEnter, true);
+        svgElement.removeEventListener("mouseleave", handleMouseLeave, true);
+        svgElement.removeEventListener("mousedown", handleMouseDown, true);
+        svgElement.removeEventListener("mouseup", handleMouseUp, true);
       }
-    });
-  }, [selectedRegion]);
+    };
+  }, []);
 
   return (
     <div className={styles.mapContainer}>
