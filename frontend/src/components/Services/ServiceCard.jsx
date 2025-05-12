@@ -1,8 +1,28 @@
 import styles from "./ServiceCard.module.scss";
+import { useRef } from "react";
+import { gsap } from "gsap";
 
 export default function ServiceCard({ service }) {
+  const overlayRef = useRef(null);
+  const centerTitleRef = useRef(null);
+
+  const handleEnter = () => {
+    gsap.to(centerTitleRef.current, { opacity: 0, y: -20, duration: 0.1, pointerEvents: "none" });
+    gsap.to(overlayRef.current, { opacity: 1, y: 0, duration: 0.3, pointerEvents: "auto" });
+  };
+
+  const handleLeave = () => {
+    gsap.to(centerTitleRef.current, { opacity: 1, y: 0, duration: 0.3, pointerEvents: "auto" });
+    gsap.to(overlayRef.current, { opacity: 0, y: 100, duration: 0.3, pointerEvents: "none" });
+  };
+
   return (
-    <div className={styles.card}>
+    <div
+      className={styles.card}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
+      style={{ position: "relative" }}
+    >
       <div className={styles.background}>
         {service.photoUrl ? (
           <img
@@ -12,20 +32,31 @@ export default function ServiceCard({ service }) {
           />
         ) : null}
       </div>
-      <div className={styles.overlay}>
+      <div
+        ref={centerTitleRef}
+        className={styles.centerTitle}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          zIndex: 3,
+          opacity: 1,
+          pointerEvents: "auto",
+        }}
+      >
+        <span>{service.title}</span>
+      </div>
+      <div
+        ref={overlayRef}
+        className={styles.overlay}
+      >
         <div className={styles.descriptionWrapper}>
-        <h2
-          className={styles.title}
-          title={service.title}
-        >
-          {service.title}
-        </h2>
-        <p
-          className={styles.description}
-          title={service.description}
-        >
-          {service.description}
-        </p>
+          <h2 className={styles.title} title={service.title}>
+            {service.title}
+          </h2>
+          <p className={styles.description} title={service.description}>
+            {service.description}
+          </p>
         </div>
         <a href="#" className={styles.learnMore}>
           Дізнатись більше
