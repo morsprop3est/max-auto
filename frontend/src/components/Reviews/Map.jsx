@@ -1,79 +1,89 @@
-import { useEffect, useState } from "react";
-import { gsap } from "gsap";
+import { useRef, useEffect, useState } from "react";
 import regions from "../../data/regions";
+import Region from "./Region";
+import ReviewCard from "./ReviewCard";
 import styles from "./Map.module.scss";
 
-export default function Map({ onRegionClick, selectedRegion }) {
-  const [hoveredRegion, setHoveredRegion] = useState(null);
+export default function Map({
+  selectedRegion,
+  onRegionClick,
+  review,
+  onPrevReview,
+  onNextReview,
+  onCloseReview,
+}) {
+  const mapContainerRef = useRef(null);
+  const [cardPos, setCardPos] = useState({ left: 0, top: 0, visible: false });
 
   useEffect(() => {
-    const svgElement = document.querySelector(`.${styles.map}`);
-
-    const handleMouseEnter = (event) => {
-      const region = event.target.closest(`.${styles.region}`);
-      if (region) {
-        gsap.to(region, { scale: 1.05, duration: 0.3, ease: "power2.out" });
-        setHoveredRegion(region.id);
+    if (selectedRegion) {
+      const regionElement = document.getElementById(`region-${selectedRegion.id}`);
+      const containerElement = mapContainerRef.current;
+      if (regionElement && containerElement) {
+        const regionRect = regionElement.getBoundingClientRect();
+        const containerRect = containerElement.getBoundingClientRect();
+        const left = regionRect.left - containerRect.left + 100;
+        const top = regionRect.top - containerRect.top - 50;
+        setCardPos({ left, top, visible: true });
       }
-    };
-
-    const handleMouseLeave = (event) => {
-      const region = event.target.closest(`.${styles.region}`);
-      if (region) {
-        gsap.to(region, { scale: 1, duration: 0.3, ease: "power2.out" });
-        setHoveredRegion(null);
-      }
-    };
-
-    const handleMouseDown = (event) => {
-      const region = event.target.closest(`.${styles.region}`);
-      if (region) {
-        gsap.to(region, { scale: 0.975, duration: 0.3, ease: "power2.out" });
-      }
-    };
-
-    const handleMouseUp = (event) => {
-      const region = event.target.closest(`.${styles.region}`);
-      if (region) {
-        gsap.to(region, { scale: 1.05, duration: 0.3, ease: "power2.out" });
-      }
-    };
-
-    if (svgElement) {
-      svgElement.addEventListener("mouseenter", handleMouseEnter, true);
-      svgElement.addEventListener("mouseleave", handleMouseLeave, true);
-      svgElement.addEventListener("mousedown", handleMouseDown, true);
-      svgElement.addEventListener("mouseup", handleMouseUp, true);
+    } else {
+      setCardPos((pos) => ({ ...pos, visible: false }));
     }
+  }, [selectedRegion, review]);
 
-    return () => {
-      if (svgElement) {
-        svgElement.removeEventListener("mouseenter", handleMouseEnter, true);
-        svgElement.removeEventListener("mouseleave", handleMouseLeave, true);
-        svgElement.removeEventListener("mousedown", handleMouseDown, true);
-        svgElement.removeEventListener("mouseup", handleMouseUp, true);
+  useEffect(() => {
+    const handle = () => {
+      if (selectedRegion) {
+        const regionElement = document.getElementById(`region-${selectedRegion.id}`);
+        const containerElement = mapContainerRef.current;
+        if (regionElement && containerElement) {
+          const regionRect = regionElement.getBoundingClientRect();
+          const containerRect = containerElement.getBoundingClientRect();
+          const left = regionRect.left - containerRect.left + regionRect.width + 20;
+          const top = regionRect.top - containerRect.top - 20;
+          setCardPos({ left, top, visible: true });
+        }
       }
     };
-  }, []);
+    window.addEventListener("scroll", handle);
+    window.addEventListener("resize", handle);
+    return () => {
+      window.removeEventListener("scroll", handle);
+      window.removeEventListener("resize", handle);
+    };
+  }, [selectedRegion, review]);
 
   return (
-    <div className={styles.mapContainer}>
-      <svg className={styles.map}>
-        {regions.map((region) => {
-          const { svgPath, id, x, y } = region;
-          return (
-            <g
-              key={id}
-              id={`region-${id}`}
-              onClick={() => onRegionClick(region)}
-              className={`${styles.region} ${selectedRegion?.id === id ? styles.selected : ""}`}
-              transform={`translate(${x}, ${y})`}
-            >
-              <image href={svgPath} />
-            </g>
-          );
-        })}
+    <div className={styles.mapContainer} ref={mapContainerRef}>
+      <svg className={styles.map} width={1500} height={1000}>
+        {regions.map((region) => (
+          <Region
+            key={region.id}
+            region={region}
+            isSelected={selectedRegion?.id === region.id}
+            onClick={onRegionClick}
+          />
+        ))}
       </svg>
+      {cardPos.visible && selectedRegion && (        
+        <div
+          className={styles.reviewCardOverlay}
+          style={{
+            position: "absolute",
+            left: cardPos.left,
+            top: cardPos.top,
+            pointerEvents: "auto",
+          }}
+        >
+          <ReviewCard
+            {...review}
+            onPrev={onPrevReview}
+            onNext={onNextReview}
+            onClose={onCloseReview}
+            hasReviews={true}
+          />
+        </div>
+      )}
     </div>
   );
 }

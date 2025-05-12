@@ -51,9 +51,11 @@ const seedDatabase = async () => {
       { group: 'stats', slug: 'stat_h1_4', text: '21 день', photoUrl: '', },
       { group: 'stats', slug: 'stat_p1_4', text: 'середній час доставки', photoUrl: '', },
 
-
       { group: 'millitary', slug: 'millitary_h1', text: 'Допомага військовим', photoUrl: '', },
       { group: 'millitary', slug: 'millitary_p1', text: 'MAKS AUTO не лише допомагає цивільним знайти ідеальне авто, а й активно працює для наших захисників. Ми організовуємо доставку надійних військових позашляховиків, пікапів і спеціалізованих авто з Європи та США для потреб ЗСУ, волонтерів і територіальної оборони.', photoUrl: '', },
+      
+      { group: 'reviews', slug: 'reviews_h1', text: 'Відгуки клієнтів', photoUrl: '', },
+      { group: 'reviews', slug: 'reviews_p1', text: 'На карті ви можете знайти реальні відгуки наших клієнтів у вашому регіоні. Дізнайтесь, як пройшов їхній досвід замовлення авто з Європи та США, і переконайтеся в якості нашої роботи!', photoUrl: '', },
     ]);
     console.log('Default components added.');
 

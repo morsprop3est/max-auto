@@ -3,8 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { fetchReviewsByRegion } from '../../api/reviews';
 import Map from './Map';
-import ReviewCard from './ReviewCard';
-import { gsap } from 'gsap';
 import styles from './Reviews.module.scss';
 
 export default function Reviews({ component }) {
@@ -13,10 +11,12 @@ export default function Reviews({ component }) {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const reviewCardRef = useRef(null);
 
-  const sectionTitle = component?.find((item) => item.slug === "reviews_h1")?.text || "Відгуки наших клієнтів";
-  const sectionDescription =
-    component?.find((item) => item.slug === "reviews_p1")?.text ||
-    "Дізнайтеся, що говорять наші клієнти про нашу роботу. Ми завжди прагнемо досягти найкращого результату.";
+  const reviewsHeaderData = Array.isArray(component)
+    ? {
+        title: component.find((item) => item.slug === 'reviews_h1')?.text || '',
+        description: component.find((item) => item.slug === 'reviews_p1')?.text || '',
+      }
+    : {};
 
   const fetchReviews = async (regionId) => {
     try {
@@ -30,81 +30,46 @@ export default function Reviews({ component }) {
   };
 
   const handleRegionClick = (region) => {
-    if (reviewCardRef.current) {
-      gsap.to(reviewCardRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        onComplete: () => {
-          setSelectedRegion(region);
-          fetchReviews(region.id);
-        },
-      });
-    } else {
-      setSelectedRegion(region);
-      fetchReviews(region.id);
-    }
+    setSelectedRegion(region);
+    fetchReviews(region.id);
   };
 
-  const closeReviewCard = () => {
-    if (reviewCardRef.current) {
-      gsap.to(reviewCardRef.current, {
-        opacity: 0,
-        duration: 0.3,
-        onComplete: () => {
-          setSelectedRegion(null);
-          setReviews([]);
-        },
-      });
-    }
+  const handlePrevReview = () => {
+    setCurrentReviewIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : reviews.length - 1
+    );
   };
 
-  useEffect(() => {
-    if (reviewCardRef.current && selectedRegion) {
-      const regionElement = document.getElementById(`region-${selectedRegion.id}`);
-      if (regionElement) {
-        const regionRect = regionElement.getBoundingClientRect();
-        const cardX = regionRect.left + regionRect.width / 2;
-        const cardY = regionRect.top + window.scrollY - 20; // Відступ над регіоном
-
-        gsap.fromTo(
-          reviewCardRef.current,
-          { opacity: 0, x: cardX, y: cardY },
-          { opacity: 1, duration: 0.3, ease: 'power2.out' }
-        );
-      }
-    }
-  }, [selectedRegion]);
+  const handleNextReview = () => {
+    setCurrentReviewIndex((prevIndex) =>
+      prevIndex < reviews.length - 1 ? prevIndex + 1 : 0
+    );
+  };
 
   return (
     <div className={styles.reviewsWrapper}>
       <div className="container">
         <div className={styles.flexWrapper}>
+          <div className="container">
           <div className={styles.header}>
             <div className={styles.titleWrapper}>
               <div className={styles.line}></div>
-              <h1 className={styles.title}>{sectionTitle}</h1>
+              <h1 className={styles.title}>{reviewsHeaderData.title}</h1>
             </div>
-            <p className={styles.description}>{sectionDescription}</p>
+            <p className={styles.description}>{reviewsHeaderData.description}</p>
+          </div>
           </div>
           <div className={styles.reviewsWrapper2}>
             <div className={styles.mapContainer}>
-              <Map onRegionClick={handleRegionClick} selectedRegion={selectedRegion} />
+              <Map
+                onRegionClick={handleRegionClick}
+                selectedRegion={selectedRegion}
+                review={reviews[currentReviewIndex]}
+                onPrevReview={handlePrevReview}
+                onNextReview={handleNextReview}
+                onCloseReview={() => setSelectedRegion(null)}
+              />
             </div>
-            {selectedRegion && (
-              <div
-                ref={reviewCardRef}
-                className={styles.reviewCardContainer}
-                style={{
-                  position: 'absolute',
-                }}
-              >
-                <ReviewCard
-                  {...(reviews[currentReviewIndex] || {})}
-                  hasReviews={reviews.length > 0}
-                  onClose={closeReviewCard}
-                />
-              </div>
-            )}
           </div>
         </div>
       </div>

@@ -1,0 +1,141 @@
+.slider {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photoWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-in;
+}
+
+.photo {
+  width: 100%;
+  height: 100px;
+  display: block;
+  z-index: 1;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 2;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+
+.fullscreenImgBox {
+  position: relative;
+  width: 90vw;
+  height: 90vh;
+  max-width: 1200px;
+  max-height: 90vh;
+}
+
+.fullscreenImg {
+  border-radius: 10px;
+  background: #222;
+  box-shadow: 0 0 32px #000;
+}
+
+.navButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.15);
+  }
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.sliderIcon {
+  width: 20px;
+  height: 20px;
+}
+
+.mirrored {
+  transform: scaleX(-1);
+}
+
+.fullscreenOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreenPhotoWrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fullscreenImg {
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 0 32px #000;
+  border-radius: 10px;
+  background: #222;
+  position: relative;
+}
+
+.closeBtn {
+  position: fixed;
+  top: 32px;
+  right: 48px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeLine, .closeLineRev {
+  position: absolute;
+  width: 32px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.closeLine {
+  transform: rotate(45deg);
+}
+
+.closeLineRev {
+  transform: rotate(-45deg);
+}

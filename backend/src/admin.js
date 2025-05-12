@@ -1,10 +1,22 @@
 import AdminJS from 'adminjs';
 import AdminJSExpress from '@adminjs/express';
 import AdminJSSequelize from '@adminjs/sequelize';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import sequelize from './database.js';
-import { Order, Lot, Component, Calculator, Review, Region } from './models/index.js';
+import { Order, Lot, Component, Calculator, Review, Region, ReviewPhoto } from './models/index.js';
+import { ComponentLoader } from 'adminjs';
 
 AdminJS.registerAdapter(AdminJSSequelize);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const componentLoader = new ComponentLoader();
+
+const UserPhotoUpload = componentLoader.add('UserPhotoUpload', path.join(__dirname, './components/UserPhotoUpload.jsx'));
+const LotPhotoUpload = componentLoader.add('LotPhotoUpload', path.join(__dirname, './components/LotPhotoUpload.jsx'));
+const ReviewPhotoUpload = componentLoader.add('ReviewPhotoUpload', path.join(__dirname, './components/ReviewPhotoUpload.jsx'));
 
 const adminJs = new AdminJS({
   databases: [sequelize],
@@ -23,12 +35,42 @@ const adminJs = new AdminJS({
       },
     },
   },
+  componentLoader,
   resources: [
     { resource: Order, options: { navigation: 'Заявки' } },
-    { resource: Lot, options: { navigation: 'Лоти' } },
+    {
+      resource: Lot,
+      options: {
+        properties: {
+          photos: {
+            isVisible: { list: false, edit: true, show: true },
+            components: {
+              edit: LotPhotoUpload,
+            },
+          },
+        },
+      },
+    },
     { resource: Component, options: { navigation: 'Компоненти' } },
     { resource: Calculator, options: { navigation: 'Калькулятор' } },
-    { resource: Review, options: { navigation: 'Відгуки' } },
+    {
+      resource: Review,
+      options: {
+        properties: {
+          userPhoto: {
+            components: {
+              edit: UserPhotoUpload, 
+            },
+          },
+          reviewPhotos: {
+            isVisible: { list: false, edit: true, show: true },
+            components: {
+              edit: ReviewPhotoUpload, 
+            },
+          },
+        },
+      },
+    },
     { resource: Region, options: { navigation: 'Регіони' } },
   ],
 });
@@ -50,5 +92,7 @@ const adminRouter = AdminJSExpress.buildAuthenticatedRouter(adminJs, {
   saveUninitialized: false,
   secret: process.env.ADMIN_COOKIE_SECRET,
 });
+
+adminJs.watch();
 
 export { adminJs, adminRouter };

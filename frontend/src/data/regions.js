@@ -1,4 +1,4 @@
-const mapOffset = { x: 200, y: 0 }; 
+const mapOffset = { x: 100, y: 0 }; 
 
 const regions = [
   { id: 1, name: 'Київська область', svgPath: '/regions/1.svg', x: 389 + mapOffset.x, y: 157 + mapOffset.y },

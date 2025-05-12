@@ -1,23 +1,102 @@
-import { useRef } from "react";
-import {
-  animateScaleUp,
-  animateScaleDown,
-  animatePress,
-  animateRelease,
-} from "../../utils/animation";
+import { useRef, useEffect, useState } from "react";
+import PhotoSlider from "../PhotoSlider/PhotoSlider";
 import styles from "./ReviewCard.module.scss";
+import { gsap } from "gsap";
+
+const BASE_URL = process.env.NEXT_PUBLIC_URL;
 
 export default function ReviewCard({
   name,
   rating,
   comment,
-  photo,
+  userPhoto,
+  reviewPhotos = [],
   onClose,
   onPrev,
   onNext,
   hasReviews,
 }) {
   const cardRef = useRef(null);
+  const commentRef = useRef(null);
+  const sliderRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    setIsVisible(true);
+    if (cardRef.current) {
+      gsap.fromTo(
+        cardRef.current,
+        { opacity: 0, y: 60, x: -200, scale: 0.1 },
+        {
+          opacity: 1,
+          y: 0,
+          x: 0,
+          scale: 1,
+          duration: 0.45,
+          ease: "power3.out",
+        }
+      );
+    }
+    return () => {
+      if (cardRef.current) {
+        gsap.set(cardRef.current, { clearProps: "all" });
+      }
+    };
+  }, []);
+
+  const animateAnd = (callback) => {
+    if (cardRef.current) {
+      gsap.to(cardRef.current, {
+        opacity: 0,
+        y: 60,
+        x: -200,
+        scale: 0.1,
+        duration: 0.35,
+        ease: "power3.in",
+        onComplete: callback,
+      });
+    } else {
+      callback();
+    }
+  };
+
+  const animateComment = (callback) => {
+    if (commentRef.current) {
+      gsap.to(commentRef.current, {
+        opacity: 0,
+        duration: 0.2,
+        ease: "power2.in",
+        onComplete: () => {
+          callback();
+          setTimeout(() => {
+            if (commentRef.current) {
+              gsap.fromTo(
+                commentRef.current,
+                { opacity: 0 },
+                { opacity: 1, duration: 0.2, ease: "power2.out" }
+              );
+            }
+          }, 10);
+        },
+      });
+    } else {
+      callback();
+    }
+  };
+
+  useEffect(() => {
+    if (sliderRef.current) {
+      gsap.fromTo(
+        sliderRef.current,
+        { opacity: 0,  },
+        { opacity: 1, duration: 0.1, ease: "power2.out" }
+      );
+    }
+  }, [reviewPhotos]);
+
+  const handleClose = () => animateAnd(onClose);
+  const handlePrev = () => animateComment(onPrev);
+  const handleNext = () => animateComment(onNext);
 
   const renderStars = () => {
     const stars = [];
@@ -28,84 +107,81 @@ export default function ReviewCard({
           src={i <= rating ? "/starFilled.svg" : "/star.svg"}
           alt={i <= rating ? "Filled Star" : "Empty Star"}
           className={styles.star}
-          onMouseEnter={(e) => animateScaleUp(e.target, 1, 0.2)}
-          onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)}
+          onMouseEnter={e => gsap.to(e.currentTarget, { scale: 1.25, duration: 0.1 })}
+          onMouseLeave={e => gsap.to(e.currentTarget, { scale: 1, duration: 0.1 })}
         />
       );
     }
     return stars;
   };
 
+  const userPhotoUrl =
+    userPhoto && userPhoto !== "null"
+      ? `${BASE_URL}${userPhoto}`
+      : "/default-review-user-icon.svg";
+
+  const hasSliderPhotos = Array.isArray(reviewPhotos) && reviewPhotos.length > 0;
+  const hasAnyComment = Boolean(name || rating || comment);
+
+  if (!isVisible) return null;
+
   return (
-    <div ref={cardRef} className={styles.card}>
-      <div className={styles.topBlock}>
-        <button
-          className={styles.closeButton}
-          onClick={onClose}
-          onMouseEnter={(e) => animateScaleUp(e.target, 1.05, 0.2)}
-          onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)}
-          onMouseDown={(e) => animatePress(e.target, 0.9, 0.1)}
-          onMouseUp={(e) => animateRelease(e.target, 1.05, 0.2)}
+    <div className={styles.card} ref={cardRef}>
+      <button className={styles.closeButton} onClick={handleClose}>
+        ✖
+      </button>
+      <div className={styles.row}>
+        {hasAnyComment && (
+          <div className={styles.sideNav}>
+            <button className={styles.navBtn} onClick={handlePrev} aria-label="Попередній відгук">
+              <img src="/slideButton.svg" alt="Prev" className={styles.sliderIcon} />
+            </button>
+          </div>
+        )}
+        <div
+          className={
+            hasSliderPhotos
+              ? styles.commentCol
+              : `${styles.commentCol} ${styles.fullWidth}`
+          }
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={styles.closeIcon}
-          >
-            <line x1="18" y1="6" x2="6" y2="18" />
-            <line x1="6" y1="6" x2="18" y2="18" />
-          </svg>
-        </button>
-      </div>
-
-      <div className={styles.bottomBlock}>
-        {hasReviews ? (
-          <>
-            <button
-              className={styles.sliderButton}
-              onClick={onPrev}
-              onMouseEnter={(e) => animateScaleUp(e.target, 1.05, 0.2)}
-              onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)}
-              onMouseDown={(e) => animatePress(e.target, 0.9, 0.1)}
-              onMouseUp={(e) => animateRelease(e.target, 1.05, 0.2)}
-            >
-              <img
-                src="/slideButton.svg"
-                alt="Previous"
-                className={styles.sliderIcon}
-              />
+          <div ref={commentRef}>
+            {hasAnyComment ? (
+              <>
+                <div className={styles.userBlock}>
+                  <div className={styles.userPhotoBox}>
+                    <img
+                      src={userPhotoUrl}
+                      alt={name}
+                      className={styles.userPhoto}
+                      onMouseEnter={e => gsap.to(e.currentTarget, { scale: 1.18, duration: 0.2 })}
+                      onMouseLeave={e => gsap.to(e.currentTarget, { scale: 1, duration: 0.2 })}
+                    />
+                  </div>
+                  <div className={styles.userInfoBox}>
+                    <div className={styles.name}>{name}</div>
+                    <div className={styles.rating}>{renderStars()}</div>
+                  </div>
+                </div>
+                <div className={styles.commentText}>{comment}</div>
+              </>
+            ) : (
+              <div className={styles.noComments}>
+                Коментарів до цієї області ще немає
+              </div>
+            )}
+          </div>
+        </div>
+        {hasSliderPhotos && (
+          <div className={styles.sliderCol} ref={sliderRef}>
+            <PhotoSlider photos={reviewPhotos.map((photo) => `${BASE_URL}${photo.photoUrl}`)} />
+          </div>
+        )}
+        {hasAnyComment && (
+          <div className={styles.sideNav}>
+            <button className={styles.navBtn} onClick={handleNext} aria-label="Наступний відгук">
+              <img src="/slideButton.svg" alt="Next" className={`${styles.sliderIcon} ${styles.mirrored}`} />
             </button>
-
-            <div className={styles.content}>
-              {photo && <img src={photo} alt={name} className={styles.photo} />}
-              <h3 className={styles.name}>{name}</h3>
-              <p className={styles.comment}>{comment}</p>
-              <div className={styles.rating}>{renderStars()}</div>
-            </div>
-
-            <button
-              className={styles.sliderButton}
-              onClick={onNext}
-              onMouseEnter={(e) => animateScaleUp(e.target, 1.1, 0.2)}
-              onMouseLeave={(e) => animateScaleDown(e.target, 1, 0.2)}
-              onMouseDown={(e) => animatePress(e.target, 0.9, 0.1)}
-              onMouseUp={(e) => animateRelease(e.target, 1.1, 0.2)}
-            >
-              <img
-                src="/slideButton.svg"
-                alt="Next"
-                className={`${styles.sliderIcon} ${styles.mirrored}`}
-              />
-            </button>
-          </>
-        ) : (
-          <div className={styles.noReviews}>
-            <p>Поки немає відгуків для цієї області.</p>
           </div>
         )}
       </div>

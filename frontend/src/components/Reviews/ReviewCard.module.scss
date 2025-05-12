@@ -1,112 +1,159 @@
 .card {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 20px 60px 20px 60px;
+  clip-path: polygon(60px 0, 100% 0, calc(100% - 60px) 100%, 0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 600px;
+  height: 150px;
+  flex-direction: column;
+  gap: 0;
+
+  .closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    z-index: 2;
+    transition: transform 0.2s;
+    &:hover { transform: scale(1.2);}
+    &:active { transform: scale(0.9);}
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 100%;
+    gap: 0;
+  }
+
+  .sideNav {
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .navBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+    &:hover { transform: scale(1.15);}
+    &:active { transform: scale(0.95);}
+  }
+
+  .sliderIcon {
+    width: 28px;
+    height: 28px;
+  }
+  .mirrored {
+    transform: scaleX(-1);
+  }
+
+.commentCol {
+  padding: 0 20px;
+  width: 400px;
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  transition: width 0.2s;
+}
+
+.noComments {
+  font-size: 16px;
+  color: #888;
+  text-align: center;
+  margin: auto 0;
   width: 100%;
-  max-width: 400px;
-  background-color: #eaeaea;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
+  padding: 24px 0;
+}
 
-  .topBlock {
+.fullWidth {
+  width: 100%;
+  max-width: 600px;
+}
+
+  .userBlock {
     display: flex;
-    justify-content: flex-end;
-    padding: 8px;
-    background-color: #eaeaea;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 6px;
+  }
 
-    .closeButton {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      transition: transform 0.3s ease, color 0.3s ease;
+  .userPhotoBox {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+  .userPhoto {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #eee;
+  }
 
-      &:hover {
-        transform: scale(1.1);
-        color: #ff4d4d;
-      }
+  .userInfoBox {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 2px;
+    margin-top: 2px;
+  }
 
-      .closeIcon {
-        width: 24px;
-        height: 24px;
-        color: #888;
-        transition: color 0.3s ease;
+  .name {
+    font-size: 17px;
+    font-weight: 600;
+    color: #222;
+    margin-bottom: 2px;
+  }
 
-        &:hover {
-          color: #ff4d4d;
-        }
-      }
+  .rating {
+    display: flex;
+    gap: 3px;
+    .star {
+      width: 18px;
+      height: 18px;
+      transition: transform 0.18s;
     }
   }
 
-  .bottomBlock {
+  .commentText {
+    font-size: 15px;
+    color: #444;
+    margin-top: 6px;
+    word-break: break-word;
+    white-space: pre-line;
+    text-align: left;
+  }
+
+  .sliderCol {
+    width: 100%;
     display: flex;
     align-items: center;
-    padding: 16px;
-    height: 100%;
-
-    .sliderButton {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 8px;
-      transition: transform 0.3s ease;
-
-      &:hover {
-        transform: scale(1.1);
-      }
-
-      .sliderIcon {
-        width: 24px;
-        height: 24px;
-
-        &.mirrored {
-          transform: scaleX(-1);
-        }
-      }
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      padding: 0 16px;
-
-      .photo {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 8px;
-      }
-
-      .name {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 8px;
-      }
-
-      .comment {
-        font-size: 14px;
-        color: #333;
-        margin-bottom: 8px;
-      }
-
-      .rating {
-        display: flex;
-        gap: 4px;
-
-        .star {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-
-    .noReviews {
-      font-size: 16px;
-      color: #666;
-      text-align: center;
-    }
+    justify-content: center;
   }
 }

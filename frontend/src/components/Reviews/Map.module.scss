@@ -1,27 +1,33 @@
 .mapContainer {
+  position: relative;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
+  overflow: visible;
+}
 
-  .map {
-    width: 1500px;
-    height: 1000px;
+.reviewCardOverlay {
+  min-width: 340px;
+  max-width: 400px;
+  pointer-events: auto;
+}
 
-    .region {
-      cursor: pointer;
-      fill: #ccc;
-      transition: transform 0.3s ease, fill 0.3s ease;
+.map {
+  width: 100%;
+  height: auto;
+  max-width: 1500px;
+}
 
-      &:hover {
-        fill: #038405;
-      }
-
-      &.selected {
-        fill: #026b03;
-        z-index: 10;
-      }
-    }
+.region {
+  transition: filter 0.2s;
+  &:hover {
+    filter: brightness(0.8);
   }
+}
+
+.reviewCardWrapper {
+  width: 340px;
+  min-height: 200px;
+  pointer-events: auto;
 }

@@ -2,11 +2,10 @@ import React from 'react';
 import styles from './DecorativeShape.module.scss';
 
 export default function DecorativeShape({
-  width = 200, // Ширина центрального блоку
-  height = 100, // Висота центрального блоку
-  text = '', // Текст всередині
+  width = 200, 
+  height = 100, 
+  text = '', 
 }) {
-  // Довжина сторін трикутників дорівнює висоті центрального блоку
   const triangleSize = height;
 
   return (
@@ -14,7 +13,6 @@ export default function DecorativeShape({
       className={styles.decorativeShape}
       style={{ width: `${width + 2 * triangleSize}px`, height: `${height}px` }}
     >
-      {/* Лівий трикутник */}
       <div
         className={styles.leftTriangle}
         style={{
@@ -23,7 +21,6 @@ export default function DecorativeShape({
         }}
       ></div>
 
-      {/* Центральний блок із текстом */}
       <div
         className={styles.centerBlock}
         style={{ width: `${width}px`, height: `${height}px` }}
@@ -31,7 +28,6 @@ export default function DecorativeShape({
         {text}
       </div>
 
-      {/* Правий трикутник */}
       <div
         className={styles.rightTriangle}
         style={{

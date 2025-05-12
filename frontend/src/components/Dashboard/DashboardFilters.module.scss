@@ -1,110 +1,124 @@
 .filtersWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+    .slider {
+    width: 100%;
+    height: 6px;
+    background: #000;
+    position: relative;
+  }
+
+  .thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #038405;
+    cursor: grab;
+    position: absolute;
+    top: -7px;
+  }
+
+  .track {
+    background: #ccc;
+    height: 6px;
+  }
+
+  .bodyTypeWrapper,
+  .fuelTypeWrapper {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-  
-    .filterRow {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-  
-      .filterButton {
-        width: 100%; /* Кнопки на всю ширину */
-        padding: 10px 20px;
-        background-color: #038405; /* Зелений фон */
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: center;
-        font-size: 16px;
-  
-        &:hover {
-          background-color: #026c03; /* Темніший зелений при наведенні */
-        }
-      }
-    }
-  
-    .sliderWrapper {
-      display: flex;
-      flex-direction: column;
+    gap: 10px;
+
+    .bodyTypeGrid,
+    .fuelTypeGrid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
       gap: 10px;
-  
-      .slider {
-        position: relative;
-        width: 100%;
-        height: 6px;
-        background-color: #D9D9D9;
-  
-        .sliderTrack {
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 6px;
-          background-color: #D9D9D9;
-          z-index: 1;
-        }
-  
-        .sliderRange {
-          position: absolute;
-          top: 0;
-          height: 6px;
-          background-color: #038405;
-          z-index: 2;
-        }
-  
-        .rangeSlider {
-          position: absolute;
-          width: 100%;
-          height: 6px;
-          background: transparent;
-          appearance: none;
-          pointer-events: none;
-  
-          &::-webkit-slider-thumb {
-            appearance: none;
-            width: 16px;
-            height: 16px;
-            background-color: #121212;
-            border: 2px solid #EAEAEA;
-            pointer-events: auto;
-            cursor: pointer;
-            z-index: 3;
-            position: relative;
-          }
-  
-          &::-moz-range-thumb {
-            width: 16px;
-            height: 16px;
-            background-color: #121212;
-            border: 2px solid #EAEAEA;
-            pointer-events: auto;
-            cursor: pointer;
-            z-index: 3;
-            position: relative;
-          }
-        }
-      }
-  
-      .priceRange {
+
+      .bodyTypeButton,
+      .fuelTypeButton {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
         display: flex;
-        justify-content: space-between;
-        font-size: 14px;
-        color: #121212;
-      }
-    }
-  
-    .applyButton {
-      padding: 10px 20px;
-      background-color: #038405;
-      color: #EAEAEA;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: #026c03;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #ccc;
+        padding: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+
+        &.active {
+          background-color: #038405;
+          color: white;
+        }
+
+        .icon {
+          max-width: 40px;
+          height: auto;
+          margin-bottom: 5px;
+        }
       }
     }
   }
+
+  .sliderWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .rangeValues {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: row;
+    }
+  }
+
+  .buttonsWrapper {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+
+    .applyButton {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      letter-spacing: 0%;      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #038405;
+      color: white;
+      padding: 20px 60px 20px 40px;
+      border: none;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+      cursor: pointer;
+
+      &:hover {
+        background-color: #038405;
+      }
+    }
+
+    .resetButton {
+      font-family: 'Montserrat', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      background-color: #ccc;
+      color: black;
+      padding: 20px 20px 20px 40px;
+      border: none;
+      cursor: pointer;
+      text-align: center;
+      clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%);
+
+      &:hover {
+        background-color: #aaa;
+      }
+    }
+  }
+}

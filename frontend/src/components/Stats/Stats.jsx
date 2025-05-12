@@ -1,6 +1,13 @@
+'use client';
+
+import { useEffect, useRef, useState } from "react";
 import styles from "./Stats.module.scss";
+import { animateInFromLeft } from "@/utils/animation";
 
 export default function Stats({ component }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const statsWrapperRef = useRef(null);
+
   const statsData = Array.isArray(component)
     ? [
         {
@@ -24,26 +31,42 @@ export default function Stats({ component }) {
 
   if (!statsData.length) return null;
 
-  const splitValue = (value) => {
-    const match = value.match(/^([0-9]+)\s*([^+\-*/%,]*)$/);
-    if (match) {
-      return { number: match[1], text: match[2] };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+
+            const statItems = statsWrapperRef.current.querySelectorAll(`.${styles.statItem}`);
+            statItems.forEach((item, index) => {
+              animateInFromLeft(item, 1, 0.2 * index); 
+            });
+
+            observer.disconnect(); 
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    if (statsWrapperRef.current) {
+      observer.observe(statsWrapperRef.current);
     }
-    return { number: value, text: "" };
-  };
-  
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div className={styles.statsWrapper}>
+    <div className={`${styles.statsWrapper} ${!isVisible ? styles.hidden : styles.visible}`} ref={statsWrapperRef}>
       <div className="container">
         {statsData.map((stat, index) => {
-          const { number, text } = splitValue(stat.value); 
           return (
-            <div key={index} className={styles.statItem}>
+            <div key={index} className={`${styles.statItem} ${styles.hidden}`}>
               <div className={styles.trapezoid}>
                 <div className={styles.content}>
                   <div className={styles.valueWrapper}>
-                    <h3 className={styles.number}>{number} {text && <span className={styles.text}>{text}</span>}</h3>
+                    <h3 className={styles.number}>{stat.value}</h3>
                   </div>
                   <p className={styles.name}>{stat.name}</p>
                 </div>

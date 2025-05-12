@@ -50,9 +50,13 @@ export default function Home() {
             <Stats component={components.stats} />
             <Services component={components.service} />
             <Millitary component={components.millitary} />
-            <Dashboard />
+            <Dashboard
+              components={components.dashboard}
+              bodyTypes={components.bodyTypes}
+              fuelTypes={components.fuelTypes}
+            />
             <Calculator component={components.calculator} />
-            <Reviews />
+            <Reviews component={components.reviews} />
           </main>
           <ContactUs />
           <Footer />

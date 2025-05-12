@@ -1,23 +1,31 @@
-export const fetchLots = async ({ page = 1, limit = 10, filters = {} }) => {
-    const { bodyType, fuelType, minPrice, maxPrice } = filters;
-  
+export const fetchLots = async ({ page = 1, limit = 50, filters = null }) => {
+  try {
     const params = new URLSearchParams({
       page,
       limit,
-      bodyType: bodyType || '',
-      fuelType: fuelType || '',
-      minPrice: minPrice || '',
-      maxPrice: maxPrice || '',
+      ...(filters?.bodyTypeSlug && { bodyTypeSlug: filters.bodyTypeSlug }),
+      ...(filters?.fuelTypeSlug && { fuelTypeSlug: filters.fuelTypeSlug }),
+      ...(filters?.minPrice && { minPrice: filters.minPrice }),
+      ...(filters?.maxPrice && { maxPrice: filters.maxPrice }),
+      ...(filters?.minYear && { minYear: filters.minYear }),
+      ...(filters?.maxYear && { maxYear: filters.maxYear }),
+      ...(filters?.minEngineSize && { minEngineSize: filters.minEngineSize }),
+      ...(filters?.maxEngineSize && { maxEngineSize: filters.maxEngineSize }),
+      ...(filters?.sortBy && { sortBy: filters.sortBy }),
     });
-  
-    try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/lots?${params}`);
-      if (!response.ok) {
-        return { lots: [], totalLots: 0 };
-      }
-  
-      return await response.json();
-    } catch (error) {
-      return { lots: [], totalLots: 0 };
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lots?${params.toString()}`);
+
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error('Error response from server:', errorText);
+      throw new Error(`Network response was not ok: ${res.statusText}`);
     }
-  };
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching lots:', error.message);
+    throw error;
+  }
+};

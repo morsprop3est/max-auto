@@ -16,6 +16,7 @@
     "next-auth": "^4.24.11",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-slider": "^2.0.6",
     "sass": "^1.86.0"
   },
   "devDependencies": {

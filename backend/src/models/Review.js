@@ -1,5 +1,4 @@
 import { DataTypes } from 'sequelize';
-import sequelize from '../database.js';
 
 export default (sequelize) => {
   return sequelize.define('Review', {
@@ -17,11 +16,8 @@ export default (sequelize) => {
     comment: { 
       type: DataTypes.STRING,
     },
-    photo: { 
+    userPhoto: { 
       type: DataTypes.STRING,
-    },
-    regionId: { 
-      type: DataTypes.INTEGER,
     },
   }, {
     tableName: 'Reviews',

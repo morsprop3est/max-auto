@@ -1,17 +1,27 @@
 import sequelize from '../database.js';
 import OrderModel from './Order.js';
 import LotModel from './Lot.js';
+import LotPhotoModel from './LotPhoto.js';
 import ComponentModel from './Component.js';
 import CalculatorModel from './Calculator.js';
 import ReviewModel from './Review.js';
+import ReviewPhotoModel from './ReviewPhoto.js';
 import RegionModel from './Region.js';
+import AuctionLocationModel from './AuctionLocation.js';
+import BodyTypeModel from './BodyType.js';
+import FuelTypeModel from './FuelType.js';
 
 const Order = OrderModel(sequelize);
 const Lot = LotModel(sequelize);
+const LotPhoto = LotPhotoModel(sequelize);
+const AuctionLocation = AuctionLocationModel(sequelize);
 const Component = ComponentModel(sequelize);
 const Calculator = CalculatorModel(sequelize);
 const Review = ReviewModel(sequelize);
+const ReviewPhoto = ReviewPhotoModel(sequelize);
 const Region = RegionModel(sequelize);
+const BodyType = BodyTypeModel(sequelize);
+const FuelType = FuelTypeModel(sequelize);
 
 Order.belongsToMany(Lot, { through: 'OrderLots', foreignKey: 'orderId' });
 Lot.belongsToMany(Order, { through: 'OrderLots', foreignKey: 'lotId' });
@@ -19,4 +29,19 @@ Lot.belongsToMany(Order, { through: 'OrderLots', foreignKey: 'lotId' });
 Region.hasMany(Review, { foreignKey: 'regionId' });
 Review.belongsTo(Region, { foreignKey: 'regionId' });
 
-export { sequelize, Order, Lot, Component, Calculator, Review, Region };
+Review.hasMany(ReviewPhoto, { foreignKey: 'reviewId', as: 'reviewPhotos' });
+ReviewPhoto.belongsTo(Review, { foreignKey: 'reviewId' });
+
+Lot.hasMany(LotPhoto, { foreignKey: 'lotId', as: 'photos' });
+LotPhoto.belongsTo(Lot, { foreignKey: 'lotId' });
+
+Lot.belongsTo(AuctionLocation, { foreignKey: 'locationId' });
+AuctionLocation.hasMany(Lot, { foreignKey: 'locationId' });
+
+Lot.belongsTo(BodyType, { foreignKey: 'bodyTypeId', as: 'bodyType' });
+BodyType.hasMany(Lot, { foreignKey: 'bodyTypeId', as: 'lots' });
+
+Lot.belongsTo(FuelType, { foreignKey: 'fuelTypeId', as: 'fuelType' });
+FuelType.hasMany(Lot, { foreignKey: 'fuelTypeId', as: 'lots' });
+
+export { sequelize, Order, Lot, Component, Calculator, Review, Region, AuctionLocation,  BodyType, FuelType, LotPhoto, ReviewPhoto };

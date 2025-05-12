@@ -7,92 +7,76 @@ export default (sequelize) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    auctionType: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    baseSite: {
-      type: DataTypes.STRING, 
-      allowNull: false,
-    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     auctionDate: {
       type: DataTypes.DATE,
-      allowNull: false,
+      allowNull: true,
     },
     odometer: {
-      type: DataTypes.INTEGER, 
-      allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
-    priceNew: {
+    price: {
       type: DataTypes.FLOAT,
       allowNull: false,
-    },
-    priceFuture: {
-      type: DataTypes.FLOAT, 
-      allowNull: true,
-    },
-    reservePrice: {
-      type: DataTypes.FLOAT,
-      allowNull: true,
-    },
-    costPriced: {
-      type: DataTypes.FLOAT, 
-      allowNull: true,
     },
     year: {
-      type: DataTypes.INTEGER, 
-      allowNull: false,
-    },
-    vehicleType: {
-      type: DataTypes.STRING, 
-      allowNull: false,
-    },
-    fuel: {
-      type: DataTypes.STRING, 
-      allowNull: false,
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     drive: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.ENUM('4WD', 'RWD', 'FWD'),
+      allowNull: true,
     },
     transmission: {
-      type: DataTypes.STRING, 
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     color: {
-      type: DataTypes.STRING, 
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     status: {
-      type: DataTypes.STRING, 
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     engineSize: {
-      type: DataTypes.FLOAT, 
-      allowNull: false,
-    },
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.FLOAT,
+      allowNull: true,
     },
     locationId: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'AuctionLocations',
+        key: 'id',
+      },
+      allowNull: true,
+    },
+    bodyTypeId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'BodyTypes',
+        key: 'id',
+      },
       allowNull: false,
     },
-    currency: {
-      type: DataTypes.STRING,
+    fuelTypeId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'FuelTypes',
+        key: 'id',
+      },
       allowNull: false,
     },
     link: {
-      type: DataTypes.STRING, 
-      allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   }, {
     tableName: 'Lots',
-    timestamps: true, 
+    timestamps: true,
   });
 };
