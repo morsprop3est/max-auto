@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import styles from "./AboutUs.module.scss";
 import Image from "next/image";
 import AnimatedText from "../AnimationComponents/AnimatedText/AnimatedText";
-import { animateInFromLeft, animateInFromRight } from "@/utils/animation";
+import { animateInFromLeft, animateInFromRight, animateScaleUp, animateScaleDown, animatePress, animateRelease } from "@/utils/animation";
 
 export default function AboutUs({ component }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -25,6 +25,10 @@ export default function AboutUs({ component }) {
   const leftBlockRef = useRef(null);
   const rightBlockRef = useRef(null);
 
+  const advantageRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
+  const image1Ref = useRef(null);
+  const image2Ref = useRef(null);
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -32,25 +36,29 @@ export default function AboutUs({ component }) {
           if (entry.isIntersecting && !isVisible) {
             setIsVisible(true);
             animateInFromLeft(leftBlockRef.current, 1, 0);
-  
+
             const containers = rightBlockRef.current.querySelectorAll(`.${styles.trapezoid}`);
             containers.forEach((container, index) => {
               animateInFromRight(container, 1, 0.2 * index);
             });
-  
+
             observer.disconnect();
           }
         });
       },
       { threshold: 0.5 }
     );
-  
+
     if (leftBlockRef.current) observer.observe(leftBlockRef.current);
     if (rightBlockRef.current) observer.observe(rightBlockRef.current);
-  
+
     return () => observer.disconnect();
   }, [isVisible]);
-  
+
+  const handleMouseEnter = (ref) => animateScaleUp(ref.current, 1.08, 0.25);
+  const handleMouseLeave = (ref) => animateScaleDown(ref.current, 1, 0.25);
+  const handleMouseDown = (ref) => animatePress(ref.current, 0.93, 0.12);
+  const handleMouseUp = (ref) => animateScaleUp(ref.current, 1.08, 0.25);
 
   return (
     <div className={styles.aboutUsWrapper}>
@@ -68,62 +76,59 @@ export default function AboutUs({ component }) {
             </div>
             <h2 className={styles.advantagesTitle}>Наші переваги:</h2>
             <div className={styles.advantages}>
-              <div className={styles.advantageItem}>
-                <div className={styles.icon}>
-                  <Image
-                    src="/aboutUsIcons/icon1.svg"
-                    alt="Advantage 1"
-                    width={40}
-                    height={32}
-                  />
+              {[aboutUsData.advantage1, aboutUsData.advantage2, aboutUsData.advantage3, aboutUsData.advantage4].map((adv, idx) => (
+                <div
+                  key={idx}
+                  className={styles.advantageItem}
+                  ref={advantageRefs[idx]}
+                  onMouseEnter={() => handleMouseEnter(advantageRefs[idx])}
+                  onMouseLeave={() => handleMouseLeave(advantageRefs[idx])}
+                  onMouseDown={() => handleMouseDown(advantageRefs[idx])}
+                  onMouseUp={() => handleMouseUp(advantageRefs[idx])}
+                  tabIndex={0}
+                  style={{ cursor: "pointer" }}
+                >
+                  <div className={styles.icon}>
+                    <Image
+                      src={`/aboutUsIcons/icon${idx + 1}.svg`}
+                      alt={`Advantage ${idx + 1}`}
+                      width={40}
+                      height={idx === 3 ? 24 : 32}
+                    />
+                  </div>
+                  <p className={styles.advantageText}>{adv}</p>
                 </div>
-                <p className={styles.advantageText}>{aboutUsData.advantage1}</p>
-              </div>
-              <div className={styles.advantageItem}>
-                <div className={styles.icon}>
-                  <Image
-                    src="/aboutUsIcons/icon2.svg"
-                    alt="Advantage 2"
-                    width={40}
-                    height={32}
-                  />
-                </div>
-                <p className={styles.advantageText}>{aboutUsData.advantage2}</p>
-              </div>
-              <div className={styles.advantageItem}>
-                <div className={styles.icon}>
-                  <Image
-                    src="/aboutUsIcons/icon3.svg"
-                    alt="Advantage 3"
-                    width={40}
-                    height={32}
-                  />
-                </div>
-                <p className={styles.advantageText}>{aboutUsData.advantage3}</p>
-              </div>
-              <div className={styles.advantageItem}>
-                <div className={styles.icon}>
-                  <Image
-                    src="/aboutUsIcons/icon4.svg"
-                    alt="Advantage 4"
-                    width={40}
-                    height={24}
-                  />
-                </div>
-                <p className={styles.advantageText}>{aboutUsData.advantage4}</p>
-              </div>
+              ))}
             </div>
           </div>
 
           <div className={`${styles.rightBlock} ${!isVisible ? styles.hidden : styles.visible}`} ref={rightBlockRef}>
-            <div className={`${styles.trapezoid} ${styles.trapezoid1}`}>
+            <div
+              className={`${styles.trapezoid} ${styles.trapezoid1}`}
+              ref={image1Ref}
+              onMouseEnter={() => handleMouseEnter(image1Ref)}
+              onMouseLeave={() => handleMouseLeave(image1Ref)}
+              onMouseDown={() => handleMouseDown(image1Ref)}
+              onMouseUp={() => handleMouseUp(image1Ref)}
+              tabIndex={0}
+              style={{ cursor: "pointer" }}
+            >
               <img
                 src={aboutUsData.image1}
                 alt="About Us 1"
                 className={styles.trapezoidImage}
               />
             </div>
-            <div className={`${styles.trapezoid} ${styles.trapezoid2}`}>
+            <div
+              className={`${styles.trapezoid} ${styles.trapezoid2}`}
+              ref={image2Ref}
+              onMouseEnter={() => handleMouseEnter(image2Ref)}
+              onMouseLeave={() => handleMouseLeave(image2Ref)}
+              onMouseDown={() => handleMouseDown(image2Ref)}
+              onMouseUp={() => handleMouseUp(image2Ref)}
+              tabIndex={0}
+              style={{ cursor: "pointer" }}
+            >
               <img
                 src={aboutUsData.image2}
                 alt="About Us 2"

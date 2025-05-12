@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import styles from "./Stats.module.scss";
-import { animateInFromLeft } from "@/utils/animation";
+import { animateInFromLeft, animateScaleUp, animateScaleDown, animatePress, animateRelease } from "@/utils/animation";
 
 export default function Stats({ component }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -57,16 +57,48 @@ export default function Stats({ component }) {
     return () => observer.disconnect();
   }, []);
 
+  const splitValue = (value) => {
+    const match = value.match(/^([\d\s.,]+)(.*)$/);
+    if (match) {
+      return {
+        number: match[1].trim(),
+        text: match[2].trim(),
+      };
+    }
+    return { number: value, text: "" };
+  };
+
+  // GSAP анімації для item
+  const handleMouseEnter = (e) => animateScaleUp(e.currentTarget, 1.08, 0.25);
+  const handleMouseLeave = (e) => animateScaleDown(e.currentTarget, 1, 0.25);
+  const handleMouseDown = (e) => animatePress(e.currentTarget, 0.93, 0.12);
+  const handleMouseUp = (e) => animateScaleUp(e.currentTarget, 1.08, 0.25);
+
   return (
     <div className={`${styles.statsWrapper} ${!isVisible ? styles.hidden : styles.visible}`} ref={statsWrapperRef}>
       <div className="container">
         {statsData.map((stat, index) => {
+          const { number, text } = splitValue(stat.value);
           return (
-            <div key={index} className={`${styles.statItem} ${styles.hidden}`}>
+            <div
+              key={index}
+              className={`${styles.statItem} ${styles.hidden}`}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              tabIndex={0}
+              style={{ cursor: "pointer" }}
+            >
               <div className={styles.trapezoid}>
                 <div className={styles.content}>
                   <div className={styles.valueWrapper}>
-                    <h3 className={styles.number}>{stat.value}</h3>
+                    <h3 className={styles.number}>
+                      {number}
+                      {text && (
+                        <span className={styles.unit}>{text}</span>
+                      )}
+                    </h3>
                   </div>
                   <p className={styles.name}>{stat.name}</p>
                 </div>

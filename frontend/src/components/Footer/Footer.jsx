@@ -10,8 +10,13 @@ export default function Footer() {
   const scrollTopRef = useRef(null);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const contact = document.getElementById("main");
+    if (contact) {
+      contact.scrollIntoView({ behavior: "smooth" });
+    }
   };
+
+  
 
   useEffect(() => {
     socialIconsRef.current.forEach((icon) => {

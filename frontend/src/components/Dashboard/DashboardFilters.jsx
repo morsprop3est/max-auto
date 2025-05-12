@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ReactSlider from "react-slider";
 import styles from "./DashboardFilters.module.scss";
+import { animateScaleUp, animateScaleDown, animatePress } from "@/utils/animation";
 
 export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes }) {
   const [selectedBodyTypeSlug, setSelectedBodyTypeSlug] = useState(null);
@@ -8,6 +9,11 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
   const [priceRange, setPriceRange] = useState([0, 50000]);
   const [yearRange, setYearRange] = useState([2000, 2025]);
   const [engineSizeRange, setEngineSizeRange] = useState([0, 5]);
+
+  const handleScaleEnter = (e) => animateScaleUp(e.currentTarget);
+  const handleScaleLeave = (e) => animateScaleDown(e.currentTarget);
+  const handleScaleDown = (e) => animatePress(e.currentTarget);
+  const handleScaleUp = (e) => animateScaleUp(e.currentTarget);
 
   const handleApplyFilters = () => {
     onApplyFilters({
@@ -31,6 +37,21 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
     onApplyFilters({});
   };
 
+const renderThumb = (props, state) => {
+  const { key, ...rest } = props;
+  return (
+    <div
+      key={key}
+      {...rest}
+      className={styles.thumb}
+      onMouseEnter={handleScaleEnter}
+      onMouseLeave={handleScaleLeave}
+      onMouseDown={handleScaleDown}
+      onMouseUp={handleScaleUp}
+    />
+  );
+};
+
   return (
     <div className={styles.filtersWrapper}>
       <div className={styles.bodyTypeWrapper}>
@@ -43,6 +64,10 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
                 selectedBodyTypeSlug === type.slug ? styles.active : ""
               }`}
               onClick={() => setSelectedBodyTypeSlug(type.slug)}
+              onMouseEnter={handleScaleEnter}
+              onMouseLeave={handleScaleLeave}
+              onMouseDown={handleScaleDown}
+              onMouseUp={handleScaleUp}
             >
               <img src={`/dashboardIcons/${type.slug}.svg`} alt={type.name} className={styles.icon} />
             </button>
@@ -60,6 +85,10 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
                 selectedFuelTypeSlug === type.slug ? styles.active : ""
               }`}
               onClick={() => setSelectedFuelTypeSlug(type.slug)}
+              onMouseEnter={handleScaleEnter}
+              onMouseLeave={handleScaleLeave}
+              onMouseDown={handleScaleDown}
+              onMouseUp={handleScaleUp}
             >
               {type.name}
             </button>
@@ -78,6 +107,7 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
           step={500}
           value={priceRange}
           onChange={(values) => setPriceRange(values)}
+          renderThumb={renderThumb}
         />
         <div className={styles.rangeValues}>
           <span>{priceRange[0]} $</span>
@@ -96,6 +126,7 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
           step={1}
           value={yearRange}
           onChange={(values) => setYearRange(values)}
+          renderThumb={renderThumb}
         />
         <div className={styles.rangeValues}>
           <span>{yearRange[0]}</span>
@@ -114,6 +145,7 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
           step={0.1}
           value={engineSizeRange}
           onChange={(values) => setEngineSizeRange(values)}
+          renderThumb={renderThumb}
         />
         <div className={styles.rangeValues}>
           <span>{engineSizeRange[0]} л</span>
@@ -122,10 +154,24 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
       </div>
 
       <div className={styles.buttonsWrapper}>
-        <button className={styles.applyButton} onClick={handleApplyFilters}>
+        <button
+          className={styles.applyButton}
+          onClick={handleApplyFilters}
+          onMouseEnter={handleScaleEnter}
+          onMouseLeave={handleScaleLeave}
+          onMouseDown={handleScaleDown}
+          onMouseUp={handleScaleUp}
+        >
           Застосувати
         </button>
-        <button className={styles.resetButton} onClick={handleResetFilters}>
+        <button
+          className={styles.resetButton}
+          onClick={handleResetFilters}
+          onMouseEnter={handleScaleEnter}
+          onMouseLeave={handleScaleLeave}
+          onMouseDown={handleScaleDown}
+          onMouseUp={handleScaleUp}
+        >
           ✖
         </button>
       </div>

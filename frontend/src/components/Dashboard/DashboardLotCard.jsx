@@ -21,25 +21,39 @@ const fuelTypes = [
 export default function DashboardLotCard({ lot }) {
   const bodyType = bodyTypes.find((type) => type.id === lot.bodyTypeId)?.name || "Невідомо";
   const fuelType = fuelTypes.find((type) => type.id === lot.fuelTypeId)?.name || "Невідомо";
+  const isActive = lot.status === "active";
 
   return (
     <div className={styles.lotCard}>
-      <img src={lot.image} alt={lot.title} className={styles.lotImage} />
-      <div className={styles.lotInfo}>
-        <h3 className={styles.lotTitle}>{lot.title}</h3>
-        <p>Рік: {lot.year}</p>
-        <p>Кузов: {bodyType}</p>
-        <p>Паливо: {fuelType}</p>
-        <p>Ціна: {lot.price} $</p>
-        <p>Пробіг: {lot.odometer} км</p>
-        <p>Об'єм двигуна: {lot.engineSize} л</p>
-        <p>Колір: {lot.color}</p>
-        <p>Трансмісія: {lot.transmission}</p>
-        <p>Привід: {lot.drive}</p>
-        <p>Статус: {lot.status}</p>
-        <a href={lot.link} target="_blank" rel="noopener noreferrer" className={styles.lotLink}>
-          Детальніше
-        </a>
+      <div className={styles.lotCol}>
+        <img src={lot.image} alt={lot.title} className={styles.lotImage} />
+      </div>
+      <div className={styles.lotCol}>
+        <div className={styles.lotTitle}>{lot.title}</div>
+        <div className={styles.lotYear}>Рік: {lot.year}</div>
+        <div className={styles.lotBodyFuel}>
+          <span>{bodyType}</span>
+          <span>{fuelType}</span>
+        </div>
+        <div className={styles.lotPrice}>Ціна: <span>{lot.price} $</span></div>
+      </div>
+      <div className={styles.lotCol}>
+        <div>Пробіг: {lot.odometer} км</div>
+        <div>Об'єм: {lot.engineSize} л</div>
+        <div>Трансмісія: {lot.transmission}</div>
+        <div>Привід: {lot.drive}</div>
+      </div>
+      <div className={styles.lotCol} style={{ justifyContent: "center", alignItems: "center", display: "flex" }}>
+        <button
+          className={`${styles.statusButton} ${isActive ? styles.active : styles.inactive}`}
+          disabled={!isActive}
+        >
+          {isActive ? (
+            <img src="/dashboardIcons/active.svg" alt="active" className={styles.statusIcon} />
+          ) : (
+            <img src="/dashboardIcons/inactive.svg" alt="inactive" className={styles.statusIcon} />
+          )}
+        </button>
       </div>
     </div>
   );

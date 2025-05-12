@@ -43,7 +43,7 @@
       .bottomBlock {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
         gap: 10px;
   
         .text {
@@ -70,6 +70,60 @@
             background-color: #026c03;
           }
         }
+
+        .slider {
+          position: relative;
+          max-width: 1000px;
+          margin-top: 40px;
+
+        .keen-slider {
+          display: flex;
+          gap: 20px;
+        }
+
+        .slide {
+          flex: 0 0 calc(33.333% - 20px);
+          width: 300px;
+          height: 400px;
+          background: #181818;
+          overflow: hidden;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          transition: box-shadow 0.3s;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .sliderImage {
+          width: 100%;
+          height: 220px;
+          object-fit: cover;
+          border-radius: 12px;
+          display: block;
+        }
+      }
+
+      .sliderControls {
+        display: flex;
+        justify-content: end;
+        margin-top: 20px;
+        margin-right: 20px;
+
+        .sliderButton {
+          background-color: transparent;
+          border: none;
+          padding: 10px;
+          cursor: pointer;
+          width: 150px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
+          background-color: #038405;
+
+        }
+      }
       }
     }
   }

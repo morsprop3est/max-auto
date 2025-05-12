@@ -1,10 +1,13 @@
 import styles from "./ServiceCard.module.scss";
 import { useRef } from "react";
 import { gsap } from "gsap";
+import { useNotification } from "@/context/NotificationContext";
 
 export default function ServiceCard({ service }) {
   const overlayRef = useRef(null);
   const centerTitleRef = useRef(null);
+  const learnMoreRef = useRef(null);
+  const { addNotification } = useNotification();
 
   const handleEnter = () => {
     gsap.to(centerTitleRef.current, { opacity: 0, y: -20, duration: 0.1, pointerEvents: "none" });
@@ -14,6 +17,30 @@ export default function ServiceCard({ service }) {
   const handleLeave = () => {
     gsap.to(centerTitleRef.current, { opacity: 1, y: 0, duration: 0.3, pointerEvents: "auto" });
     gsap.to(overlayRef.current, { opacity: 0, y: 100, duration: 0.3, pointerEvents: "none" });
+  };
+
+  // GSAP анімації для "Дізнатись більше"
+  const handleLearnMoreEnter = (e) => {
+    gsap.to(e.currentTarget, { scale: 1.08, duration: 0.18 });
+  };
+  const handleLearnMoreLeave = (e) => {
+    gsap.to(e.currentTarget, { scale: 1, duration: 0.18 });
+  };
+  const handleLearnMoreDown = (e) => {
+    gsap.to(e.currentTarget, { scale: 0.93, duration: 0.12 });
+  };
+  const handleLearnMoreUp = (e) => {
+    gsap.to(e.currentTarget, { scale: 1.08, duration: 0.18 });
+  };
+
+  // Плавний скролл і нотифікація
+  const handleLearnMoreClick = (e) => {
+    e.preventDefault();
+    const contact = document.getElementById("contact-us");
+    if (contact) {
+      contact.scrollIntoView({ behavior: "smooth" });
+    }
+    addNotification("info", "Заповніть дані, щоб дізнатись більше");
   };
 
   return (
@@ -58,7 +85,16 @@ export default function ServiceCard({ service }) {
             {service.description}
           </p>
         </div>
-        <a href="#" className={styles.learnMore}>
+        <a
+          href="#contact-us"
+          className={styles.learnMore}
+          ref={learnMoreRef}
+          onMouseEnter={handleLearnMoreEnter}
+          onMouseLeave={handleLearnMoreLeave}
+          onMouseDown={handleLearnMoreDown}
+          onMouseUp={handleLearnMoreUp}
+          onClick={handleLearnMoreClick}
+        >
           Дізнатись більше
           <img
             src="/slideButton2.svg"

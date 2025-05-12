@@ -38,7 +38,7 @@ export default function ContactUs() {
   return (
     <div className={styles.contactUsWrapper}>
       <div className="container">
-        <div className={styles.contactUsWrapper2}>
+        <div className={styles.contactUsWrapper2} id="contact-us">
           <div className={styles.leftBlock}>
             <h1 className={styles.title}>Залишайте заявку</h1>
             <p className={styles.description}>
