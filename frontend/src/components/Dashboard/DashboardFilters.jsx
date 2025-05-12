@@ -6,7 +6,7 @@ import { animateScaleUp, animateScaleDown, animatePress } from "@/utils/animatio
 export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes }) {
   const [selectedBodyTypeSlug, setSelectedBodyTypeSlug] = useState(null);
   const [selectedFuelTypeSlug, setSelectedFuelTypeSlug] = useState(null);
-  const [priceRange, setPriceRange] = useState([0, 50000]);
+  const [priceRange, setPriceRange] = useState([0, 100000]);
   const [yearRange, setYearRange] = useState([2000, 2025]);
   const [engineSizeRange, setEngineSizeRange] = useState([0, 5]);
 

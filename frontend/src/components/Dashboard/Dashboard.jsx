@@ -39,7 +39,10 @@ export default function Dashboard({ components, bodyTypes, fuelTypes }) {
       <div className="container">
         <div className={styles.innerWrapper}>
           <div className={styles.header}>
-            <h1 className={styles.title}>{dashboardHeaderData.title}</h1>
+            <div className={styles.titleWrapper}>
+              <div className={styles.line}></div>
+              <h1 className={styles.title}>{dashboardHeaderData.title}</h1>
+            </div>
             <p className={styles.description}>{dashboardHeaderData.description}</p>
           </div>
           <div className={styles.dashboardPanel}>
