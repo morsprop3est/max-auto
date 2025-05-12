@@ -5,7 +5,6 @@ router.get('/components', getComponents)
 router.get('/calculator', getCalculator)
 router.post('/order', postOrder)
 router.get('/reviews', getReviewsByRegion);
-// router.get('/reviews', getReviews)
 router.post('/lot', postLot);
 
 export default router

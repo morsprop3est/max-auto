@@ -1,3 +1,4 @@
+import { NotificationProvider } from "@/context/NotificationContext";
 import "./globals.css";
 
 export const metadata = {
@@ -9,7 +10,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {children}
+          <NotificationProvider>
+            {children}
+          </NotificationProvider>
+
       </body>
     </html>
   );

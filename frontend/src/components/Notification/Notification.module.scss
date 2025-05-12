@@ -1,0 +1,44 @@
+.notification {
+    position: relative;
+    margin-bottom: 10px;
+    padding: 20px 40px;
+    color: #EAEAEA;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #607d8b;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-20px); 
+  
+    &.success {
+      background-color: #038405;
+    }
+  
+    &.error {
+      background-color: #f44336;
+    }
+  
+    &.info {
+      background-color: #121212;
+    }
+  }
+  
+  .progressBar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transition: width 0.1s linear;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
