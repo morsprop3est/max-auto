@@ -4,10 +4,17 @@ import styles from './Main.module.scss';
 import AnimatedText from '@/components/AnimationComponents/AnimatedText/AnimatedText';
 import Image from 'next/image';
 import { useNotification } from "@/context/NotificationContext";
+import { useAdaptive } from "@/context/AdaptiveContext";
+import { useIsVisible } from "@/hooks/useIsVisible";
 import '../../app/animation.scss';
+
+import { useState, useRef, useEffect } from "react";
 
 export default function Main({ component, onLoaded }) {
   const { addNotification } = useNotification();
+  const { device } = useAdaptive();
+  const [mainRef, isVisible] = useIsVisible();
+
 
   const mainData = Array.isArray(component)
     ? {
@@ -27,13 +34,17 @@ export default function Main({ component, onLoaded }) {
     addNotification("info", "Заповніть дані, щоб дізнатись більше");
   };
 
+const animationClassLeft = isVisible ? (device === "desktop" ? "fade-in-left" : "fade-in-bottom") : "";
+const animationClassRight = isVisible ? (device === "desktop" ? "fade-in-right" : "fade-in-bottom") : "";
+const animationClassBottom = isVisible ? "fade-in-bottom" : "";
+
   return (
-    <div className={styles.mainWrapper} id="main">
+    <div className={`${styles.mainWrapper} ${animationClassLeft} ${!isVisible ? styles.invisible : ""}`} id="main" ref={mainRef}>
       <div className={styles.contentWrapper}>
-        <div className={`${styles.leftBlock} fade-in-left`}>
+        <div className={`${styles.leftBlock} ${animationClassLeft}`}>
           <div className={styles.emptyBlock}></div>
 
-          <div className={`${styles.contentBlock} fade-in-left`} style={{ animationDelay: '0.2s' }}>
+          <div className={`${styles.contentBlock} ${animationClassLeft}`} style={{ animationDelay: '0.2s' }}>
             <Image
               src="/logo.svg"
               alt="Logo"
@@ -43,25 +54,25 @@ export default function Main({ component, onLoaded }) {
               style={{ cursor: "pointer", animationDelay: '0.3s' }}
             />
             <h1
-              className="fade-in-left scale-hover-text"
+              className={`${animationClassLeft} scale-hover-text`}
               style={{ cursor: "pointer", animationDelay: '0.4s' }}
             >
               {mainData.title}
             </h1>
             <h2
-              className="fade-in-left scale-hover-text"
+              className={`${animationClassLeft} scale-hover-text`}
               style={{ cursor: "pointer", animationDelay: '0.5s' }}
             >
               {mainData.subtitle}
             </h2>
             <div
-              className={`${styles.description} fade-in-bottom scale-hover-text`}
+              className={`${styles.description} ${animationClassBottom} scale-hover-text`}
               style={{ cursor: "pointer", animationDelay: '0.6s' }}
             >
               <AnimatedText text={mainData.description} />
             </div>
             <button
-              className={`${styles.greenButton} fade-in-bottom scale-hover-text`}
+              className={`${styles.greenButton} ${animationClassBottom} scale-hover-text`}
               onClick={handleButtonClick}
               style={{ animationDelay: '0.7s' }}
             >
@@ -79,7 +90,7 @@ export default function Main({ component, onLoaded }) {
                 key={index}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="fade-in-bottom"
+                className={animationClassBottom}
                 style={{ display: "inline-block", animationDelay: `${0.8 + index * 0.1}s` }}
               >
                 <Image
@@ -95,13 +106,13 @@ export default function Main({ component, onLoaded }) {
 
         <div className={styles.carImages}>
           <div
-            className={`${styles.car1} fade-in-right scale-hover`}
+            className={`${styles.car1} ${animationClassRight} scale-hover`}
             style={{ cursor: "pointer", animationDelay: '1.1s' }}
           >
             <Image src="/main/car1.png" alt="Car 1" width={800} height={500} />
           </div>
           <div
-            className={`${styles.car2} fade-in-right scale-hover`}
+            className={`${styles.car2} ${animationClassRight} scale-hover`}
             style={{ cursor: "pointer", animationDelay: '1.2s' }}
           >
             <Image src="/main/car2.png" alt="Car 2" width={800} height={500} />
@@ -109,7 +120,7 @@ export default function Main({ component, onLoaded }) {
         </div>
       </div>
 
-      <div className={`${styles.trapezoid} fade-in-left`} style={{ animationDelay: '0.1s' }}>
+      <div className={`${styles.trapezoid} ${animationClassLeft}`} style={{ animationDelay: '0.1s' }}>
         <Image
           src="/main/background_optimized.webp"
           alt="Background"

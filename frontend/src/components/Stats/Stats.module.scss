@@ -1,3 +1,14 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.invisible {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
 .statsWrapper {
   display: flex;
   justify-content: center;
@@ -67,5 +78,99 @@
 
   .visible .statItem {
     opacity: 1;
+  }
+}
+
+
+
+@media (max-width: 1440px) {
+  .statsWrapper {
+    .statItem {
+      .trapezoid {
+        width: 200px;
+        height: 120px;
+        clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
+        .content {
+          .valueWrapper {
+            .number {
+              font-size: 32px;
+              .unit {
+                font-size: 18px;
+              }
+            }
+          }
+          .name {
+            font-size: 13px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .wrapper{
+    padding-left: 20px;
+  }
+  .statsWrapper {
+    .statItem {
+      margin-left: -20px;
+      .trapezoid {
+        width: 160px;
+        height: 100px;
+        clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
+        .content {
+          .valueWrapper {
+            .number {
+              font-size: 20px;
+              .unit {
+                font-size: 16px;
+              }
+            }
+          }
+          .name {
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .wrapper{
+    flex-direction: column;
+    padding: 0;
+  }
+  .statsWrapper {
+    .statItem {
+      margin-left: 0;
+      .trapezoid {
+        width: 140px;
+        height: 140px;
+        clip-path: polygon(
+          0% 0%, 
+          50% 25%,  
+          100% 0%,    
+          100% 75%,      
+          50% 100%,           
+          0% 75%          
+        );
+        .content {
+          .valueWrapper {
+            .number {
+              font-size: 18px;
+              .unit {
+                font-size: 12px;
+              }
+            }
+          }
+          .name {
+            text-align: center;
+            font-size: 10px;
+          }
+        }
+      }
+    }
   }
 }

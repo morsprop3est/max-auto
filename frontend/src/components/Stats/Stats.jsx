@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useRef, useState } from "react";
+import { useIsVisible } from "@/hooks/useIsVisible";
+import { useAdaptive } from "@/context/AdaptiveContext";
 import styles from "./Stats.module.scss";
-import { animateInFromLeft, animateScaleUp, animateScaleDown, animatePress, animateRelease } from "@/utils/animation";
 
 export default function Stats({ component }) {
-  const [isVisible, setIsVisible] = useState(false);
-  const statsWrapperRef = useRef(null);
+  const { device } = useAdaptive();
+  const [statsRef, isVisible] = useIsVisible({ threshold: 0.5 });
 
   const statsData = Array.isArray(component)
     ? [
@@ -31,32 +31,6 @@ export default function Stats({ component }) {
 
   if (!statsData.length) return null;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-
-            const statItems = statsWrapperRef.current.querySelectorAll(`.${styles.statItem}`);
-            statItems.forEach((item, index) => {
-              animateInFromLeft(item, 1, 0.2 * index); 
-            });
-
-            observer.disconnect(); 
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    if (statsWrapperRef.current) {
-      observer.observe(statsWrapperRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
   const splitValue = (value) => {
     const match = value.match(/^([\d\s.,]+)(.*)$/);
     if (match) {
@@ -68,44 +42,44 @@ export default function Stats({ component }) {
     return { number: value, text: "" };
   };
 
-  // GSAP анімації для item
-  const handleMouseEnter = (e) => animateScaleUp(e.currentTarget, 1.08, 0.25);
-  const handleMouseLeave = (e) => animateScaleDown(e.currentTarget, 1, 0.25);
-  const handleMouseDown = (e) => animatePress(e.currentTarget, 0.93, 0.12);
-  const handleMouseUp = (e) => animateScaleUp(e.currentTarget, 1.08, 0.25);
-
   return (
-    <div className={`${styles.statsWrapper} ${!isVisible ? styles.hidden : styles.visible}`} ref={statsWrapperRef}>
+    <div
+      className={`${styles.statsWrapper} ${isVisible ? styles.visible : styles.invisible}`}
+      ref={statsRef}
+    >
       <div className="container">
-        {statsData.map((stat, index) => {
-          const { number, text } = splitValue(stat.value);
-          return (
-            <div
-              key={index}
-              className={`${styles.statItem} ${styles.hidden}`}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-              onMouseDown={handleMouseDown}
-              onMouseUp={handleMouseUp}
-              tabIndex={0}
-              style={{ cursor: "pointer" }}
-            >
-              <div className={styles.trapezoid}>
-                <div className={styles.content}>
-                  <div className={styles.valueWrapper}>
-                    <h3 className={styles.number}>
-                      {number}
-                      {text && (
-                        <span className={styles.unit}>{text}</span>
-                      )}
-                    </h3>
+        <div className={styles.wrapper}>
+          {statsData.map((stat, index) => {
+            const { number, text } = splitValue(stat.value);
+            const animationClass = isVisible
+              ? device === "mobile"
+                ? "fade-in-top"
+                : "fade-in-left"
+              : "";
+            return (
+              <div
+                key={index}
+                className={`${styles.statItem} ${animationClass} ${!isVisible ? styles.invisible : ""}`}
+                tabIndex={0}
+                style={{ cursor: "pointer", animationDelay: `${0.2 * index}s` }}
+              >
+                <div className={styles.trapezoid}>
+                  <div className={styles.content}>
+                    <div className={styles.valueWrapper}>
+                      <h3 className={styles.number}>
+                        {number}
+                        {text && (
+                          <span className={styles.unit}>{text}</span>
+                        )}
+                      </h3>
+                    </div>
+                    <p className={styles.name}>{stat.name}</p>
                   </div>
-                  <p className={styles.name}>{stat.name}</p>
                 </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );

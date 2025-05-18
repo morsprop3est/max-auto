@@ -5,11 +5,15 @@
   max-height: 1080px;
   padding: 0 20px;
   overflow: hidden;
-  min-height: 100vh;
 }
 
 .invisibleBlock {
   height: 50px;
+}
+
+.invisible {
+  opacity: 0 !important;
+  pointer-events: none;
 }
 
 .contentWrapper {
@@ -106,7 +110,6 @@
   letter-spacing: 0%;
   clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
 .socialBlock {
@@ -313,5 +316,16 @@
   } 
   .trapezoid {
     clip-path: polygon(0 0, 100vw 0, 100vw 650px, 0 650px);
+  }
+}
+
+
+@media (max-width: 350px) {
+  .carImages .car1 {
+    top: -50px;
+    left: -25px;
+  }
+  .carImages .car2 {
+    right: 100px;
   }
 }
