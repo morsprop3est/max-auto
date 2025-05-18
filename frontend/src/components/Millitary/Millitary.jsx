@@ -5,8 +5,6 @@ import { useRef, useEffect, useState } from "react";
 import { animateInFromBottom, animateScaleUp, animateScaleDown, animatePress } from "../../utils/animation";
 import { gsap } from "gsap";
 import { useNotification } from "@/context/NotificationContext";
-import { useKeenSlider } from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
 
 export default function Millitary({ component }) {
   const millitaryData = Array.isArray(component)

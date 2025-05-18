@@ -1,0 +1,70 @@
+.sliderWrapper {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.sliderTrack {
+  overflow: hidden;
+  width: 100%;
+}
+
+.emblaContainer {
+  display: flex;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  margin-left: 0;
+  width: 100%;
+}
+
+.emblaSlide {
+  position: relative;
+  min-width: 0;
+  flex-shrink: 0;
+  will-change: transform;
+  padding: 0 10px;
+  box-sizing: border-box;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+
+.sliderControls {
+      display: flex;
+      justify-content: end;
+      margin-top: 20px;
+      margin-right: 20px;
+
+      .sliderButton {
+        background-color: transparent;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        width: 150px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
+        background-color: #038405;
+
+        .sliderIcon {
+          width: 24px;
+          height: 24px;
+          fill: #038405;
+          transition: fill 0.3s ease;
+          
+          &:hover .sliderIcon {
+            fill: #026c03;
+          }
+  
+          &.mirrored {
+            transform: scaleX(-1);
+          }
+        }
+      }
+}

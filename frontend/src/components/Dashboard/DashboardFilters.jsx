@@ -1,5 +1,4 @@
 import { useState, useRef } from "react";
-import ReactSlider from "react-slider";
 import styles from "./DashboardFilters.module.scss";
 import { animateScaleUp, animateScaleDown, animatePress } from "@/utils/animation";
 

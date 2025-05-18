@@ -19,6 +19,7 @@ export default function ServiceCard({ service }) {
     gsap.to(overlayRef.current, { opacity: 0, y: 100, duration: 0.3, pointerEvents: "none" });
   };
 
+  // GSAP анімації для "Дізнатись більше"
   const handleLearnMoreEnter = (e) => {
     gsap.to(e.currentTarget, { scale: 1.08, duration: 0.18 });
   };
@@ -32,6 +33,7 @@ export default function ServiceCard({ service }) {
     gsap.to(e.currentTarget, { scale: 1.08, duration: 0.18 });
   };
 
+  // Плавний скролл і нотифікація
   const handleLearnMoreClick = (e) => {
     e.preventDefault();
     const contact = document.getElementById("contact-us");

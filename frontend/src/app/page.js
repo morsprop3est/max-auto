@@ -33,8 +33,8 @@ export default async function Home() {
         <Main component={components.main} />
         <AboutUs component={components.about_us} />
         <Stats component={components.stats} />
-        {/* <Services component={components.service} />
-        <Millitary component={components.millitary} />
+        <Services component={components.service} />
+        {/* <Millitary component={components.millitary} />
         <Dashboard
           components={components.dashboard}
           lots={lotsData.lots}
