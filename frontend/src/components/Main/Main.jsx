@@ -8,8 +8,6 @@ import { useAdaptive } from "@/context/AdaptiveContext";
 import { useIsVisible } from "@/hooks/useIsVisible";
 import '../../app/animation.scss';
 
-import { useState, useRef, useEffect } from "react";
-
 export default function Main({ component, onLoaded }) {
   const { addNotification } = useNotification();
   const { device } = useAdaptive();
