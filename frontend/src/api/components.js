@@ -1,13 +1,20 @@
 export async function fetchComponents() {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/components`, { cache: "no-store" });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/components`, {
+  method: 'GET',
+  credentials: 'include',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  });
+
     if (!res.ok) {
       throw new Error("Failed to fetch components");
     }
     return res.json();
   } catch (error) {
     console.error("Error fetching components:", error);
-    return null; 
+    return { components: [] }; 
   }
 }
 

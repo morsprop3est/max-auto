@@ -41,14 +41,18 @@ export default function Navbar() {
       ></div>
 
       <div ref={navbarRef} className={styles.navbar}>
-        <div
-          className={styles.burger}
-          onClick={toggleSidebar}
-          ref={(el) => (interactiveRefs.current[0] = el)}
-        >
-          <div className={styles.line1}></div>
-          <div className={styles.line2}></div>
-          <div className={styles.line3}></div>
+        <div className={styles.navContainer}>
+          <div className={styles.navbarWrapper}>
+              <div
+                className={styles.burger}
+                onClick={toggleSidebar}
+                ref={(el) => (interactiveRefs.current[0] = el)}
+              >
+                <div className={styles.line1}></div>
+                <div className={styles.line2}></div>
+                <div className={styles.line3}></div>
+              </div>
+          </div>
         </div>
       </div>
 

@@ -17,11 +17,11 @@ export default function Millitary({ component }) {
     : {};
 
   const sliderImages = [
-    "/military-slider/1.jpg",
-    "/military-slider/2.jpg",
-    "/military-slider/3.jpg",
-    "/military-slider/4.jpg",
-    "/military-slider/5.jpg",
+    "/military/slider1.jpg",
+    "/military/slider2.jpg",
+    "/military/slider3.jpg",
+    "/military/slider4.jpg",
+    "/military/slider5.jpg",
   ];
 
   const wrapperRef = useRef(null);

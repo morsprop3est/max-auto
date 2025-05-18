@@ -6,8 +6,7 @@ import DashboardFilters from './DashboardFilters';
 import DashboardLotCard from './DashboardLotCard';
 import { fetchLots } from '@/api/lots';
 
-export default function Dashboard({ components, bodyTypes, fuelTypes }) {
-  const [lots, setLots] = useState([]);
+export default function Dashboard({ components, lots = [], bodyTypes, fuelTypes }) {
   const [filters, setFilters] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,22 +16,6 @@ export default function Dashboard({ components, bodyTypes, fuelTypes }) {
         description: components.find((item) => item.slug === 'dashboard_p1')?.text || '',
       }
     : {};
-
-  const loadLots = async () => {
-    setIsLoading(true);
-    try {
-      const { lots: newLots } = await fetchLots({ page: 1, limit: 10, filters });
-      setLots(newLots);
-    } catch (error) {
-      console.error('Error fetching lots:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadLots();
-  }, [filters]);
 
   return (
     <div className={styles.dashboardWrapper}>

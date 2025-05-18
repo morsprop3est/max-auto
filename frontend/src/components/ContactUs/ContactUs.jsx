@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './ContactUs.module.scss';
 import { useRef, useState } from "react";
 import { useNotification } from "@/context/NotificationContext";

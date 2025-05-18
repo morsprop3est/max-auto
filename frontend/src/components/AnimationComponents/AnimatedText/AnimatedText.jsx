@@ -1,20 +1,16 @@
-import { useEffect, useRef } from "react";
-import { animateWordsIn } from "@/utils/animation";
 import styles from "./AnimatedText.module.scss";
 
 export default function AnimatedText({ text }) {
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    const wordSpans = containerRef.current.querySelectorAll("span");
-    animateWordsIn(wordSpans);
-  }, []);
-
-  const wrappedText = text.split(" ").map((word, index) => (
-    <span key={index} className={styles.word}>
+  const safeText = typeof text === "string" ? text : "";
+  const wrappedText = safeText.split(" ").map((word, index) => (
+    <span
+      key={index}
+      className={styles.word}
+      style={{ animationDelay: `${0.5 + index * 0.05}s` }}
+    >
       {word}&nbsp;
     </span>
   ));
 
-  return <div ref={containerRef} className={styles.textWrapper}>{wrappedText}</div>;
+  return <div className={styles.textWrapper}>{wrappedText}</div>;
 }

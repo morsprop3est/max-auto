@@ -3,7 +3,9 @@
   width: 100%;
   height: 100vh;
   max-height: 1080px;
+  padding: 0 20px;
   overflow: hidden;
+  min-height: 100vh;
 }
 
 .invisibleBlock {
@@ -31,27 +33,29 @@
 }
 
 .carImages {
+  position: relative;
+  width: 800px;
+  height: 500px;
   will-change: transform;
 
-  
   .car1,
   .car2,
   .car3 {
-    position: relative;
+    position: absolute;
     width: 800px;
     height: auto;
   }
 
   .car1 {
     position: relative;
-    top: 450px;
+    top: 300px;
     z-index: 2;
   }
 
   .car2 {
     position: relative;
-    left: 400px;
-    top: 80px;
+    bottom: 75px;
+    left: 350px;
     z-index: 2;
   }
 }
@@ -103,10 +107,6 @@
   clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
   cursor: pointer;
   transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: #026c03;
-  }
 }
 
 .socialBlock {
@@ -152,4 +152,166 @@
   object-fit: cover;
   filter: grayscale(100%) blur(5px) brightness(0.2);
   transform: scale(1.1);
+}
+
+@media (max-width: 1440px) {
+  .mainWrapper{
+    padding: 0;
+  }
+  .contentWrapper {
+    max-width: 100vw;
+    padding: 0 40px;
+  }
+  .carImages .car1,
+  .carImages .car2,
+  .carImages .car3 {
+    width: 600px;
+  }
+  .carImages .car1 {
+    top: 380px;
+    left: 50px;
+  }
+  .carImages .car2 {
+    left: 350px;
+    top: 100px;
+  }
+  .contentBlock {
+    width: 400px;
+  }
+  .contentBlock h1 {
+    font-size: 40px;
+  }
+  .contentBlock h2 {
+    font-size: 20px;
+  }
+  .contentBlock .description {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .mainWrapper {
+    height: 1080px;
+  }
+  .contentWrapper {
+    padding-top: 100px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 600px;
+  }
+  .leftBlock {
+    width: 100%;
+    align-items: center;
+  }
+
+  .carImages {
+    width: 100%;
+    height: 300px;
+  }
+  .carImages .car1,
+  .carImages .car2,
+  .carImages .car3 {
+    width: 600px;
+  }
+  .carImages .car1 {
+    top: 75px;
+    left: -100px;
+  }
+  .carImages .car2 {
+    left: 200px;
+    top: -200px;
+  }
+  .contentBlock {
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .greenButton {
+    font-size: 14px;
+    width: 250px;
+    clip-path: polygon(calc(30px) 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+  }
+  .contentBlock h1 {
+    font-size: 32px;
+  }
+  .contentBlock h2 {
+    font-size: 18px;
+  }
+  .contentBlock .description {
+    font-size: 16px;
+  } 
+  .trapezoid {
+    clip-path: polygon(0 0, 100vw 0, 100% 75%, 0 75%);
+  }
+}
+
+@media (max-width: 600px) {
+  .mainWrapper {
+    height: 800px;
+  }
+    .contentWrapper {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+    width: 100%;
+    padding: 100px 20px 0;
+  }
+  .leftBlock {
+    width: 100%;
+    align-items: center;
+  }
+
+  .carImages {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 400px;
+    padding-top: 50px;
+  }
+  .carImages .car1,
+  .carImages .car2,
+  .carImages .car3 {
+    width: 300px;
+  }
+  .carImages .car1 {
+    top: -50px;
+    left: 25px;
+  }s
+  .carImages .car2 {
+    top: 150px;
+    left: 100px;
+  }
+  .contentBlock {
+    text-align: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 100px;
+      height: auto;
+    }
+  }
+  .greenButton {
+    font-size: 12px;
+    width: 200px;
+    clip-path: polygon(calc(30px) 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+  }
+  .contentBlock h1 {
+    font-size: 32px;
+  }
+  .contentBlock h2 {
+    font-size: 16px;
+  }
+  .contentBlock .description {
+    font-size: 14px;
+  } 
+  .trapezoid {
+    clip-path: polygon(0 0, 100vw 0, 100vw 650px, 0 650px);
+  }
 }

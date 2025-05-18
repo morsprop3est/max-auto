@@ -6,7 +6,7 @@ import Image from "next/image";
 import AnimatedText from "../AnimationComponents/AnimatedText/AnimatedText";
 import { animateInFromLeft, animateInFromRight, animateScaleUp, animateScaleDown, animatePress, animateRelease } from "@/utils/animation";
 
-export default function AboutUs({ component }) {
+export default function AboutUs({ component, onLoaded }) {
   const [isVisible, setIsVisible] = useState(false);
 
   const aboutUsData = Array.isArray(component)
@@ -28,6 +28,10 @@ export default function AboutUs({ component }) {
   const advantageRefs = [useRef(null), useRef(null), useRef(null), useRef(null)];
   const image1Ref = useRef(null);
   const image2Ref = useRef(null);
+
+  useEffect(() => {
+  if (onLoaded) onLoaded();
+}, [onLoaded]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

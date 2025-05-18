@@ -14,18 +14,22 @@ export const fetchLots = async ({ page = 1, limit = 50, filters = null }) => {
       ...(filters?.sortBy && { sortBy: filters.sortBy }),
     });
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lots?${params.toString()}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/lots?${params.toString()}`, {
+      method: 'GET',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
 
     if (!res.ok) {
-      const errorText = await res.text();
-      console.error('Error response from server:', errorText);
-      throw new Error(`Network response was not ok: ${res.statusText}`);
+      return { lots: [] };
     }
 
     const data = await res.json();
     return data;
   } catch (error) {
     console.error('Error fetching lots:', error.message);
-    throw error;
+    return { lots: [] };
   }
 };
