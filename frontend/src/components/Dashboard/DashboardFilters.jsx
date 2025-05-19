@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import styles from "./DashboardFilters.module.scss";
 import { animateScaleUp, animateScaleDown, animatePress } from "@/utils/animation";
+import ReactSlider from "react-slider";
 
 export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes }) {
   const [selectedBodyTypeSlug, setSelectedBodyTypeSlug] = useState(null);

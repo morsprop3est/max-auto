@@ -101,30 +101,30 @@ export default function AboutUs({ component, onLoaded }) {
             </div>
           </div>
 
-          <div className={styles.rightBlock}>
-            <div
-              className={`${styles.trapezoid} ${styles.trapezoid1} scale-in scale-hover ${animRight} ${invisible}`}
-              style={isVisible ? { animationDelay: '0.4s', cursor: "pointer" } : { cursor: "pointer" }}
-              tabIndex={0}
-            >
-              <img
-                src={aboutUsData.image1}
-                alt="About Us 1"
-                className={styles.trapezoidImage}
-              />
-            </div>
-            <div
-              className={`${styles.trapezoid} ${styles.trapezoid2} scale-in scale-hover ${animRight} ${invisible}`}
-              style={isVisible ? { animationDelay: '0.5s', cursor: "pointer" } : { cursor: "pointer" }}
-              tabIndex={0}
-            >
-              <img
-                src={aboutUsData.image2}
-                alt="About Us 2"
-                className={styles.trapezoidImage}
-              />
-            </div>
+          <div className={`${styles.rightBlock} fade-in-right ${invisible}`} style={isVisible ? { animationDelay: '0.2s' } : {}}>
+          <div
+            className={`${styles.trapezoid} ${styles.trapezoid1}`}
+            tabIndex={0}
+            style={{ cursor: "pointer" }}
+          >
+            <img
+              src={aboutUsData.image1}
+              alt="About Us 1"
+              className={styles.trapezoidImage}
+            />
           </div>
+          <div
+            className={`${styles.trapezoid} ${styles.trapezoid2}`}
+            tabIndex={0}
+            style={{ cursor: "pointer" }}
+          >
+            <img
+              src={aboutUsData.image2}
+              alt="About Us 2"
+              className={styles.trapezoidImage}
+            />
+          </div>
+        </div>
         </div>
       </div>
     </div>

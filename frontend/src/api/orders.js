@@ -3,6 +3,7 @@ export async function sendOrder({ name, phone, comment }) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, phone, comment }),
+    cache: 'no-store',
   });
   if (!res.ok) throw new Error((await res.json()).error || "Помилка відправки заявки");
   return await res.json();

@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import styles from "./Navbar.module.scss";
 import "../../app/animation.scss";
+import { useIsVisible } from "@/hooks/useIsVisible";
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const navbarRef = useRef(null);
+  const [navbarRef, isVisible] = useIsVisible({ threshold: 0 });
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -20,7 +21,11 @@ export default function Navbar() {
         onClick={() => setIsSidebarOpen(false)}
       ></div>
 
-      <div ref={navbarRef} className={styles.navbar}>
+      <div
+        ref={navbarRef}
+        className={`${styles.navbar} ${isVisible ? "fade-in-top" : styles.invisible}`}
+        style={isVisible ? { animationDelay: "1s" } : undefined}
+      >
         <div className={styles.navContainer}>
           <div className={styles.navbarWrapper}>
             <div
@@ -69,7 +74,7 @@ export default function Navbar() {
                     href={`#section${index + 1}`} 
                     className={styles.link}
                     onClick={() => setIsSidebarOpen(false)}
-                    >
+                  >
                     {label}
                   </a>
                 </div>

@@ -15,6 +15,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 150px;
     }
 
     .socialBlock {
@@ -55,6 +56,42 @@
     .copyright {
       text-align: center;
       font-size: 14px;
+    }
+  }
+}
+
+.invisible {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+
+@media (max-width: 1440px) {
+  .footerWrapper {
+    .footerWrapper2 {
+      .logoBlock {
+        width: 120px;
+      }
+      .copyright {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .footerWrapper {
+    .footerWrapper2 {
+      .socialBlock {
+        .empty {
+          width: 24px;
+          height: 24px;
+        }
+      }
+
+      .copyright {
+        font-size: 12px;
+      }
     }
   }
 }

@@ -18,6 +18,7 @@
       display: flex;
       align-items: flex-start;
       flex-direction: column;
+      gap: 20px;
 
       .titleWrapper {
         display: flex;
@@ -29,7 +30,6 @@
           background-color: #038405;
           display: flex;
           width: 100%;
-    
         }
 
         .title {
@@ -51,16 +51,6 @@
     .slider {
       position: relative;
       max-width: 1000px;
-
-      .keen-slider {
-        display: flex;
-        gap: 20px;
-      }
-
-      .slide {
-        flex: 0 0 calc(33.333% - 20px);
-        max-width: 300px;
-      }
     }
 
     .sliderControls {
@@ -68,44 +58,95 @@
       justify-content: end;
       margin-top: 20px;
       margin-right: 20px;
+    }
+  }
 
-      .sliderButton {
-        background-color: transparent;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        width: 150px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
-        background-color: #038405;
+  .hidden {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  }
+  .visible {
+    opacity: 1;
+  }
+}
 
-        .sliderIcon {
-          width: 24px;
-          height: 24px;
-          fill: #038405;
-          transition: fill 0.3s ease;
-          
-          &:hover .sliderIcon {
-            fill: #026c03;
-          }
-  
-          &.mirrored {
-            transform: scaleX(-1);
+@media (max-width: 1440px) {
+  .servicesWrapper {
+    padding: 30px 0;
+
+    .serviceWrapper {
+      .slider {
+        max-width: 700px;
+      }
+      
+      .header {
+        .titleWrapper {
+          .title {
+            font-size: 40px;
           }
         }
       }
     }
   }
+}
 
-    .hidden {
-    opacity: 0;
-    transition: opacity 0.6s ease-out;
+@media (max-width: 1024px) {
+  .servicesWrapper {
+    padding: 20px 0;
+
+    .serviceWrapper {
+      padding: 20px;
+      gap: 20px;
+
+      .header {
+        align-items: center;
+        text-align: center;
+
+        .titleWrapper {
+          .title {
+            font-size: 32px;
+          }
+        }
+        .description {
+          font-size: 14px;
+        }
+      }
+
+      .slider {
+        max-width: 600px;
+      }
+    }
   }
-  
-  .visible {
-    opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .servicesWrapper {
+    .serviceWrapper {
+          padding: 20px;
+      .header {
+        align-items: center;
+        text-align: center;
+
+        .titleWrapper {
+          .title {
+            font-size: 24px;
+          }
+        }
+        .description {
+          font-size: 12px;
+          padding: 0 10px;
+        }
+      }
+
+      .slider {
+        max-width: 90vw;
+        padding: 0;
+      }
+    }
   }
+}
+
+.invisible {
+  opacity: 0 !important;
+  pointer-events: none;
 }

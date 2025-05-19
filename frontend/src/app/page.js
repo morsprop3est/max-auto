@@ -12,7 +12,6 @@ import ContactUs from '@/components/ContactUs/ContactUs';
 import Footer from '@/components/Footer/Footer';
 import { fetchComponents } from '../api/components';
 import { fetchLots, fetchBodyTypes, fetchFuelTypes } from '../api/lots';
-import ClientSections from '@/components/client';
 
 export default async function Home() {
   const components = await fetchComponents();
@@ -34,7 +33,7 @@ export default async function Home() {
         <AboutUs component={components.about_us} />
         <Stats component={components.stats} />
         <Services component={components.service} />
-        {/* <Millitary component={components.millitary} />
+        <Millitary component={components.millitary} />
         <Dashboard
           components={components.dashboard}
           lots={lotsData.lots}
@@ -44,7 +43,7 @@ export default async function Home() {
         <Calculator component={components.calculator} />
         <Reviews component={components.reviews} />
         <ContactUs />
-        <Footer /> */}
+        <Footer />
       </main>
     </>
   );

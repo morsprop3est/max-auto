@@ -1,12 +1,9 @@
 export async function fetchComponents() {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/components`, {
-  method: 'GET',
-  credentials: 'include',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  });
+      method: 'GET',
+      cache: 'no-store',
+    });
 
     if (!res.ok) {
       throw new Error("Failed to fetch components");
@@ -20,7 +17,10 @@ export async function fetchComponents() {
 
 export async function fetchReviewsByRegion(regionId) {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/by-region?regionId=${regionId}`);
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews/by-region?regionId=${regionId}`, {
+      method: 'GET',
+      cache: 'no-store',
+    });
     if (!res.ok) {
       throw new Error("Failed to fetch reviews");
     }
@@ -39,6 +39,7 @@ export async function postOrder(order) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(order),
+      cache: 'no-store',
     });
 
     if (!res.ok) {

@@ -34,37 +34,80 @@
 
 
 .sliderControls {
-      display: flex;
-      justify-content: end;
-      margin-top: 20px;
-      margin-right: 20px;
+  display: flex;
+  justify-content: end;
+  margin-top: 20px;
+  margin-right: 20px;
 
-      .sliderButton {
-        background-color: transparent;
-        border: none;
-        padding: 10px;
-        cursor: pointer;
-        width: 150px;
-        height: 60px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
-        background-color: #038405;
+  .sliderButton {
+    background-color: transparent;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 150px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
+    background-color: #038405;
 
-        .sliderIcon {
-          width: 24px;
-          height: 24px;
-          fill: #038405;
-          transition: fill 0.3s ease;
-          
-          &:hover .sliderIcon {
-            fill: #026c03;
-          }
-  
-          &.mirrored {
-            transform: scaleX(-1);
-          }
-        }
+    .sliderIcon {
+      width: 24px;
+      height: 24px;
+      fill: #038405;
+      transition: fill 0.3s ease;
+      
+      &:hover .sliderIcon {
+        fill: #026c03;
       }
+
+      &.mirrored {
+        transform: scaleX(-1);
+      }
+    }
+  }
+}
+
+
+
+@media (max-width: 1440px) {
+  .emblaSlide {
+    padding: 0 6px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sliderWrapper {
+    max-width: 100vw;
+  }
+  .emblaSlide {
+    padding: 0 10px;
+  }
+  .card {
+    width: 140px;
+    height: 180px;
+  }
+  .sliderControls {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .sliderWrapper {
+    max-width: 100vw;
+    padding: 0;
+  }
+  .emblaSlide {
+    padding: 0 2px;
+  }
+  .sliderControls {
+    justify-content: center;
+    width: 100%;
+    padding-left: 10px;
+
+    .sliderButton{
+      margin-left: -20px;
+    }
+  }
 }

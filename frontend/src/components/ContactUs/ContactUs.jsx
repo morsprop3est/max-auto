@@ -1,129 +1,65 @@
 'use client';
 
 import styles from './ContactUs.module.scss';
-import { useRef, useState } from "react";
-import { useNotification } from "@/context/NotificationContext";
-import { sendOrder } from "@/api/orders";
-import { animateScaleUp, animateScaleDown, animatePress } from "@/utils/animation";
+import { useIsVisible } from "@/hooks/useIsVisible";
+import "@/app/animation.scss";
 
 export default function ContactUs() {
-  const { addNotification } = useNotification();
-  const nameRef = useRef();
-  const phoneRef = useRef();
-  const messageRef = useRef();
-  const [loading, setLoading] = useState(false);
-
-  const leftBlockRef = useRef(null);
-  const buttonRef = useRef(null);
-  const titleRef = useRef(null);
-  const descRef = useRef(null);
-
-  const handleButtonEnter = (e) => animateScaleUp(e.currentTarget);
-  const handleButtonLeave = (e) => animateScaleDown(e.currentTarget);
-  const handleButtonDown = (e) => animatePress(e.currentTarget);
-  const handleButtonUp = (e) => animateScaleUp(e.currentTarget);
-
-  const handleTitleEnter = (e) => animateScaleUp(e.currentTarget, 1.06, 0.18);
-  const handleTitleLeave = (e) => animateScaleDown(e.currentTarget, 1, 0.18);
-  const handleTitleDown = (e) => animatePress(e.currentTarget, 0.96, 0.12);
-  const handleTitleUp = (e) => animateScaleUp(e.currentTarget, 1.06, 0.18);
-
-  const handleDescEnter = (e) => animateScaleUp(e.currentTarget, 1.03, 0.18);
-  const handleDescLeave = (e) => animateScaleDown(e.currentTarget, 1, 0.18);
-  const handleDescDown = (e) => animatePress(e.currentTarget, 0.97, 0.12);
-  const handleDescUp = (e) => animateScaleUp(e.currentTarget, 1.03, 0.18);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const name = nameRef.current?.value.trim();
-    const phone = phoneRef.current?.value.trim();
-    const comment = messageRef.current?.value.trim();
-
-    if (!name || !phone) {
-      addNotification("error", "Вкажіть ім'я та номер телефону!");
-      return;
-    }
-
-    setLoading(true);
-    try {
-      await sendOrder({ name, phone, comment });
-      addNotification("success", "Успішно подано, очікуйте — з вами зв'яжуться!");
-      if (nameRef.current) nameRef.current.value = "";
-      if (phoneRef.current) phoneRef.current.value = "";
-      if (messageRef.current) messageRef.current.value = "";
-    } catch (err) {
-      addNotification("error", err.message || "Не вдалося відправити заявку");
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [wrapperRef, isVisible] = useIsVisible({ threshold: 0.3 });
+  const invisible = !isVisible ? styles.invisible : "";
+  const anim = isVisible ? "fade-in-bottom" : "";
 
   return (
-    <div className={styles.contactUsWrapper}>
+    <div
+      className={`${styles.contactUsWrapper} ${anim} ${invisible}`}
+      ref={wrapperRef}
+    >
       <div className="container">
         <div className={styles.contactUsWrapper2} id="contact-us">
-          <div className={styles.leftBlock} ref={leftBlockRef}>
+          <div className={styles.leftBlock}>
             <h1
-              className={styles.title}
-              ref={titleRef}
-              onMouseEnter={handleTitleEnter}
-              onMouseLeave={handleTitleLeave}
-              onMouseDown={handleTitleDown}
-              onMouseUp={handleTitleUp}
-              style={{ cursor: "pointer" }}
+              className={`fade-in- ${styles.title}`}
+              style={isVisible ? { animationDelay: "0.15s" } : {}}
             >
               Залишайте заявку
             </h1>
             <p
-              className={styles.description}
-              ref={descRef}
-              onMouseEnter={handleDescEnter}
-              onMouseLeave={handleDescLeave}
-              onMouseDown={handleDescDown}
-              onMouseUp={handleDescUp}
-              style={{ cursor: "pointer" }}
+              className={`fade-in-bottom`}
+              style={isVisible ? { animationDelay: "0.3s" } : {}}
             >
               Залиште заявку, і наші фахівці зв’яжуться з вами для консультації найближчим часом.
             </p>
           </div>
           <div className={styles.rightBlock}>
-            <form className={styles.form} onSubmit={handleSubmit}>
+            <form className={styles.form}>
               <div className={styles.inputs}>
                 <input
                   type="text"
                   placeholder="Ваше ім'я"
-                  className={styles.input}
-                  ref={nameRef}
-                  disabled={loading}
+                  className={`fade-in-bottom ${styles.input}`}
+                  style={isVisible ? { animationDelay: "0.45s" } : {}}
                 />
                 <input
                   type="tel"
                   placeholder="Ваш телефон"
-                  className={styles.input}
-                  ref={phoneRef}
-                  disabled={loading}
+                  className={`fade-in-bottom ${styles.input}`}
+                  style={isVisible ? { animationDelay: "0.6s" } : {}}
                 />
               </div>
               <div className={styles.fullWidthInput}>
                 <input
                   type="text"
                   placeholder="Ваше повідомлення"
-                  className={styles.input}
-                  ref={messageRef}
-                  disabled={loading}
+                  className={`fade-in-bottom ${styles.input}`}
+                  style={isVisible ? { animationDelay: "0.75s" } : {}}
                 />
               </div>
               <button
-                className={styles.submitButton}
+                className={`fade-in-bottom ${styles.submitButton}`}
                 type="submit"
-                disabled={loading}
-                ref={buttonRef}
-                onMouseEnter={handleButtonEnter}
-                onMouseLeave={handleButtonLeave}
-                onMouseDown={handleButtonDown}
-                onMouseUp={handleButtonUp}
+                style={isVisible ? { animationDelay: "0.9s" } : {}}
               >
-                {loading ? "Відправка..." : "Відправити"}
+                Відправити
               </button>
             </form>
           </div>

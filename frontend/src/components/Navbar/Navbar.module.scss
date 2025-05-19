@@ -175,6 +175,11 @@
 }
 
 
+.invisible {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
 @media (max-width: 1440px) {
   .navbar {
     padding: 0 40px;
