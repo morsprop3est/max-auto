@@ -57,6 +57,10 @@ export default function Reviews({ component }) {
               <h1 className={styles.title}>{reviewsHeaderData.title}</h1>
             </div>
             <p className={styles.description}>{reviewsHeaderData.description}</p>
+            <div className={styles.scrollMouse}>
+              Наведіть курсором на область
+              <img src='/mouseScroll.svg' />
+            </div>
           </div>
           </div>
           <div className={styles.reviewsWrapper2}>

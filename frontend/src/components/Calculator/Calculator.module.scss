@@ -93,3 +93,155 @@
   }
   }
 }
+
+
+@media (max-width: 1440px) {
+  .calculatorWrapper {
+    padding: 60px 0;
+
+    .innerWrapper {
+      gap: 16px;
+
+      .leftBlock,
+      .rightBlock {
+        padding: 16px;
+      }
+
+      .leftBlock {
+        .inputsBlock {
+          .input {
+            font-size: 15px;
+            padding: 9px;
+          }
+        }
+        .resultBlock {
+          h3 {
+            font-size: 16px;
+          }
+          .priceField {
+            font-size: 20px;
+            padding: 9px;
+          }
+        }
+      }
+
+      .rightBlock {
+        .title {
+          font-size: 20px;
+        }
+        .description {
+          font-size: 14px;
+        }
+        .infoBlocks {
+          gap: 8px;
+          .infoBlock {
+            font-size: 13px;
+            padding: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .calculatorWrapper {
+    padding: 40px 0;
+
+    .innerWrapper {
+      gap: 12px;
+
+      .leftBlock,
+      .rightBlock {
+        width: 100%;
+        padding: 10px;
+      }
+
+      .leftBlock {
+        .inputsBlock {
+          .input {
+            font-size: 13px;
+            padding: 7px;
+          }
+        }
+        .resultBlock {
+          h3 {
+            font-size: 14px;
+          }
+          .priceField {
+            font-size: 16px;
+            padding: 7px;
+          }
+        }
+      }
+
+      .rightBlock {
+        .title {
+          font-size: 16px;
+        }
+        .description {
+          font-size: 12px;
+        }
+        .infoBlocks {
+          gap: 6px;
+          .infoBlock {
+            font-size: 12px;
+            padding: 8px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .calculatorWrapper {
+    padding: 30px 0;
+
+    .innerWrapper {
+      flex-direction: column-reverse;
+      gap: 16px;
+
+      .leftBlock,
+      .rightBlock {
+        width: 100%;
+        padding: 12px;
+        box-sizing: border-box;
+      }
+
+      .rightBlock {
+        .title {
+          font-size: 18px;
+        }
+        .description {
+          font-size: 13px;
+        }
+        .infoBlocks {
+          gap: 8px;
+          .infoBlock {
+            padding: 10px;
+            font-size: 13px;
+          }
+        }
+      }
+
+      .leftBlock {
+        .inputsBlock {
+          .input {
+            font-size: 14px;
+            padding: 8px;
+          }
+        }
+        .resultBlock {
+          h3 {
+            font-size: 15px;
+          }
+          .priceField {
+            font-size: 18px;
+            padding: 8px;
+          }
+        }
+      }
+    }
+  }
+}

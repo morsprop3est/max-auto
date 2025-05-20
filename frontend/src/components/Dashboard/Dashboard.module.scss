@@ -10,7 +10,17 @@
     padding: 20px;
   }
 
+  .innerWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+  }
+
   .header {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     margin-bottom: 20px;
 
     .titleWrapper {
@@ -49,6 +59,10 @@
     padding: 20px;
     gap: 20px;
 
+    .mobileFiltersWrapper, .buttonsWrapper{
+      display: none;
+    }
+
     .leftBlock {
       width: 40%;
       padding: 0; 
@@ -56,14 +70,265 @@
 
     .rightBlock {
       width: 60%;
-      max-height: 600px;
+      max-height: 650px;
       overflow-y: auto;
       padding: 20px;
+      border: 2px solid #D9D9D9;
+      
+      .mobileFiltersButton {
+        display: none;
+      }
 
       .lotsList {
         display: flex;
         flex-direction: column;
         gap: 20px;
+      }
+
+      .buttonsWrapper {
+          display: none;
+      }
+    }
+  }
+}
+
+
+@media (max-width: 1440px) {
+  .dashboardWrapper {
+    padding: 60px 0;
+
+    .container {
+      padding: 16px;
+    }
+
+    .header {
+      .titleWrapper {
+        .line {
+          width: 500px;
+        }
+        .title {
+          font-size: 40px;
+        }
+      }
+      .description {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .dashboardWrapper {
+    padding: 40px 0;
+
+    .container {
+      padding: 10px;
+    }
+
+    .innerWrapper {
+      .dashboardPanel {
+        display: flex;
+        flex-direction: column;
+        background-color: #EAEAEA;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        gap: 20px;
+
+        .mobileFiltersWrapper {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          justify-content: flex-end;
+
+          .mobileFiltersButton {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            padding: 15px;
+            background: #038405;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+
+            img {
+              width: 20px;
+            }
+          }
+        }
+
+        .buttonsWrapper {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            padding-top: 20px;
+            align-items: center;
+            justify-content: center;
+
+            .applyButton {
+              font-family: 'Montserrat', sans-serif;
+              font-size: 16px;
+              font-weight: 400;
+              letter-spacing: 0%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: #038405;
+              color: white;
+              padding: 20px 60px 20px 40px;
+              border: none;
+              clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+              cursor: pointer;
+
+              &:hover {
+                background-color: #038405;
+              }
+            }
+
+            .resetButton {
+              font-family: 'Montserrat', sans-serif;
+              display: flex;
+              align-items: center;
+              justify-content: end;
+              background-color: #ccc;
+              color: black;
+              padding: 20px 20px 20px 40px;
+              border: none;
+              cursor: pointer;
+              text-align: center;
+              clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%);
+
+              &:hover {
+                background-color: #aaa;
+              }
+            }
+          }
+
+        .leftBlock {
+          display: none;
+        }
+
+        .rightBlock {
+          width: 100%;
+          max-height: 600px;
+          overflow-y: auto;
+          padding-left: 5px;
+
+          .lotsList {
+            padding-top: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboardWrapper {
+    padding: 20px 0;
+
+    .container {
+      padding: 4px;
+    }
+
+    .header {
+      .titleWrapper {
+        .line {
+          width: 250px;
+        }
+        .title {
+          font-size: 20px;
+          text-align: center;
+        }
+      }
+      .description {
+        font-size: 12px;
+        text-align: center;
+      }
+    }
+
+    .dashboardPanel {
+      .leftBlock {
+        display: none;
+      }
+
+      .rightBlock {
+        width: 100%;
+        max-height: none;
+        overflow-y: auto;
+        padding: 20px;
+
+        .mobileFiltersWrapper {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          justify-content: flex-end;
+
+          .mobileFiltersButton {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            padding: 15px;
+            background: #038405;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+
+            img {
+              width: 20px;
+            }
+          }
+        }
+
+        .buttonsWrapper {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          padding-top: 20px;
+          align-items: center;
+          justify-content: center;
+
+          .applyButton {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #038405;
+            color: white;
+            padding: 10px 16px 10px 10px;
+            border: none;
+            clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+            cursor: pointer;
+
+            &:hover {
+              background-color: #038405;
+            }
+          }
+
+          .resetButton {
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            background-color: #ccc;
+            color: black;
+            padding: 10px 10px 10px 20px;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%);
+
+            &:hover {
+              background-color: #aaa;
+            }
+          }
+        }
+
+        .lotsList {
+          padding-top: 20px;
+        }
       }
     }
   }

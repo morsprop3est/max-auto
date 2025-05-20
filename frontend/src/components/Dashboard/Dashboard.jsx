@@ -4,11 +4,12 @@ import { useState, useEffect } from 'react';
 import styles from './Dashboard.module.scss';
 import DashboardFilters from './DashboardFilters';
 import DashboardLotCard from './DashboardLotCard';
-import { fetchLots } from '@/api/lots';
+import DashboardMobileFilters from './DashboardMobileFilters';
 
 export default function Dashboard({ components, lots = [], bodyTypes, fuelTypes }) {
   const [filters, setFilters] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
 
   const dashboardHeaderData = Array.isArray(components)
     ? {
@@ -19,6 +20,15 @@ export default function Dashboard({ components, lots = [], bodyTypes, fuelTypes 
 
   return (
     <div className={styles.dashboardWrapper}>
+      <DashboardMobileFilters
+  open={mobileFiltersOpen}
+  onClose={() => setMobileFiltersOpen(false)}
+  onApplyFilters={setFilters}
+  onResetFilters={() => setFilters({})}
+  bodyTypes={bodyTypes}
+  fuelTypes={fuelTypes}
+  initialFilters={filters}
+/>
       <div className="container">
         <div className={styles.innerWrapper}>
           <div className={styles.header}>
@@ -29,6 +39,14 @@ export default function Dashboard({ components, lots = [], bodyTypes, fuelTypes 
             <p className={styles.description}>{dashboardHeaderData.description}</p>
           </div>
           <div className={styles.dashboardPanel}>
+            <div className={styles.mobileFiltersWrapper}>
+              <button
+                className={styles.mobileFiltersButton}
+                onClick={() => setMobileFiltersOpen(true)}
+              >
+                <img src='/dashboardIcons/filters.svg' />
+              </button>
+            </div>
             <div className={styles.leftBlock}>
               <DashboardFilters
                 onApplyFilters={setFilters}
@@ -38,13 +56,25 @@ export default function Dashboard({ components, lots = [], bodyTypes, fuelTypes 
             </div>
             <div className={styles.rightBlock}>
               <div className={styles.lotsList}>
-                {isLoading ? (
-                  <p>Завантаження...</p>
-                ) : (
-                  lots.map((lot) => <DashboardLotCard key={lot.id} lot={lot} />)
-                )}
-              </div>
+                  {isLoading ? (
+                    <p>Завантаження...</p>
+                  ) : (
+                    lots.map((lot) => <DashboardLotCard key={lot.id} lot={lot} />)
+                  )}
+                </div>
             </div>
+                            <div className={styles.buttonsWrapper}>
+                <button
+                  className={styles.applyButton}
+                >
+                  Застосувати
+                </button>
+                <button
+                  className={styles.resetButton}
+                >
+                  ✖
+                </button>
+              </div>
           </div>
         </div>
       </div>

@@ -169,7 +169,6 @@
     .aboutUsWrapper2 {
       flex-direction: column;
       align-items: center;
-      padding: 0 20px;
 
       .leftBlock {
         max-width: 100%;
@@ -236,6 +235,8 @@
     .aboutUsWrapper2 {
       flex-direction: column;
       align-items: center;
+      width: 100%;
+      padding: 0;
 
       .leftBlock {
         align-items: center;

@@ -39,14 +39,6 @@ export default function Millitary({ component }) {
           </div>
           <div className={`${styles.bottomBlock} ${anim} ${invisible}`}>
             <p className={styles.text}>{millitaryData.text}</p>
-            {/* Якщо потрібна кнопка, розкоментуйте:
-            <button
-              className={styles.button}
-              onClick={handleButtonClick}
-            >
-              Дізнатися більше
-            </button>
-            */}
             <div className={styles.slider}>
             <Slider>
               {sliderImages.map((img, idx) => (
