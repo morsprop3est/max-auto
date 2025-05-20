@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useNotification } from "@/context/NotificationContext";
 import { useAdaptive } from "@/context/AdaptiveContext";
 import { useIsVisible } from "@/hooks/useIsVisible";
+import ScrollMouse from './ScrollMouse';
 import '../../app/animation.scss';
 
 export default function Main({ component, onLoaded }) {
@@ -128,6 +129,7 @@ const animationClassBottom = isVisible ? "fade-in-bottom" : "";
           className={styles.trapezoidImage}
         />
       </div>
+      <ScrollMouse mainRef={mainRef} />
     </div>
   );
 }
