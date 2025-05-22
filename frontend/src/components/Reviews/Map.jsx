@@ -14,35 +14,40 @@ export default function Map({
 }) {
   const mapContainerRef = useRef(null);
   const [cardPos, setCardPos] = useState({ left: 0, top: 0, visible: false });
+  const [cursorPos, setCursorPos] = useState(null);
+
+  // Зберігаємо координати курсора при кліку
+  const handleRegionClick = (region, event) => {
+    if (event) {
+      const containerRect = mapContainerRef.current.getBoundingClientRect();
+      setCursorPos({
+        left: event.clientX - containerRect.left,
+        top: event.clientY - containerRect.top,
+      });
+    }
+    onRegionClick(region);
+  };
 
   useEffect(() => {
-    if (selectedRegion) {
-      const regionElement = document.getElementById(`region-${selectedRegion.id}`);
-      const containerElement = mapContainerRef.current;
-      if (regionElement && containerElement) {
-        const regionRect = regionElement.getBoundingClientRect();
-        const containerRect = containerElement.getBoundingClientRect();
-        const left = regionRect.left - containerRect.left + 100;
-        const top = regionRect.top - containerRect.top - 50;
-        setCardPos({ left, top, visible: true });
-      }
+    if (selectedRegion && cursorPos) {
+      setCardPos({
+        left: cursorPos.left,
+        top: cursorPos.top - 150,
+        visible: true,
+      });
     } else {
       setCardPos((pos) => ({ ...pos, visible: false }));
     }
-  }, [selectedRegion, review]);
+  }, [selectedRegion, review, cursorPos]);
 
   useEffect(() => {
     const handle = () => {
-      if (selectedRegion) {
-        const regionElement = document.getElementById(`region-${selectedRegion.id}`);
-        const containerElement = mapContainerRef.current;
-        if (regionElement && containerElement) {
-          const regionRect = regionElement.getBoundingClientRect();
-          const containerRect = containerElement.getBoundingClientRect();
-          const left = regionRect.left - containerRect.left + regionRect.width + 20;
-          const top = regionRect.top - containerRect.top - 20;
-          setCardPos({ left, top, visible: true });
-        }
+      if (selectedRegion && cursorPos) {
+        setCardPos({
+          left: cursorPos.left + 20,
+          top: cursorPos.top - 20,
+          visible: true,
+        });
       }
     };
     window.addEventListener("scroll", handle);
@@ -51,21 +56,27 @@ export default function Map({
       window.removeEventListener("scroll", handle);
       window.removeEventListener("resize", handle);
     };
-  }, [selectedRegion, review]);
+  }, [selectedRegion, review, cursorPos]);
 
   return (
     <div className={styles.mapContainer} ref={mapContainerRef}>
-      <svg className={styles.map} width={1500} height={1000}>
+      <svg
+        className={styles.map}
+        viewBox="0 0 1200 800"
+        width="100%"
+        height="auto"
+        preserveAspectRatio="xMidYMid meet"
+      >
         {regions.map((region) => (
           <Region
             key={region.id}
             region={region}
             isSelected={selectedRegion?.id === region.id}
-            onClick={onRegionClick}
+            onClick={(r, e) => handleRegionClick(r, e)}
           />
         ))}
       </svg>
-      {cardPos.visible && selectedRegion && (        
+      {cardPos.visible && selectedRegion && (
         <div
           className={styles.reviewCardOverlay}
           style={{
