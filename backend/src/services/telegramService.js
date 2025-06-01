@@ -23,8 +23,6 @@ export const formatTelegramMessage = async ({ name, phone, lotIds, comment }) =>
   return `Нове замовлення:
   - Ім'я: ${name}
   - Телефон: ${phone}
-  - Лоти:
-${lotDetails}
   - Коментар: ${comment || 'Відсутній'}`;
 };
 

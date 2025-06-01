@@ -1,5 +1,6 @@
 import { Order } from '../models/index.js';
 import { sendMessageToTelegram } from '../services/telegramService.js';
+import { sendOrderToCRM } from '../services/crmService.js';
 
 export const postOrder = async (req, res) => {
   const { name, phone, lotIds, comment } = req.body;
@@ -12,14 +13,18 @@ export const postOrder = async (req, res) => {
     const newOrder = await Order.create({
       name,
       phone,
-      lotIds: Array.isArray(lotIds) ? lotIds : null,
       comment: comment || null,
     });
 
     await sendMessageToTelegram({
       name,
       phone,
-      lotIds: lotIds || [],
+      comment: comment || '',
+    });
+
+    await sendOrderToCRM({
+      name,
+      phone,
       comment: comment || '',
     });
 
