@@ -34,7 +34,6 @@ export default function ReviewMobileCard({
     );
   };
 
-  // Свайп (touch) підтримка
   let touchStartX = null;
   const handleTouchStart = (e) => {
     touchStartX = e.touches[0].clientX;
@@ -47,7 +46,6 @@ export default function ReviewMobileCard({
     touchStartX = null;
   };
 
-  // Кастомна квадратна карточка
   const review = reviews[currentIndex];
   const BASE_URL = process.env.NEXT_PUBLIC_URL;
   const userPhotoUrl =
@@ -98,7 +96,6 @@ export default function ReviewMobileCard({
               <div className={styles.commentText}>{review?.comment}</div>
               {Array.isArray(review?.reviewPhotos) && review.reviewPhotos.length > 0 && (
                 <div className={styles.sliderCol}>
-                  {/* Можна вставити PhotoSlider або простий img */}
                   <img
                     src={`${BASE_URL}${review.reviewPhotos[0].photoUrl}`}
                     alt="review"

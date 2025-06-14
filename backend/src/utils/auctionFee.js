@@ -11,12 +11,20 @@ function getCalculatorConfig() {
   return JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 }
 
-export function getAuctionDeliveryFee({ auctionType, lotPrice, bodyType }) {
+export function getAuctionDeliveryFee({ 
+  auctionType, 
+  lotPrice, 
+  bodyType,
+  copartCleanType,
+  copartSecuredType,
+  iaaiLicenseType,
+  iaaiVolumeType
+}) {
   const config = getCalculatorConfig();
 
   if (auctionType === 'copart') {
-    const titleClean = config.copartTitleType || 'clean'; 
-    const securedType = config.copartSecuredType || 'secured';
+    const titleClean = copartCleanType || 'clean'; 
+    const securedType = copartSecuredType || 'secured';
     const vehicleType = bodyType === 'truck' ? 'heavy_vehicle' : 'standard_vehicle';
 
     const mainGroup = copartConfig[titleClean]?.[vehicleType]?.[securedType];
@@ -50,9 +58,9 @@ export function getAuctionDeliveryFee({ auctionType, lotPrice, bodyType }) {
     }
 
     const titleShipping = copartConfig.title_shipping?.usps?.fee || 0;
-
     const environmentalFee = copartConfig.environmental_fee || 0;
 
+    const additionalFees = config.addCopartFees || 0;
 
     return {
       auctionType: 'copart',
@@ -65,21 +73,23 @@ export function getAuctionDeliveryFee({ auctionType, lotPrice, bodyType }) {
       virtualBidFee,
       titleShipping,
       environmentalFee,
-      total: mainFee + gateFee + virtualBidFee + titleShipping + environmentalFee,
+      additionalFees,
+      total: mainFee + gateFee + virtualBidFee + titleShipping + environmentalFee + additionalFees,
       breakdown: {
         mainFee,
         gateFee,
         virtualBidFee,
         titleShipping,
-        environmentalFee
+        environmentalFee,
+        additionalFees
       }
     };
   }
 
   if (auctionType === 'iaai') {
-    const feeTier = config.iaaiFeeTier === 'high' ? 'high_volume' : 'standard_volume';
-    const licenseType = 'standard_licensed'; 
-    const group = iaaiConfig[licenseType]?.[feeTier];
+    const volumeType = iaaiVolumeType || 'standart_volume';
+    const licenseType = iaaiLicenseType || 'standart_licensed';
+    const group = iaaiConfig[licenseType]?.[volumeType];
     let mainFee = 0;
     let mainFeeRow = null;
     if (group) {
@@ -99,21 +109,25 @@ export function getAuctionDeliveryFee({ auctionType, lotPrice, bodyType }) {
     const environmentalFee = iaaiConfig.environmental_fee || 0;
     const titleHandlingFee = iaaiConfig.title_handling_fee || 0;
 
+    const additionalFees = config.addIaaiFees || 0;
+
     return {
       auctionType: 'iaai',
-      feeTier,
+      volumeType,
       licenseType,
       mainFee,
       mainFeeRow,
       serviceFee,
       environmentalFee,
       titleHandlingFee,
-      total: mainFee + serviceFee + environmentalFee + titleHandlingFee,
+      additionalFees,
+      total: mainFee + serviceFee + environmentalFee + titleHandlingFee + additionalFees,
       breakdown: {
         mainFee,
         serviceFee,
         environmentalFee,
-        titleHandlingFee
+        titleHandlingFee,
+        additionalFees
       }
     };
   }

@@ -3,7 +3,6 @@ import OrderModel from './Order.js';
 import LotModel from './Lot.js';
 import LotPhotoModel from './LotPhoto.js';
 import ComponentModel from './Component.js';
-import CalculatorModel from './Calculator.js';
 import ReviewModel from './Review.js';
 import ReviewPhotoModel from './ReviewPhoto.js';
 import RegionModel from './Region.js';
@@ -20,7 +19,6 @@ const Lot = LotModel(sequelize);
 const LotPhoto = LotPhotoModel(sequelize);
 const AuctionLocation = AuctionLocationModel(sequelize);
 const Component = ComponentModel(sequelize);
-const Calculator = CalculatorModel(sequelize);
 const Review = ReviewModel(sequelize);
 const ReviewPhoto = ReviewPhotoModel(sequelize);
 const Region = RegionModel(sequelize);
@@ -63,4 +61,4 @@ AuctionLocation.belongsTo(Port, { foreignKey: 'portId', as: 'port' });
 Port.hasMany(AuctionLocation, { foreignKey: 'portId', as: 'auctionLocations' });
 
 
-export { sequelize, Order, Lot, Component, Calculator, Review, Region, AuctionLocation,  BodyType, FuelType, LotPhoto, ReviewPhoto, Port, AuctionLocationPort, PortFee, AuctionDeliveryFee };
+export { sequelize, Order, Lot, Component, Review, Region, AuctionLocation, BodyType, FuelType, LotPhoto, ReviewPhoto, Port, AuctionLocationPort, PortFee, AuctionDeliveryFee };

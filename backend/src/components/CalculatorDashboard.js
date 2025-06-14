@@ -8,13 +8,21 @@ const fields = [
     { value: 'full', label: 'Повний' },
     { value: 'delivery', label: 'Тільки доставка' }
   ]},
-  { name: 'copartFeeTier', label: 'Тип тарифів Copart', type: 'select', options: [
-    { value: 'high', label: 'Високий' },
-    { value: 'low', label: 'Низький' }
+  { name: 'copartCleanType', label: 'Тип чистого аукціону Copart', type: 'select', options: [
+    { value: 'clean', label: 'Clean' },
+    { value: 'non_clean', label: 'Non-Clean' }
   ]},
-  { name: 'iaaiFeeTier', label: 'Тип тарифів IAAI', type: 'select', options: [
-    { value: 'high', label: 'Високий' },
-    { value: 'low', label: 'Низький' }
+  { name: 'copartSecuredType', label: 'Тип захищеного аукціону Copart', type: 'select', options: [
+    { value: 'secured', label: 'Secured' },
+    { value: 'unsecured', label: 'Unsecured' }
+  ]},
+  { name: 'iaaiLicenseType', label: 'Тип ліцензії IAAI', type: 'select', options: [
+    { value: 'standart_licensed', label: 'Standart Licensed' },
+    { value: 'standart_nonlicensed', label: 'Standart Non-Licensed' }
+  ]},
+  { name: 'iaaiVolumeType', label: 'Тип об\'єму IAAI', type: 'select', options: [
+    { value: 'standart_volume', label: 'Standart Volume' },
+    { value: 'high_volume', label: 'High Volume' }
   ]},
   { name: 'addCopartFees', label: 'Додаткові фіксовані збори для Copart', type: 'number' },
   { name: 'addIaaiFees', label: 'Додаткові фіксовані збори для IAAI', type: 'number' },
@@ -39,13 +47,10 @@ const fields = [
   { name: 'swiftFixed', label: 'Фіксована частина комісії SWIFT', type: 'number' },
   { name: 'swiftPercent', label: 'Відсоткова частина комісії SWIFT', type: 'number' },
   { name: 'extraFreightElectric', label: 'Додатковий фрахт для електрокарів', type: 'number' },
-  { name: 'useBuyNow', label: 'Використовувати Buy Now', type: 'boolean' },
-  { name: 'showUSPayments', label: 'Виводити оплату в США', type: 'boolean' },
   { name: 'customsOutput', label: 'Формат виводу митного розрахунку', type: 'select', options: [
     { value: 'short', label: 'Короткий' },
     { value: 'detailed', label: 'Детальний' }
-  ]},
-  { name: 'inlandCopyFromId', label: 'ID іншого налаштування для inland-доставки', type: 'number', allowNull: true }
+  ]}
 ]
 
 const api = new ApiClient()
