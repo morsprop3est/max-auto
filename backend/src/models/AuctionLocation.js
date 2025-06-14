@@ -2,15 +2,18 @@ import { DataTypes } from 'sequelize';
 
 export default (sequelize) => {
   return sequelize.define('AuctionLocation', {
-    id: {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, allowNull: false },
+    portId: {
       type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
+      allowNull: true,
+      references: { model: 'Ports', key: 'id' }
     },
-    name: {
-      type: DataTypes.STRING,
+    auctionType: {
+      type: DataTypes.ENUM('copart', 'iaai'),
       allowNull: false,
-    },
+      defaultValue: 'copart'
+    }
   }, {
     tableName: 'AuctionLocations',
     timestamps: false,

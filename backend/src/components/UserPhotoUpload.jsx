@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
+const publicUrl = window?.AdminJS?.env?.PUBLIC_URL || '';
+
 const UploadContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -72,7 +74,7 @@ const UserPhotoUpload = (props) => {
     formData.append('photo', file);
     formData.append('isUserPhoto', 'true');
 
-    fetch(`http://localhost:4000/api/reviews/${record.id}/user-photo`, {
+    fetch(`${publicUrl}/api/reviews/${record.id}/user-photo`, {
       method: 'POST',
       body: formData,
     })
@@ -90,7 +92,7 @@ const UserPhotoUpload = (props) => {
       <UploadContainer>
       {userPhoto && (
         <UploadedImage
-          src={`http://localhost:4000${userPhoto}`}
+          src={`${publicUrl}${userPhoto}`}
           alt="User Photo"
         />
       )}

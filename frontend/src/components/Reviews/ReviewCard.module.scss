@@ -30,7 +30,8 @@
   .row {
     display: flex;
     flex-direction: row;
-    align-items: stretch;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     gap: 0;
   }
@@ -67,30 +68,30 @@
     transform: scaleX(-1);
   }
 
-.commentCol {
-  padding: 0 20px;
-  width: 400px;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 10px;
-  transition: width 0.2s;
-}
+  .commentCol {
+    padding: 0 20px;
+    width: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    transition: width 0.2s;
+  }
 
-.noComments {
-  font-size: 16px;
-  color: #888;
-  text-align: center;
-  margin: auto 0;
-  width: 100%;
-  padding: 24px 0;
-}
+  .noComments {
+    font-size: 16px;
+    color: #888;
+    text-align: center;
+    margin: auto 0;
+    width: 100%;
+    padding: 24px 0;
+  }
 
-.fullWidth {
-  width: 100%;
-  max-width: 600px;
-}
+  .fullWidth {
+    width: 100%;
+    max-width: 600px;
+  }
 
   .userBlock {
     display: flex;
@@ -151,34 +152,211 @@
   }
 
   .sliderCol {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-}
 
+  @media (max-width: 1440px) {
+    min-width: 0;
+    height: 120px;
+    padding: 16px 40px 16px 40px;
+    clip-path: polygon(40px 0, 100% 0, calc(100% - 40px) 100%, 0 100%);
 
-@media (max-width: 1440px) {
-}
-
-@media (max-width: 1024px) {
-  .card {
-    transform: scale(0.8);
-    transform-origin: top left;
+    .commentCol {
+      width: auto;
+      padding: 0 12px;
+    }
+    .fullWidth {
+      max-width: 480px;
+    }
+    .userPhotoBox {
+      width: 40px;
+      height: 40px;
+    }
+    .userPhoto {
+      width: 36px;
+      height: 36px;
+    }
+    .name {
+      font-size: 15px;
+    }
+    .rating .star {
+      width: 15px;
+      height: 15px;
+    }
+    .commentText {
+      font-size: 13px;
+    }
+    .noComments {
+      font-size: 13px;
+      padding: 16px 0;
+    }
   }
-}
 
-@media (max-width: 600px) {
-  .card {
-    transform: scale(0.7);
-    transform-origin: top left;
+   @media (max-width: 1024px) {
+    min-width: 0;
+    height: 90px;
+    padding: 10px 18px 10px 18px;
+    clip-path: polygon(18px 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+
+    .sideNav {
+      width: 25px;
+      min-width: 25px;
+      max-width: 25px;
+    }
+    .navBtn {
+      width: 25px;
+      height: 25px;
+    }
+    .sliderIcon {
+      width: 16px;
+      height: 16px;
+    }
+    .commentCol {
+      width: 100%;
+      padding: 0 6px;
+    }
+ 
+    .userPhotoBox {
+      width: 28px;
+      height: 28px;
+    }
+    .userPhoto {
+      width: 24px;
+      height: 24px;
+    }
+    .name {
+      font-size: 12px;
+    }
+    .rating .star {
+      width: 11px;
+      height: 11px;
+    }
+    .commentText {
+      font-size: 10px;
+    }
+    .noComments {
+      font-size: 10px;
+      padding: 8px 0;
+    }
+    .sliderCol {
+      width: 80px;
+      min-width: 80px;
+      max-width: 80px;
+      height: 50px;
+      align-items: center;
+      justify-content: center;
+    }
   }
-}
 
-@media (max-width: 400px) {
-  .card {
-    transform: scale(0.6);
-    transform-origin: top left;
+  @media (max-width: 600px) {
+    min-width: 0;
+    height: 70px;
+    padding: 6px 8px 6px 8px;
+    clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
+
+    .sideNav {
+      width: 25px;
+      min-width: 25px;
+      max-width: 25px;
+    }
+    .navBtn {
+      width: 25px;
+      height: 25px;
+    }
+    .sliderIcon {
+      width: 13px;
+      height: 13px;
+    }
+    .commentCol {
+      width: 70px;
+      padding: 0 3px;
+    }
+    .fullWidth {
+    }
+    .userPhotoBox {
+      width: 18px;
+      height: 18px;
+    }
+    .userPhoto {
+      width: 15px;
+      height: 15px;
+    }
+    .name {
+      font-size: 9px;
+    }
+    .rating .star {
+      width: 8px;
+      height: 8px;
+    }
+    .commentText {
+      font-size: 8px;
+    }
+    .noComments {
+      font-size: 8px;
+      padding: 4px 0;
+    }
+    .sliderCol {
+      width: 40px;
+      min-width: 40px;
+      max-width: 40px;
+      height: 28px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    min-width: 0;
+    height: 50px;
+    padding: 3px 4px 3px 4px;
+    clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+
+    .sideNav {
+      width: 18px;
+      min-width: 18px;
+      max-width: 18px;
+    }
+    .navBtn {
+      width: 18px;
+      height: 18px;
+    }
+    .sliderIcon {
+      width: 8px;
+      height: 8px;
+    }
+    .commentCol {
+      width: 40px;
+      padding: 0 1px;
+    }
+    .fullWidth {
+    }
+    .userPhotoBox {
+      width: 10px;
+      height: 10px;
+    }
+    .userPhoto {
+      width: 8px;
+      height: 8px;
+    }
+    .name {
+      font-size: 7px;
+    }
+    .rating .star {
+      width: 5px;
+      height: 5px;
+    }
+    .commentText {
+      font-size: 6px;
+    }
+    .noComments {
+      font-size: 6px;
+      padding: 2px 0;
+    }
+    .sliderCol {
+      width: 20px;
+      min-width: 20px;
+      max-width: 20px;
+      height: 12px;
+    }
   }
 }

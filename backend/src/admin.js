@@ -4,7 +4,7 @@ import AdminJSSequelize from '@adminjs/sequelize';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sequelize from './database.js';
-import { Order, Lot, Component, Calculator, Review, Region, ReviewPhoto } from './models/index.js';
+import { Order, Lot, Component, Calculator, Review, Region, ReviewPhoto, AuctionLocation, Port } from './models/index.js';
 import { ComponentLoader } from 'adminjs';
 
 AdminJS.registerAdapter(AdminJSSequelize);
@@ -17,6 +17,12 @@ const componentLoader = new ComponentLoader();
 const UserPhotoUpload = componentLoader.add('UserPhotoUpload', path.join(__dirname, './components/UserPhotoUpload.jsx'));
 const LotPhotoUpload = componentLoader.add('LotPhotoUpload', path.join(__dirname, './components/LotPhotoUpload.jsx'));
 const ReviewPhotoUpload = componentLoader.add('ReviewPhotoUpload', path.join(__dirname, './components/ReviewPhotoUpload.jsx'));
+const MainDashboard = componentLoader.add(
+  'MainDashboard',
+  path.join(__dirname, './components/MainDashboard.js')
+);
+
+const publicUrl = process.env.NEXT_PUBLIC_URL;
 
 const adminJs = new AdminJS({
   databases: [sequelize],
@@ -35,7 +41,13 @@ const adminJs = new AdminJS({
       },
     },
   },
+  env: {
+    PUBLIC_URL: publicUrl,
+  },
   componentLoader,
+  dashboard: {
+    component: MainDashboard,
+  },
   resources: [
     { resource: Order, options: { navigation: 'Заявки' } },
     {
@@ -72,6 +84,37 @@ const adminJs = new AdminJS({
       },
     },
     { resource: Region, options: { navigation: 'Регіони' } },
+    {
+      resource: AuctionLocation,
+      options: {
+        navigation: 'Аукціони',
+        properties: {
+          portId: { isVisible: false },
+          auctionType: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+            availableValues: [
+              { value: 'copart', label: 'Copart' },
+              { value: 'iaai', label: 'IAAI' }
+            ]
+          }
+        },
+        listProperties: ['id', 'name', 'auctionType'],
+        showProperties: ['id', 'name', 'auctionType'],
+        editProperties: ['name', 'auctionType'], 
+      },
+    },
+    {
+      resource: Port,
+      options: {
+        navigation: 'Порти',
+        properties: {
+          auctionLocations: { isVisible: false },
+        },
+        listProperties: ['id', 'name'],
+        showProperties: ['id', 'name'],
+        editProperties: ['name'],
+      },
+    },
   ],
 });
 

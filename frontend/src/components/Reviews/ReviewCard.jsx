@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 import PhotoSlider from "../PhotoSlider/PhotoSlider";
+import Skeleton from "../Skeleton/Skeleton";
 import styles from "./ReviewCard.module.scss";
 import { gsap } from "gsap";
 
@@ -15,18 +16,24 @@ export default function ReviewCard({
   onPrev,
   onNext,
   hasReviews,
+  shiftRight = false,
+  loading = false,
+  noReviews = false,
 }) {
   const cardRef = useRef(null);
   const commentRef = useRef(null);
   const sliderRef = useRef(null);
   const [isVisible, setIsVisible] = useState(true);
 
+
   useEffect(() => {
     setIsVisible(true);
     if (cardRef.current) {
       gsap.fromTo(
         cardRef.current,
-        { opacity: 0, y: 60, x: -200, scale: 0.1 },
+        shiftRight
+          ? { opacity: 0, y: 60, x: 160, scale: 0.1 }
+          : { opacity: 0, y: 60, x: -200, scale: 0.1 },
         {
           opacity: 1,
           y: 0,
@@ -42,14 +49,14 @@ export default function ReviewCard({
         gsap.set(cardRef.current, { clearProps: "all" });
       }
     };
-  }, []);
+  }, [shiftRight]);
 
   const animateAnd = (callback) => {
     if (cardRef.current) {
       gsap.to(cardRef.current, {
         opacity: 0,
         y: 60,
-        x: -200,
+        x: shiftRight ? 160 : -200,
         scale: 0.1,
         duration: 0.35,
         ease: "power3.in",
@@ -88,7 +95,7 @@ export default function ReviewCard({
     if (sliderRef.current) {
       gsap.fromTo(
         sliderRef.current,
-        { opacity: 0,  },
+        { opacity: 0 },
         { opacity: 1, duration: 0.1, ease: "power2.out" }
       );
     }
@@ -146,7 +153,34 @@ export default function ReviewCard({
           }
         >
           <div ref={commentRef}>
-            {hasAnyComment ? (
+            {loading ? (
+              <div style={{ minHeight: 90, display: "flex", flexDirection: "column", gap: 10 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
+                  <div style={{ width: 54, height: 54, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{
+                      width: 48,
+                      height: 48,
+                      borderRadius: "50%",
+                      background: "#eee"
+                    }} />
+                  </div>
+                  <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                    <div style={{ width: 90, height: 18, borderRadius: 4, background: "#eee" }} />
+                    <div style={{ display: "flex", gap: 3 }}>
+                      {[...Array(5)].map((_, i) => (
+                        <div key={i} style={{ width: 18, height: 18, borderRadius: 3, background: "#eee" }} />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <div style={{ width: "100%", height: 16, borderRadius: 4, background: "#eee", marginBottom: 6 }} />
+                <div style={{ width: "80%", height: 16, borderRadius: 4, background: "#eee" }} />
+              </div>
+            ) : noReviews ? (
+              <div className={styles.noComments}>
+                Коментарів до цієї області ще немає
+              </div>
+            ) : hasAnyComment ? (
               <>
                 <div className={styles.userBlock}>
                   <div className={styles.userPhotoBox}>
@@ -165,11 +199,7 @@ export default function ReviewCard({
                 </div>
                 <div className={styles.commentText}>{comment}</div>
               </>
-            ) : (
-              <div className={styles.noComments}>
-                Коментарів до цієї області ще немає
-              </div>
-            )}
+            ) : null}
           </div>
         </div>
         {hasSliderPhotos && (

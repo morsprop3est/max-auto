@@ -13,3 +13,20 @@ export async function fetchReviewsByRegion(regionId) {
     return { reviews: [] };
   }
 }
+
+
+export async function fetchAllReviews() {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/reviews`, {
+      method: 'GET',
+      cache: 'no-store',
+    });
+    if (!res.ok) {
+      throw new Error("Failed to fetch all reviews");
+    }
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching all reviews:", error);
+    return { reviews: [] };
+  }
+}

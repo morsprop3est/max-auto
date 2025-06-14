@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react";
 import regions from "../../data/regions";
 import Region from "./Region";
 import ReviewCard from "./ReviewCard";
+import ReviewMobileCard from "./ReviewMobileCard"; 
 import styles from "./Map.module.scss";
 
 export default function Map({
@@ -11,12 +12,27 @@ export default function Map({
   onPrevReview,
   onNextReview,
   onCloseReview,
+  loading,
+  noReviews,
+  regionReviews = [],
 }) {
   const mapContainerRef = useRef(null);
   const [cardPos, setCardPos] = useState({ left: 0, top: 0, visible: false });
   const [cursorPos, setCursorPos] = useState(null);
+  const [mobileIndex, setMobileIndex] = useState(0);
 
-  // Зберігаємо координати курсора при кліку
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 1024);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  useEffect(() => {
+    if (selectedRegion && regionReviews.length > 0) setMobileIndex(0);
+  }, [selectedRegion, regionReviews]);
+
   const handleRegionClick = (region, event) => {
     if (event) {
       const containerRect = mapContainerRef.current.getBoundingClientRect();
@@ -29,9 +45,11 @@ export default function Map({
   };
 
   useEffect(() => {
-    if (selectedRegion && cursorPos) {
+    if (selectedRegion && cursorPos && mapContainerRef.current) {
+      const containerWidth = mapContainerRef.current.offsetWidth;
+      const isRightHalf = cursorPos.left > containerWidth / 2;
       setCardPos({
-        left: cursorPos.left,
+        left: isRightHalf ? cursorPos.left - 480 : cursorPos.left,
         top: cursorPos.top - 150,
         visible: true,
       });
@@ -42,9 +60,11 @@ export default function Map({
 
   useEffect(() => {
     const handle = () => {
-      if (selectedRegion && cursorPos) {
+      if (selectedRegion && cursorPos && mapContainerRef.current) {
+        const containerWidth = mapContainerRef.current.offsetWidth;
+        const isRightHalf = cursorPos.left > containerWidth / 2;
         setCardPos({
-          left: cursorPos.left + 20,
+          left: isRightHalf ? cursorPos.left - 480 : cursorPos.left,
           top: cursorPos.top - 20,
           visible: true,
         });
@@ -76,24 +96,39 @@ export default function Map({
           />
         ))}
       </svg>
-      {cardPos.visible && selectedRegion && (
+      {!isMobile && (
         <div
           className={styles.reviewCardOverlay}
           style={{
             position: "absolute",
             left: cardPos.left,
             top: cardPos.top,
-            pointerEvents: "auto",
+            pointerEvents: cardPos.visible ? "auto" : "none",
+            opacity: cardPos.visible ? 1 : 0,
+            transition: "opacity 0.45s",
           }}
         >
           <ReviewCard
-            {...review}
+            {...(review || {})}
             onPrev={onPrevReview}
             onNext={onNextReview}
             onClose={onCloseReview}
             hasReviews={true}
+            shiftRight={cardPos.left < cursorPos?.left}
+            loading={loading}
+            noReviews={noReviews}
+            visible={cardPos.visible}
           />
         </div>
+      )}
+      {isMobile && selectedRegion && (
+        <ReviewMobileCard
+          region={selectedRegion}
+          reviews={regionReviews}
+          currentIndex={mobileIndex}
+          setCurrentIndex={setMobileIndex}
+          onClose={onCloseReview}
+        />
       )}
     </div>
   );

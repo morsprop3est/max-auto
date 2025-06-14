@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
+const publicUrl = window?.AdminJS?.env?.PUBLIC_URL || '';
+
 const UploadContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -98,7 +100,7 @@ const ReviewPhotoUpload = (props) => {
 
   useEffect(() => {
     if (record?.id) {
-      fetch(`http://localhost:4000/api/reviews/${record.id}/review-photos`)
+      fetch(`${publicUrl}/api/reviews/${record.id}/review-photos`)
         .then((response) => response.json())
         .then((data) => setPhotos(data))
         .catch((error) => console.error('Error fetching review photos:', error));
@@ -113,7 +115,7 @@ const ReviewPhotoUpload = (props) => {
       formData.append('photos', file);
     });
 
-    fetch(`http://localhost:4000/api/reviews/${record.id}/review-photos`, {
+    fetch(`${publicUrl}/api/reviews/${record.id}/review-photos`, {
       method: 'POST',
       body: formData,
     })
@@ -125,7 +127,7 @@ const ReviewPhotoUpload = (props) => {
   };
 
   const handleDeletePhoto = (photoId) => {
-    fetch(`http://localhost:4000/api/reviews/${record.id}/review-photos/${photoId}`, {
+    fetch(`${publicUrl}/api/reviews/${record.id}/review-photos/${photoId}`, {
       method: 'DELETE',
     })
       .then(() => {
@@ -142,7 +144,7 @@ const ReviewPhotoUpload = (props) => {
         {photos.map((photo) => (
           <PhotoItem key={photo.id}>
             <UploadedImage
-              src={`http://localhost:4000${photo.photoUrl}`}
+              src={`${publicUrl}${photo.photoUrl}`}
               alt="Review Photo"
             />
             <DeleteButton onClick={() => handleDeletePhoto(photo.id)}>Delete</DeleteButton>

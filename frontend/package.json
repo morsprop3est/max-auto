@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^5.70.0",
+    "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
     "gsap": "^3.12.7",
     "next": "15.2.4",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@svgr/webpack": "^8.1.0",
+    "@welldone-software/why-did-you-render": "^10.0.1",
     "eslint": "^9",
     "eslint-config-next": "15.2.4"
   }

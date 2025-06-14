@@ -40,7 +40,11 @@ export default async function Home() {
           bodyTypes={bodyTypes}
           fuelTypes={fuelTypes}
         />
-        <Calculator component={components.calculator} />
+        <Calculator 
+          component={components.calculator}
+          bodyTypes={bodyTypes}
+          fuelTypes={fuelTypes}
+        />
         <Reviews component={components.reviews} />
         <ContactUs />
         <Footer />

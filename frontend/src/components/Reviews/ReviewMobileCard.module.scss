@@ -1,0 +1,164 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s;
+}
+
+.modal {
+  background: #fff;
+  border-radius: 18px;
+  width: 95vw;
+  max-width: 370px;
+  min-height: 320px;
+  max-height: 90vh;
+  box-shadow: 0 8px 32px #0006;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 18px 8px 18px 8px;
+  overflow: hidden;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.regionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-align: center;
+  color: #222;
+}
+
+.slider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 16px 10px 10px 10px;
+  width: 100%;
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 10px;
+}
+
+.userBlock {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.userPhotoBox {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.userPhoto {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+}
+
+.userInfoBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 2px;
+  margin-top: 2px;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 2px;
+}
+
+.rating {
+  display: flex;
+  gap: 2px;
+  .star {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+.commentText {
+  font-size: 13px;
+  color: #444;
+  margin-top: 6px;
+  word-break: break-word;
+  white-space: pre-line;
+  text-align: left;
+}
+
+.sliderCol {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img.reviewImg {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px #0002;
+  }
+}
+
+.pagination {
+  margin-top: 6px;
+  font-size: 13px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.arrowBtn {
+  background: none;
+  border: none;
+  font-size: 22px;
+  color: #888;
+  cursor: pointer;
+  padding: 0 8px;
+  transition: color 0.15s;
+  &:hover { color: #222; }
+}
+
+.noReviews {
+  font-size: 15px;
+  color: #888;
+  margin: 40px 0;
+  text-align: center;
+}

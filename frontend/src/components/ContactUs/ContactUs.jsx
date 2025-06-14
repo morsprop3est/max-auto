@@ -12,21 +12,54 @@ export default function ContactUs() {
   const invisible = !isVisible ? styles.invisible : "";
   const anim = isVisible ? "fade-in-bottom" : "";
 
-  // refs для інпутів
   const nameRef = useRef();
   const phoneRef = useRef();
   const messageRef = useRef();
   const [loading, setLoading] = useState(false);
+  const [cooldown, setCooldown] = useState(false);
   const { addNotification } = useNotification();
+
+  const isValidPhone = (phone) => {
+    return /^(\+?\d{10,15})$/.test(phone.replace(/\s/g, ""));
+  };
+
+
+  const handlePhoneInput = (e) => {
+    const value = e.target.value;
+    const filtered = value.replace(/[^0-9+\-\s()]/g, "");
+    if (filtered !== value) {
+      e.target.value = filtered;
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (cooldown) {
+      addNotification("error", "Зачекайте 5 секунд перед повторною відправкою!");
+      return;
+    }
     const name = nameRef.current?.value.trim();
     const phone = phoneRef.current?.value.trim();
     const comment = messageRef.current?.value.trim();
 
     if (!name || !phone) {
       addNotification("error", "Вкажіть ім'я та номер телефону!");
+      return;
+    }
+    if (name.length > 25) {
+      addNotification("error", "Ім'я не може бути довше 255 символів!");
+      return;
+    }
+    if (phone.length > 15) {
+      addNotification("error", "Телефон не може бути довше 255 символів!");
+      return;
+    }
+    if (comment.length > 255) {
+      addNotification("error", "Повідомлення не може бути довше 255 символів!");
+      return;
+    }
+    if (!isValidPhone(phone)) {
+      addNotification("error", "Введіть коректний номер телефону!");
       return;
     }
 
@@ -37,6 +70,8 @@ export default function ContactUs() {
       if (nameRef.current) nameRef.current.value = "";
       if (phoneRef.current) phoneRef.current.value = "";
       if (messageRef.current) messageRef.current.value = "";
+      setCooldown(true);
+      setTimeout(() => setCooldown(false), 5000);
     } catch (err) {
       addNotification("error", err.message || "Не вдалося відправити заявку");
     } finally {
@@ -75,6 +110,7 @@ export default function ContactUs() {
                   style={isVisible ? { animationDelay: "0.45s" } : {}}
                   ref={nameRef}
                   disabled={loading}
+                  maxLength={255}
                 />
                 <input
                   type="tel"
@@ -83,6 +119,8 @@ export default function ContactUs() {
                   style={isVisible ? { animationDelay: "0.6s" } : {}}
                   ref={phoneRef}
                   disabled={loading}
+                  maxLength={255}
+                  onInput={handlePhoneInput}
                 />
               </div>
               <div className={styles.fullWidthInput}>
@@ -93,6 +131,7 @@ export default function ContactUs() {
                   style={isVisible ? { animationDelay: "0.75s" } : {}}
                   ref={messageRef}
                   disabled={loading}
+                  maxLength={255}
                 />
               </div>
               <button

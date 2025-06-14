@@ -9,6 +9,16 @@ const nextConfig = {
         port: '4000',
         pathname: '/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'dev.maks-auto.com.ua',
+        pathname: '/uploads/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 'dev.maks-auto.com.ua',
+        pathname: '/uploads/**',
+      },
     ],
   },
   webpack(config) {

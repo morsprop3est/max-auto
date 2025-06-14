@@ -1,5 +1,7 @@
 import styles from './DashboardLotCard.module.scss';
 
+import PhotoSlider from "../PhotoSlider/PhotoSlider";
+
 const bodyTypes = [
   { id: 1, name: "Седан" },
   { id: 2, name: "Хетчбек" },
@@ -23,10 +25,23 @@ export default function DashboardLotCard({ lot }) {
   const fuelType = fuelTypes.find((type) => type.id === lot.fuelTypeId)?.name || "Невідомо";
   const isActive = lot.status === "active";
 
+  const BASE_URL = process.env.NEXT_PUBLIC_URL || "";
+  const photoUrls = (lot.photos || []).map(photo =>
+    photo.photoUrl.startsWith("http")
+      ? photo.photoUrl
+      : `${BASE_URL}${photo.photoUrl}`
+  );
+
   return (
     <div className={styles.lotCard}>
       <div className={styles.lotCol}>
-        <img src={lot.image} alt={lot.title} className={styles.lotImage} />
+        {photoUrls.length > 1 ? (
+          <PhotoSlider photos={photoUrls} />
+        ) : photoUrls.length === 1 ? (
+          <img src={photoUrls[0]} alt={lot.title} className={styles.lotImage} />
+        ) : (
+          <img src= "/default-preview.svg"></img>
+        )}
       </div>
       <div className={styles.lotCol}>
         <div className={styles.lotTitle}>{lot.title}</div>

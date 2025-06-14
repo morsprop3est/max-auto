@@ -1,26 +1,33 @@
 .slider {
-  width: 100%;
-  height: 100%;
+  width: 140px;
+  height: 90px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .photoWrapper {
+  width: 140px;
+  height: 90px;
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: zoom-in;
+  flex-shrink: 0;
 }
 
 .photo {
-  width: 100%;
-  height: 100px;
+  width: 140px !important;
+  height: 90px !important;
+  object-fit: cover !important;
   display: block;
   z-index: 1;
+  transition: opacity 0.2s;
 }
+
 
 .overlay {
   position: absolute;
@@ -138,4 +145,119 @@
 
 .closeLineRev {
   transform: rotate(-45deg);
+}
+
+
+@media (max-width: 1024px) {
+  .slider {
+    width: 80px;
+    height: 50px;
+  }
+  .photoWrapper {
+    width: 80px;
+    height: 50px;
+  }
+  .photo {
+    width: 80px !important;
+    height: 50px !important;
+  }
+  .sliderIcon {
+    width: 13px;
+    height: 13px;
+  }
+  .fullscreenOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.95);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .fullscreenPhotoWrapper {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+    position: relative;
+    padding: 0;
+  }
+
+  .fullscreenImgBox {
+    width: 100vw;
+    height: 100vh;
+    margin: 60px 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8vw;
+    box-sizing: border-box;
+  }
+
+  .fullscreenImg {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 10px;
+    background: none;
+    box-shadow: 0 0 24px #000;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .closeBtn {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .slider {
+    width: 40px;
+    height: 28px;
+  }
+  .photoWrapper {
+    width: 40px;
+    height: 28px;
+  }
+  .photo {
+    width: 40px !important;
+    height: 28px !important;
+  }
+  .sliderIcon {
+    width: 8px;
+    height: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .slider {
+    width: 20px;
+    height: 12px;
+  }
+  .photoWrapper {
+    width: 20px;
+    height: 12px;
+  }
+  .photo {
+    width: 20px !important;
+    height: 12px !important;
+  }
+  .sliderIcon {
+    width: 5px;
+    height: 5px;
+  }
 }

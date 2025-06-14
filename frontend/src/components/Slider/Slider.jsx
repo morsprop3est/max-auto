@@ -5,13 +5,12 @@ import { useAdaptive } from "@/context/AdaptiveContext";
 
 export default function Slider({
   children,
-  cardsPerView, // опціонально: якщо явно передати, буде пріоритет
+  cardsPerView,
   className = "",
   style = {},
 }) {
   const { device } = useAdaptive();
 
-  // 3 карточки для desktop/tablet, 1 для mobile
   let adaptiveCardsPerView = 3;
   if (device === "mobile") adaptiveCardsPerView = 1;
   const slidesToShow = cardsPerView || adaptiveCardsPerView;
