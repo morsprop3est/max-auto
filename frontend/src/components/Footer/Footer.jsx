@@ -9,6 +9,7 @@ export default function Footer() {
   const [footerRef, isVisible] = useIsVisible({ threshold: 0.1 });
   const invisible = !isVisible ? styles.invisible : "";
   const anim = isVisible ? "fade-in-bottom" : "";
+  const currentYear = new Date().getFullYear();
 
   const scrollToTop = () => {
     const contact = document.getElementById("main");
@@ -70,7 +71,7 @@ export default function Footer() {
 
           <div className={styles.line}></div>
           <div className={styles.copyright}>
-            Maks-Auto © All Rights Reserved.
+            Maks-Auto {currentYear} © All Rights Reserved.
           </div>
         </div>
       </div>

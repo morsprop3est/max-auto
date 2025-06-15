@@ -1,54 +1,113 @@
-.overlay {
-  position: fixed;
-  z-index: 1002;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@keyframes slideInBottom {
+  from { 
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-
-    .slider {
-    width: 100%;
-    height: 6px;
-    background: #000;
-    position: relative;
+@keyframes slideOutBottom {
+  from { 
+    opacity: 1;
+    transform: translateY(0);
   }
-
-  .thumb {
-    height: 20px;
-    width: 20px;
-    background-color: #038405;
-    cursor: grab;
-    position: absolute;
-    top: -7px;
+  to { 
+    opacity: 0;
+    transform: translateY(100px);
   }
+}
 
-  .track {
-    background: #ccc;
-    height: 6px;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  overflow-y: auto;
+  will-change: opacity;
+  animation: fadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  &.closing {
+    animation: fadeOut 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
   }
+}
 
 .modal {
   background: #EAEAEA;
-  width: 95vw;
-  max-width: 420px;
-  max-height: 95vh;
-  box-shadow: 0 0 24px rgba(0,0,0,0.12);
+  width: 100%;
+  max-width: 100%;
+  min-height: 200px;
   position: relative;
-  padding: 24px 12px 16px 12px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   overflow-y: auto;
+  margin: auto;
+  will-change: transform, opacity;
+  transform: translateY(0);
+  animation: slideInBottom 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  padding: 36px 32px 28px 32px;
+
+  &.closing {
+    animation: slideOutBottom 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
+.closeButton {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.closeLine1, .closeLine2 {
+  position: absolute;
+  width: 28px;
+  height: 2px;
+  background: #222;
+  border-radius: 2px;
+}
+
+.closeLine1 {
+  transform: rotate(45deg);
+}
+
+.closeLine2 {
+  transform: rotate(-45deg);
+}
 
 .filtersWrapper {
   display: flex;
   flex-direction: column;
   gap: 18px;
-  margin-top: 36px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .bodyTypeWrapper,
@@ -56,6 +115,13 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #222;
+    margin: 0;
+  }
 
   .bodyTypeGrid,
   .fuelTypeGrid {
@@ -75,11 +141,21 @@
       border: 1px solid #ccc;
       padding: 14px;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: all 0.3s ease;
+      background: #fff;
+
+      &:hover {
+        background-color: darken(#EAEAEA, 10%);
+        transform: translateY(-2px);
+      }
 
       &.active {
         background-color: #038405;
         color: white;
+
+        &:hover {
+          background-color: darken(#038405, 10%);
+        }
       }
 
       .icon {
@@ -96,55 +172,110 @@
   flex-direction: column;
   gap: 10px;
 
+  label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #222;
+  }
+
+  .slider {
+    width: 100%;
+    height: 6px;
+    background: #000;
+    position: relative;
+  }
+
+  .thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #038405;
+    cursor: grab;
+    position: absolute;
+    top: -7px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken(#038405, 10%);
+    }
+  }
+
+  .track {
+    background: #ccc;
+    height: 6px;
+  }
+
   .rangeValues {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
+    font-size: 14px;
+    color: #666;
   }
 }
 
- .buttonsWrapper {
+.buttonsWrapper {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+  .applyButton {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0%;      
     display: flex;
-    width: 100%;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    background-color: #038405;
+    color: white;
+    padding: 20px 60px 20px 40px;
+    border: none;
+    clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 
-
-    .applyButton {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 14px;
-      font-weight: 400;
-      letter-spacing: 0%;      
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #038405;
-      color: white;
-      padding: 20px 60px 20px 40px;
-      border: none;
-      clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
-      cursor: pointer;
-
-      &:hover {
-        background-color: #038405;
-      }
-    }
-
-    .resetButton {
-      font-family: 'Montserrat', sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: end;
-      background-color: #ccc;
-      color: black;
-      padding: 20px 20px 20px 40px;
-      border: none;
-      cursor: pointer;
-      text-align: center;
-      clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%);
-
-      &:hover {
-        background-color: #aaa;
-      }
+    &:hover {
+      background-color: darken(#038405, 10%);
     }
   }
+
+  .resetButton {
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: #ccc;
+    color: black;
+    padding: 20px 20px 20px 40px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken(#ccc, 10%);
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .modal {
+    padding: 24px 16px 20px 16px;
+  }
+
+  .bodyTypeWrapper,
+  .fuelTypeWrapper {
+    h3 {
+      font-size: 16px;
+    }
+  }
+
+  .sliderWrapper {
+    label {
+      font-size: 14px;
+    }
+  }
+}

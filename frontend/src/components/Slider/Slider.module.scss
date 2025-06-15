@@ -51,6 +51,11 @@
     justify-content: center;
     clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
     background-color: #038405;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken(#038405, 10%);
+    }
 
     .sliderIcon {
       width: 24px;

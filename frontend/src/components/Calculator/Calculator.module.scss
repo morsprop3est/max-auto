@@ -134,22 +134,28 @@
         font-size: 16px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.07);
         cursor: pointer;
-        transition: background 0.2s, color 0.2s, transform 0.1s;
+        transition: background 0.2s, color 0.2s;
         border: none;
         opacity: 1;
         &:hover {
-          background: #038405;
-          color: #fff;
+          background: darken(#EAEAEA, 10%);
+          color: #121212;
         }
         &:active {
-          background: #038405;
-          color: #fff;
+          background: darken(#EAEAEA, 15%);
+          color: #121212;
         }
         &.active {
           background: #038405;
           color: #fff;
           opacity: 1;
           outline: 2px solid #026c04;
+          &:hover {
+            background: darken(#038405, 10%);
+          }
+          &:active {
+            background: darken(#038405, 15%);
+          }
         }
         &.inactive {
           background: #EAEAEA;
@@ -171,18 +177,16 @@
         font-family: 'Montserrat', sans-serif;
         border: none;
         cursor: pointer;
-        transition: background 0.2s, color 0.2s, transform 0.1s;
+        transition: background 0.2s, color 0.2s;
         clip-path: polygon(calc(0% + 50px) 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
         box-shadow: 0 2px 6px rgba(0,0,0,0.07);
         &:hover {
-          background: #026c04;
+          background: darken(#038405, 10%);
           color: #EAEAEA;
-          transform: scale(1.04);
         }
         &:active {
-          background: #026c04;
+          background: darken(#038405, 15%);
           color: #fff;
-          transform: scale(1.08);
         }
       }
     }
@@ -257,7 +261,7 @@
         font-size: 16px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.07);
         cursor: pointer;
-        transition: background 0.2s, color 0.2s, transform 0.1s;
+        transition: background 0.2s, color 0.2s;
         border: none;
         opacity: 1;
         min-width: 0;
@@ -265,15 +269,6 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 100%;
-
-        &:hover {
-          background: #038405;
-          color: #808080;
-        }
-        &:active {
-          background: #038405;
-          color: #fff;
-        }
       }
       .calcBtn.active {
         background: #038405;
@@ -284,6 +279,9 @@
       .calcBtn.inactive {
         background: #EAEAEA;
         color: #121212;
+        &:hover {
+          background: darken(#EAEAEA, 20%);
+        }
       }
     }
   }

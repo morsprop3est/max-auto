@@ -87,9 +87,10 @@ const animationClassBottom = isVisible ? "fade-in-bottom" : "";
             ].map((social, index) => (
               <a
                 key={index}
+                href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={animationClassBottom}
+                className={`${styles.socialLink} ${animationClassBottom}`}
                 style={{ display: "inline-block", animationDelay: `${0.8 + index * 0.1}s` }}
               >
                 <Image
@@ -105,14 +106,14 @@ const animationClassBottom = isVisible ? "fade-in-bottom" : "";
 
         <div className={styles.carImages}>
           <div
-            className={`${styles.car1} ${animationClassRight} scale-hover`}
-            style={{ cursor: "pointer", animationDelay: '1.1s' }}
+            className={`${styles.car1} scale-hover`}
+            style={{ cursor: "pointer" }}
           >
             <Image src="/main/car1.png" alt="Car 1" width={800} height={500} />
           </div>
           <div
-            className={`${styles.car2} ${animationClassRight} scale-hover`}
-            style={{ cursor: "pointer", animationDelay: '1.2s' }}
+            className={`${styles.car2} scale-hover`}
+            style={{ cursor: "pointer" }}
           >
             <Image src="/main/car2.png" alt="Car 2" width={800} height={500} />
           </div>

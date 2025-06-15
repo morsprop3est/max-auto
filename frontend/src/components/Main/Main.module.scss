@@ -48,12 +48,15 @@
     position: absolute;
     width: 800px;
     height: auto;
+    opacity: 0;
+    animation: fadeInCar 0.5s ease forwards;
   }
 
   .car1 {
     position: relative;
     top: 300px;
     z-index: 2;
+    animation-delay: 1.1s;
   }
 
   .car2 {
@@ -61,6 +64,18 @@
     bottom: 75px;
     left: 350px;
     z-index: 2;
+    animation-delay: 1.2s;
+  }
+}
+
+@keyframes fadeInCar {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 
@@ -110,6 +125,11 @@
   letter-spacing: 0%;
   clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
   cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken(#038405, 10%);
+  }
 }
 
 .socialBlock {
@@ -118,11 +138,23 @@
   gap: 20px;
   padding: 20px 0;
   z-index: 2;
+}
 
-  a {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
+.socialLink {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(98%) saturate(1234%) hue-rotate(115deg) brightness(95%) contrast(101%);
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 }
 

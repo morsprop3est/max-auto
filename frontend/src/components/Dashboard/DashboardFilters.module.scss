@@ -17,6 +17,11 @@
     cursor: grab;
     position: absolute;
     top: -7px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: darken(#038405, 10%);
+    }
   }
 
   .track {
@@ -48,11 +53,20 @@
         border: 1px solid #ccc;
         padding: 20px;
         cursor: pointer;
-        transition: background-color 0.3s;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: darken(#EAEAEA, 10%);
+          transform: translateY(-2px);
+        }
 
         &.active {
           background-color: #038405;
           color: white;
+
+          &:hover {
+            background-color: darken(#038405, 10%);
+          }
         }
 
         .icon {
@@ -97,9 +111,10 @@
       border: none;
       clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
       cursor: pointer;
+      transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #038405;
+        background-color: darken(#038405, 10%);
       }
     }
 
@@ -115,9 +130,10 @@
       cursor: pointer;
       text-align: center;
       clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%);
+      transition: background-color 0.3s ease;
 
       &:hover {
-        background-color: #aaa;
+        background-color: darken(#ccc, 10%);
       }
     }
   }

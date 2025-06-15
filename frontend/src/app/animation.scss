@@ -41,25 +41,27 @@
 }
 
 .scale-hover {
-  transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-block;
+  transition: all 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
   &:hover {
     transform: scale(1.08);
   }
   &:active {
     transform: scale(0.95);
-    transition: transform 0.1s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.1s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
 .scale-hover-text {
-  transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+  display: inline-block;
+  transition: all 0.18s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
   &:hover {
     transform: scale(1.03);
   }
   &:active {
     transform: scale(0.97);
-    transition: transform 0.09s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: all 0.09s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }

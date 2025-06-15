@@ -1,6 +1,5 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import styles from "./DashboardFilters.module.scss";
-import { animateScaleUp, animateScaleDown, animatePress } from "@/utils/animation";
 import ReactSlider from "react-slider";
 
 export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes }) {
@@ -9,11 +8,6 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [yearRange, setYearRange] = useState([2000, 2025]);
   const [engineSizeRange, setEngineSizeRange] = useState([0, 5]);
-
-  const handleScaleEnter = (e) => animateScaleUp(e.currentTarget);
-  const handleScaleLeave = (e) => animateScaleDown(e.currentTarget);
-  const handleScaleDown = (e) => animatePress(e.currentTarget);
-  const handleScaleUp = (e) => animateScaleUp(e.currentTarget);
 
   const handleApplyFilters = () => {
     onApplyFilters({
@@ -37,21 +31,6 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
     onApplyFilters({});
   };
 
-const renderThumb = (props, state) => {
-  const { key, ...rest } = props;
-  return (
-    <div
-      key={key}
-      {...rest}
-      className={styles.thumb}
-      onMouseEnter={handleScaleEnter}
-      onMouseLeave={handleScaleLeave}
-      onMouseDown={handleScaleDown}
-      onMouseUp={handleScaleUp}
-    />
-  );
-};
-
   return (
     <div className={styles.filtersWrapper}>
       <div className={styles.bodyTypeWrapper}>
@@ -64,10 +43,6 @@ const renderThumb = (props, state) => {
                 selectedBodyTypeSlug === type.slug ? styles.active : ""
               }`}
               onClick={() => setSelectedBodyTypeSlug(type.slug)}
-              onMouseEnter={handleScaleEnter}
-              onMouseLeave={handleScaleLeave}
-              onMouseDown={handleScaleDown}
-              onMouseUp={handleScaleUp}
             >
               <img src={`/dashboardIcons/${type.slug}.svg`} alt={type.name} className={styles.icon} />
             </button>
@@ -85,10 +60,6 @@ const renderThumb = (props, state) => {
                 selectedFuelTypeSlug === type.slug ? styles.active : ""
               }`}
               onClick={() => setSelectedFuelTypeSlug(type.slug)}
-              onMouseEnter={handleScaleEnter}
-              onMouseLeave={handleScaleLeave}
-              onMouseDown={handleScaleDown}
-              onMouseUp={handleScaleUp}
             >
               {type.name}
             </button>
@@ -107,7 +78,6 @@ const renderThumb = (props, state) => {
           step={500}
           value={priceRange}
           onChange={(values) => setPriceRange(values)}
-          renderThumb={renderThumb}
         />
         <div className={styles.rangeValues}>
           <span>{priceRange[0]} $</span>
@@ -126,7 +96,6 @@ const renderThumb = (props, state) => {
           step={1}
           value={yearRange}
           onChange={(values) => setYearRange(values)}
-          renderThumb={renderThumb}
         />
         <div className={styles.rangeValues}>
           <span>{yearRange[0]}</span>
@@ -145,7 +114,6 @@ const renderThumb = (props, state) => {
           step={0.1}
           value={engineSizeRange}
           onChange={(values) => setEngineSizeRange(values)}
-          renderThumb={renderThumb}
         />
         <div className={styles.rangeValues}>
           <span>{engineSizeRange[0]} л</span>
@@ -157,20 +125,12 @@ const renderThumb = (props, state) => {
         <button
           className={styles.applyButton}
           onClick={handleApplyFilters}
-          onMouseEnter={handleScaleEnter}
-          onMouseLeave={handleScaleLeave}
-          onMouseDown={handleScaleDown}
-          onMouseUp={handleScaleUp}
         >
           Застосувати
         </button>
         <button
           className={styles.resetButton}
           onClick={handleResetFilters}
-          onMouseEnter={handleScaleEnter}
-          onMouseLeave={handleScaleLeave}
-          onMouseDown={handleScaleDown}
-          onMouseUp={handleScaleUp}
         >
           ✖
         </button>

@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./DashboardMobileFilters.module.scss";
-import { animateScaleUp, animateScaleDown, animatePress } from "@/utils/animation";
 import ReactSlider from "react-slider";
 
 export default function DashboardMobileFilters({
@@ -12,6 +11,10 @@ export default function DashboardMobileFilters({
   fuelTypes,
   initialFilters = {}
 }) {
+  const [isClosing, setIsClosing] = useState(false);
+  const modalRef = useRef(null);
+  const overlayRef = useRef(null);
+
   const [selectedBodyTypeSlug, setSelectedBodyTypeSlug] = useState(initialFilters.bodyTypeSlug || null);
   const [selectedFuelTypeSlug, setSelectedFuelTypeSlug] = useState(initialFilters.fuelTypeSlug || null);
   const [priceRange, setPriceRange] = useState([
@@ -27,12 +30,30 @@ export default function DashboardMobileFilters({
     initialFilters.maxEngineSize ?? 5,
   ]);
 
-  if (!open) return null;
+  useEffect(() => {
+    if (!open) {
+      setIsClosing(false);
+    }
+  }, [open]);
 
-  const handleScaleEnter = (e) => animateScaleUp(e.currentTarget);
-  const handleScaleLeave = (e) => animateScaleDown(e.currentTarget);
-  const handleScaleDown = (e) => animatePress(e.currentTarget);
-  const handleScaleUp = (e) => animateScaleUp(e.currentTarget);
+  const handleClose = () => {
+    setIsClosing(true);
+    const modal = modalRef.current;
+    const overlay = overlayRef.current;
+
+    if (modal && overlay) {
+      modal.classList.add(styles.closing);
+      overlay.classList.add(styles.closing);
+
+      setTimeout(() => {
+        onClose();
+      }, 300);
+    } else {
+      onClose();
+    }
+  };
+
+  if (!open) return null;
 
   const handleApplyFilters = () => {
     onApplyFilters({
@@ -45,7 +66,7 @@ export default function DashboardMobileFilters({
       minEngineSize: engineSizeRange[0],
       maxEngineSize: engineSizeRange[1],
     });
-    onClose();
+    handleClose();
   };
 
   const handleResetFilters = () => {
@@ -57,25 +78,10 @@ export default function DashboardMobileFilters({
     if (onResetFilters) onResetFilters();
   };
 
-  const renderThumb = (props, state) => {
-    const { key, ...rest } = props;
-    return (
-      <div
-        key={key}
-        {...rest}
-        className={styles.thumb}
-        onMouseEnter={handleScaleEnter}
-        onMouseLeave={handleScaleLeave}
-        onMouseDown={handleScaleDown}
-        onMouseUp={handleScaleUp}
-      />
-    );
-  };
-
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <button className={styles.closeButton} onClick={onClose} aria-label="Закрити">
+    <div className={styles.overlay} onClick={handleClose} ref={overlayRef}>
+      <div className={styles.modal} onClick={e => e.stopPropagation()} ref={modalRef}>
+        <button className={styles.closeButton} onClick={handleClose} aria-label="Закрити">
           <span className={styles.closeLine1}></span>
           <span className={styles.closeLine2}></span>
         </button>
@@ -90,10 +96,6 @@ export default function DashboardMobileFilters({
                     selectedBodyTypeSlug === type.slug ? styles.active : ""
                   }`}
                   onClick={() => setSelectedBodyTypeSlug(type.slug)}
-                  onMouseEnter={handleScaleEnter}
-                  onMouseLeave={handleScaleLeave}
-                  onMouseDown={handleScaleDown}
-                  onMouseUp={handleScaleUp}
                 >
                   <img src={`/dashboardIcons/${type.slug}.svg`} alt={type.name} className={styles.icon} />
                 </button>
@@ -111,10 +113,6 @@ export default function DashboardMobileFilters({
                     selectedFuelTypeSlug === type.slug ? styles.active : ""
                   }`}
                   onClick={() => setSelectedFuelTypeSlug(type.slug)}
-                  onMouseEnter={handleScaleEnter}
-                  onMouseLeave={handleScaleLeave}
-                  onMouseDown={handleScaleDown}
-                  onMouseUp={handleScaleUp}
                 >
                   {type.name}
                 </button>
@@ -133,7 +131,6 @@ export default function DashboardMobileFilters({
               step={500}
               value={priceRange}
               onChange={(values) => setPriceRange(values)}
-              renderThumb={renderThumb}
             />
             <div className={styles.rangeValues}>
               <span>{priceRange[0]} $</span>
@@ -152,7 +149,6 @@ export default function DashboardMobileFilters({
               step={1}
               value={yearRange}
               onChange={(values) => setYearRange(values)}
-              renderThumb={renderThumb}
             />
             <div className={styles.rangeValues}>
               <span>{yearRange[0]}</span>
@@ -171,7 +167,6 @@ export default function DashboardMobileFilters({
               step={0.1}
               value={engineSizeRange}
               onChange={(values) => setEngineSizeRange(values)}
-              renderThumb={renderThumb}
             />
             <div className={styles.rangeValues}>
               <span>{engineSizeRange[0]} л</span>
@@ -183,22 +178,14 @@ export default function DashboardMobileFilters({
             <button
               className={styles.applyButton}
               onClick={handleApplyFilters}
-              onMouseEnter={handleScaleEnter}
-              onMouseLeave={handleScaleLeave}
-              onMouseDown={handleScaleDown}
-              onMouseUp={handleScaleUp}
             >
               Застосувати
             </button>
             <button
-            className={styles.resetButton}
-            onClick={handleResetFilters}
-            onMouseEnter={handleScaleEnter}
-            onMouseLeave={handleScaleLeave}
-            onMouseDown={handleScaleDown}
-            onMouseUp={handleScaleUp}
+              className={styles.resetButton}
+              onClick={handleResetFilters}
             >
-            ✖
+              ✖
             </button>
           </div>
         </div>
