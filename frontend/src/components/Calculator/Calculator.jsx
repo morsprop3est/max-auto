@@ -5,14 +5,9 @@ import Report from "./Report";
 import { calculateCarPrice } from "@/api/calculator";
 import { useNotification } from "@/context/NotificationContext";
 
-export default function Calculator({ component, bodyTypes, fuelTypes }) {
+export default function Calculator({ component, bodyTypes, fuelTypes, auctions }) {
   const title = component?.find(item => item.slug === "calculator_h1")?.text || "";
   const description = component?.find(item => item.slug === "calculator_p1")?.text || "";
-
-  const AUCTIONS = [
-    { id: 1, name: "Copart" },
-    { id: 2, name: "IAAI" }
-  ];
 
   const BODY_TYPES = bodyTypes || [
     { id: 1, name: "Кросовер", slug: "crossover" },
@@ -28,7 +23,7 @@ export default function Calculator({ component, bodyTypes, fuelTypes }) {
   const FUEL_TYPES = fuelTypes || [
     { id: 1, name: "Бензин", slug: "petrol" },
     { id: 2, name: "Дизель", slug: "diesel" },
-    { id: 3, name: "Електро", slug: "electro" },
+    { id: 3, name: "Електро", slug: "electric" },
     { id: 4, name: "Гібрид", slug: "hybrid" }
   ];
 
@@ -37,7 +32,8 @@ export default function Calculator({ component, bodyTypes, fuelTypes }) {
     year: "",
     capacity: "",
     batteryCapacity: "",
-    auctionLocationId: 1,
+    auctionType: "",
+    auctionLocationId: "",
     bodyType: BODY_TYPES[0]?.slug || "sedan",
     fuelType: FUEL_TYPES[0]?.slug || "petrol"
   });
@@ -64,12 +60,21 @@ export default function Calculator({ component, bodyTypes, fuelTypes }) {
     });
   };
 
+  const handleAuctionTypeSelect = (type) => {
+    setInputs(i => ({
+      ...i,
+      auctionType: type,
+      auctionLocationId: ""
+    }));
+  };
+
   const handleCalculate = async () => {
     if (
       !inputs.lotPrice ||
       !inputs.year ||
       (!isElectro && !inputs.capacity) ||
       (isElectro && !inputs.batteryCapacity) ||
+      !inputs.auctionType ||
       !inputs.auctionLocationId ||
       !inputs.bodyType ||
       !inputs.fuelType
@@ -88,7 +93,7 @@ export default function Calculator({ component, bodyTypes, fuelTypes }) {
         bodyType: inputs.bodyType,
         fuelType: inputs.fuelType,
         capacity:
-          (inputs.fuelType === "electro" || inputs.fuelType === "hybrid")
+          (inputs.fuelType === "electric" || inputs.fuelType === "hybrid")
             ? Number(inputs.batteryCapacity)
             : Number(inputs.capacity)
       };
@@ -102,7 +107,7 @@ export default function Calculator({ component, bodyTypes, fuelTypes }) {
     }
   };
 
-  const isElectro = inputs.fuelType === "electro" || inputs.fuelType === "hybrid";
+  const isElectro = inputs.fuelType === "electric" || inputs.fuelType === "hybrid";
 
   return (
     <div className={styles.calculatorWrapper}>
@@ -157,16 +162,32 @@ export default function Calculator({ component, bodyTypes, fuelTypes }) {
                 />
               </div>
             )}
-<div className={styles.resultBlock}>
-  <button
-    className={styles.calcMainBtn}
-    onClick={handleCalculate}
-    disabled={loading}
-    type="button"
-  >
-    {loading ? "Загрузка..." : "Обрахувати ціну"}
-  </button>
-</div>
+            <div className={styles.inputGroup}>
+              <label className={styles.inputLabel}>Аукціон</label>
+              <select
+                name="auctionLocationId"
+                value={inputs.auctionLocationId}
+                onChange={handleChange}
+                className={styles.input}
+              >
+                <option value="">Оберіть аукціон</option>
+                {inputs.auctionType && auctions[inputs.auctionType]?.map(auction => (
+                  <option key={auction.id} value={auction.id}>
+                    {auction.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className={styles.resultBlock}>
+              <button
+                className={styles.calcMainBtn}
+                onClick={handleCalculate}
+                disabled={loading}
+                type="button"
+              >
+                {loading ? "Загрузка..." : "Обрахувати ціну"}
+              </button>
+            </div>
           </div>
           <div className={styles.rightBlock}>
             <div className={styles.title}>
@@ -177,23 +198,22 @@ export default function Calculator({ component, bodyTypes, fuelTypes }) {
                 {description}
               </div>
             )}
-            <div className={styles.blockLabel}>Оберіть аукціон</div>
+            <div className={styles.blockLabel}>Оберіть тип аукціону</div>
             <div className={styles.buttonsRow}>
-              {AUCTIONS.map(a => (
-                <button
-                  key={a.id}
-                  className={
-                    `${styles.calcBtn} ` +
-                    (inputs.auctionLocationId === a.id
-                      ? styles.active
-                      : styles.inactive)
-                  }
-                  onClick={() => handleSelect("auctionLocationId", a.id)}
-                  type="button"
-                >
-                  {a.name}
-                </button>
-              ))}
+              <button
+                className={`${styles.calcBtn} ${inputs.auctionType === 'copart' ? styles.active : styles.inactive}`}
+                onClick={() => handleAuctionTypeSelect('copart')}
+                type="button"
+              >
+                Copart
+              </button>
+              <button
+                className={`${styles.calcBtn} ${inputs.auctionType === 'iaai' ? styles.active : styles.inactive}`}
+                onClick={() => handleAuctionTypeSelect('iaai')}
+                type="button"
+              >
+                IAAI
+              </button>
             </div>
             <div className={styles.blockLabel}>Оберіть тип кузова</div>
             <div className={styles.buttonsRow}>
@@ -249,8 +269,8 @@ export default function Calculator({ component, bodyTypes, fuelTypes }) {
               ))}
             </div>
           </div>
+          <Report open={reportOpen} onClose={() => setReportOpen(false)} reportData={reportData || {}} />
         </div>
-        <Report open={reportOpen} onClose={() => setReportOpen(false)} reportData={reportData || {}} />
       </div>
     </div>
   );

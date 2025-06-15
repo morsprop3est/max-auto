@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Report.module.scss";
 
@@ -18,9 +18,11 @@ function CollapsibleSection({ title, sum, children, showToggle = true, defaultOp
   return (
     <div className={styles.section}>
       <div className={styles.sectionHeader} onClick={() => setOpen(o => !o)}>
-        <span>{title}</span>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <span className={styles.sectionToggle}>{open ? "▼" : "▲"}</span>
+          <span>{title}</span>
+        </div>
         <span className={styles.sectionSum}>{sum}</span>
-        <span className={styles.sectionToggle}>{open ? "▼" : "▲"}</span>
       </div>
       {open && <div className={styles.sectionBody}>{children}</div>}
     </div>
@@ -28,6 +30,33 @@ function CollapsibleSection({ title, sum, children, showToggle = true, defaultOp
 }
 
 export default function Report({ open, onClose, reportData }) {
+  const [isClosing, setIsClosing] = useState(false);
+  const modalRef = useRef(null);
+  const overlayRef = useRef(null);
+
+  useEffect(() => {
+    if (!open) {
+      setIsClosing(false);
+    }
+  }, [open]);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    const modal = modalRef.current;
+    const overlay = overlayRef.current;
+
+    if (modal && overlay) {
+      modal.classList.add(styles.closing);
+      overlay.classList.add(styles.closing);
+
+      setTimeout(() => {
+        onClose();
+      }, 300); 
+    } else {
+      onClose();
+    }
+  };
+
   if (!open) return null;
 
   const breakdown = reportData.breakdown || {};
@@ -53,9 +82,9 @@ export default function Report({ open, onClose, reportData }) {
   };
 
   return createPortal(
-    <div className={styles.reportOverlay} onClick={onClose}>
-      <div className={styles.reportModal} onClick={e => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Закрити">
+    <div className={styles.reportOverlay} onClick={handleClose} ref={overlayRef}>
+      <div className={styles.reportModal} onClick={e => e.stopPropagation()} ref={modalRef}>
+        <button className={styles.closeBtn} onClick={handleClose} aria-label="Закрити">
           <span className={styles.closeLine}></span>
           <span className={styles.closeLineRev}></span>
         </button>

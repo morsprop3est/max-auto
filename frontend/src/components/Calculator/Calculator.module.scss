@@ -2,11 +2,23 @@
   position: relative;
   width: 100%;
   background: 
-    linear-gradient(rgba(3, 132, 5, 0.75), rgba(3, 132, 5, 0.75)),
+    linear-gradient(rgba(3, 132, 5, 0.85), rgba(3, 132, 5, 0.85)),
     url('/main/background_optimized.webp') center/cover no-repeat;
   padding: 100px 0;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   
-    .blockLabel {
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 132, 5, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 0;
+  }
+
+  .blockLabel {
     font-size: 16px;
     font-weight: 400;
     color: #EAEAEA;
@@ -14,6 +26,8 @@
   }
 
   .innerWrapper {
+    position: relative;
+    z-index: 1;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
@@ -36,6 +50,36 @@
         display: flex;
         flex-direction: column;
         gap: 6px;
+
+        select {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 300;
+          width: 100%;
+          padding: 10px 0 8px 0;
+          font-size: 16px;
+          border: none;
+          border-bottom: 1px solid #121212;
+          background: transparent;
+          color: #222;
+          outline: none;
+          transition: border-color 0.2s;
+          cursor: pointer;
+          appearance: none;
+          background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+          background-repeat: no-repeat;
+          background-position: right 0 top 50%;
+          background-size: 1em;
+          padding-right: 2.5em;
+
+          &:focus {
+            border-bottom: 1px solid #038405;
+          }
+
+          option {
+            background-color: #EAEAEA;
+            color: #222;
+          }
+        }
       }
 
       .inputLabel {
@@ -64,6 +108,47 @@
         }
         &:focus {
           border-bottom: 1px solid #038405;
+        }
+      }
+
+      .buttonsRow {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .calcBtn {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        flex: 1;
+        background: #EAEAEA;
+        color: #121212; 
+        padding: 12px 0;
+        text-align: center;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, transform 0.1s;
+        border: none;
+        opacity: 1;
+        &:hover {
+          background: #038405;
+          color: #fff;
+        }
+        &:active {
+          background: #038405;
+          color: #fff;
+        }
+        &.active {
+          background: #038405;
+          color: #fff;
+          opacity: 1;
+          outline: 2px solid #026c04;
+        }
+        &.inactive {
+          background: #EAEAEA;
+          color: #121212;
         }
       }
 
@@ -120,7 +205,36 @@
       flex-direction: column;
       gap: 10px;
       flex: 1 1 0;
-      min-width: 0; 
+      min-width: 0;
+
+      .title {
+        text-align: center;
+        font-size: 48px;
+        font-weight: 400;
+        color: #eaeaea;
+        font-family: 'Montserrat', sans-serif;
+        margin-bottom: 16px;
+      }
+
+      .description {
+        text-align: center;
+        color: #eaeaea;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
+        font-size: 16px;
+        margin-bottom: 32px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .blockLabel {
+        font-size: 16px;
+        font-weight: 400;
+        color: #EAEAEA;
+        margin: 0;
+      }
+
       .buttonsRow {
         display: flex;
         gap: 12px;
@@ -141,6 +255,12 @@
         transition: background 0.2s, color 0.2s, transform 0.1s;
         border: none;
         opacity: 1;
+        min-width: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+
         &:hover {
           background: #038405;
           color: #808080;
@@ -160,27 +280,9 @@
         background: #EAEAEA;
         color: #121212;
       }
-
-      .title {
-        text-align: center;
-        font-size: 48px;
-        font-weight: 400;
-        color: #eaeaea;
-        font-family: 'Montserrat', sans-serif;
-        margin-bottom: 8px;
-      }
-      .description {
-        text-align: center;
-        color: #eaeaea;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 400;
-        font-size: 16px;
-      }
     }
   }
 }
-
-
 
 @media (max-width: 1440px) {
   .calculatorWrapper {
@@ -195,11 +297,15 @@
       }
 
       .leftBlock {
-        .inputsBlock {
-          .input {
-            font-size: 15px;
-            padding: 9px;
-          }
+        .inputLabel {
+          font-size: 15px;
+        }
+        .input {
+          font-size: 15px;
+          padding: 9px;
+        }
+        .calcMainBtn {
+          font-size: 15px;
         }
         .resultBlock {
           h3 {
@@ -214,17 +320,16 @@
 
       .rightBlock {
         .title {
-          font-size: 20px;
+          font-size: 36px;
         }
         .description {
           font-size: 14px;
         }
-        .infoBlocks {
-          gap: 8px;
-          .infoBlock {
-            font-size: 13px;
-            padding: 12px;
-          }
+        .blockLabel {
+          font-size: 14px;
+        }
+        .calcBtn {
+          font-size: 14px;
         }
       }
     }
@@ -236,6 +341,7 @@
     padding: 40px 0;
 
     .innerWrapper {
+      flex-direction: column;
       gap: 12px;
 
       .leftBlock,
@@ -245,11 +351,15 @@
       }
 
       .leftBlock {
-        .inputsBlock {
-          .input {
-            font-size: 13px;
-            padding: 7px;
-          }
+        .inputLabel {
+          font-size: 14px;
+        }
+        .input {
+          font-size: 14px;
+          padding: 7px;
+        }
+        .calcMainBtn {
+          font-size: 14px;
         }
         .resultBlock {
           h3 {
@@ -263,18 +373,18 @@
       }
 
       .rightBlock {
+        order: -1;
         .title {
-          font-size: 16px;
+          font-size: 28px;
         }
         .description {
-          font-size: 12px;
+          font-size: 13px;
         }
-        .infoBlocks {
-          gap: 6px;
-          .infoBlock {
-            font-size: 12px;
-            padding: 8px;
-          }
+        .blockLabel {
+          font-size: 13px;
+        }
+        .calcBtn {
+          font-size: 13px;
         }
       }
     }
@@ -286,7 +396,7 @@
     padding: 30px 0;
 
     .innerWrapper {
-      flex-direction: column-reverse;
+      flex-direction: column;
       gap: 16px;
 
       .leftBlock,
@@ -296,28 +406,19 @@
         box-sizing: border-box;
       }
 
-      .rightBlock {
-        .title {
-          font-size: 18px;
-        }
-        .description {
+      .leftBlock {
+        .inputLabel {
           font-size: 13px;
         }
-        .infoBlocks {
-          gap: 8px;
-          .infoBlock {
-            padding: 10px;
-            font-size: 13px;
-          }
+        .input {
+          font-size: 13px;
+          padding: 8px;
         }
-      }
-
-      .leftBlock {
-        .inputsBlock {
-          .input {
-            font-size: 14px;
-            padding: 8px;
-          }
+        .calcMainBtn {
+          font-size: 13px;
+          width: 250px;
+          height: 50px;
+          clip-path: polygon(calc(0% + 40px) 0%, 100% 0%, calc(100% - 40px) 100%, 0% 100%);
         }
         .resultBlock {
           h3 {
@@ -327,6 +428,37 @@
             font-size: 18px;
             padding: 8px;
           }
+        }
+      }
+
+      .rightBlock {
+        order: -1;
+        .title {
+          font-size: 24px;
+        }
+        .description {
+          font-size: 12px;
+        }
+        .blockLabel {
+          font-size: 12px;
+        }
+        .calcBtn {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .calculatorWrapper {
+    .innerWrapper {
+      .leftBlock {
+        .calcMainBtn {
+          width: 200px;
+          height: 45px;
+          font-size: 12px;
+          clip-path: polygon(calc(0% + 30px) 0%, 100% 0%, calc(100% - 30px) 100%, 0% 100%);
         }
       }
     }

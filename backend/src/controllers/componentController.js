@@ -1,4 +1,4 @@
-import { Component, BodyType, FuelType } from '../models/index.js';
+import { Component, BodyType, FuelType, AuctionLocation } from '../models/index.js';
 
 export const getComponents = async (req, res) => {
   try {
@@ -21,10 +21,21 @@ export const getComponents = async (req, res) => {
       attributes: ['id', 'name', 'slug'],
     });
 
+    const auctionLocations = await AuctionLocation.findAll();
+    const groupedAuctions = auctionLocations.reduce((acc, location) => {
+      const type = location.auctionType;
+      if (!acc[type]) {
+        acc[type] = [];
+      }
+      acc[type].push(location);
+      return acc;
+    }, {});
+
     res.status(200).json({
       ...groupedComponents,
       bodyTypes,
       fuelTypes,
+      auctions: groupedAuctions
     });
   } catch (error) {
     console.error('Error fetching components:', error);

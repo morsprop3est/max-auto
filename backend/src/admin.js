@@ -4,7 +4,7 @@ import AdminJSSequelize from '@adminjs/sequelize';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sequelize from './database.js';
-import { Order, Lot, Component, Calculator, Review, Region, ReviewPhoto, AuctionLocation, Port } from './models/index.js';
+import { Order, Lot, Component, Review, Region, ReviewPhoto, AuctionLocation, Port } from './models/index.js';
 import { ComponentLoader } from 'adminjs';
 
 AdminJS.registerAdapter(AdminJSSequelize);
@@ -64,7 +64,6 @@ const adminJs = new AdminJS({
       },
     },
     { resource: Component, options: { navigation: 'Компоненти' } },
-    { resource: Calculator, options: { navigation: 'Калькулятор' } },
     {
       resource: Review,
       options: {

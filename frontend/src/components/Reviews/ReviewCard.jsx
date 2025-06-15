@@ -19,14 +19,19 @@ export default function ReviewCard({
   shiftRight = false,
   loading = false,
   noReviews = false,
+  visible = true,
 }) {
   const cardRef = useRef(null);
   const commentRef = useRef(null);
   const sliderRef = useRef(null);
   const [isVisible, setIsVisible] = useState(true);
 
-
   useEffect(() => {
+    if (!visible) {
+      setIsVisible(false);
+      return;
+    }
+
     setIsVisible(true);
     if (cardRef.current) {
       gsap.fromTo(
@@ -39,7 +44,7 @@ export default function ReviewCard({
           y: 0,
           x: 0,
           scale: 1,
-          duration: 0.45,
+          duration: 0.3,
           ease: "power3.out",
         }
       );
@@ -49,7 +54,7 @@ export default function ReviewCard({
         gsap.set(cardRef.current, { clearProps: "all" });
       }
     };
-  }, [shiftRight]);
+  }, [shiftRight, visible]);
 
   const animateAnd = (callback) => {
     if (cardRef.current) {
@@ -58,7 +63,7 @@ export default function ReviewCard({
         y: 60,
         x: shiftRight ? 160 : -200,
         scale: 0.1,
-        duration: 0.35,
+        duration: 0.25,
         ease: "power3.in",
         onComplete: callback,
       });
@@ -71,7 +76,7 @@ export default function ReviewCard({
     if (commentRef.current) {
       gsap.to(commentRef.current, {
         opacity: 0,
-        duration: 0.2,
+        duration: 0.15,
         ease: "power2.in",
         onComplete: () => {
           callback();
@@ -80,7 +85,7 @@ export default function ReviewCard({
               gsap.fromTo(
                 commentRef.current,
                 { opacity: 0 },
-                { opacity: 1, duration: 0.2, ease: "power2.out" }
+                { opacity: 1, duration: 0.15, ease: "power2.out" }
               );
             }
           }, 10);
@@ -96,7 +101,7 @@ export default function ReviewCard({
       gsap.fromTo(
         sliderRef.current,
         { opacity: 0 },
-        { opacity: 1, duration: 0.1, ease: "power2.out" }
+        { opacity: 1, duration: 0.15, ease: "power2.out" }
       );
     }
   }, [reviewPhotos]);

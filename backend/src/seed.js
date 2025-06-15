@@ -1,4 +1,4 @@
-import { sequelize, Component, Calculator, Region, Review } from './models/index.js';
+import { sequelize, Component, Region, Review } from './models/index.js';
 
 const seedDatabase = async () => {
   try {
@@ -58,13 +58,6 @@ const seedDatabase = async () => {
       { group: 'reviews', slug: 'reviews_p1', text: 'На карті ви можете знайти реальні відгуки наших клієнтів у вашому регіоні. Дізнайтесь, як пройшов їхній досвід замовлення авто з Європи та США, і переконайтеся в якості нашої роботи!', photoUrl: '', },
     ]);
     console.log('Default components added.');
-
-    console.log('Seeding calculator...');
-    await Calculator.create({
-      formula: 'price * coeff',
-      coeffs: { coeff: 1.2 },
-    });
-    console.log('Default calculator added.');
 
     console.log('Seeding regions...');
     await Region.bulkCreate([

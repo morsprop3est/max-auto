@@ -16,17 +16,17 @@ export const postOrder = async (req, res) => {
       comment: comment || null,
     });
 
-    // await sendMessageToTelegram({
-    //   name,
-    //   phone,
-    //   comment: comment || '',
-    // });
+    await sendMessageToTelegram({
+      name,
+      phone,
+      comment: comment || '',
+    });
 
-    // await sendOrderToCRM({
-    //   name,
-    //   phone,
-    //   comment: comment || '',
-    // });
+    await sendOrderToCRM({
+      name,
+      phone,
+      comment: comment || '',
+    });
 
     res.status(200).json({
       success: true,

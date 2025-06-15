@@ -90,6 +90,38 @@
   transform: scaleX(-1);
 }
 
+@keyframes slideInBottom {
+  from { 
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutBottom {
+  from { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to { 
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
 .fullscreenOverlay {
   position: fixed;
   inset: 0;
@@ -98,6 +130,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  will-change: opacity;
+  animation: fadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  &.closing {
+    animation: fadeOut 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
 .fullscreenPhotoWrapper {
@@ -105,6 +143,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  will-change: transform, opacity;
+  animation: slideInBottom 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  &.closing {
+    animation: slideOutBottom 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
 .fullscreenImg {

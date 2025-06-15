@@ -14,5 +14,19 @@ export default (sequelize) => {
   }, {
     tableName: 'Ports',
     timestamps: false,
+    hooks: {
+      beforeDestroy: async (port) => {
+        await sequelize.models.PortFee.destroy({
+          where: { portId: port.id }
+        });
+        await sequelize.models.AuctionLocationPort.destroy({
+          where: { portId: port.id }
+        });
+        await sequelize.models.AuctionLocation.update(
+          { portId: null },
+          { where: { portId: port.id } }
+        );
+      }
+    }
   });
 };

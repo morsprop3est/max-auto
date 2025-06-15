@@ -119,11 +119,22 @@ const ReviewPhotoUpload = (props) => {
       method: 'POST',
       body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
+        if (!data || !Array.isArray(data.photos)) {
+          console.error('Invalid response format:', data);
+          throw new Error('Invalid response format from server');
+        }
         setPhotos((prev) => [...prev, ...data.photos]);
       })
-      .catch((error) => console.error('Error uploading photos:', error));
+      .catch((error) => {
+        console.error('Error uploading photos:', error);
+      });
   };
 
   const handleDeletePhoto = (photoId) => {

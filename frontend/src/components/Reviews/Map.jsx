@@ -20,6 +20,7 @@ export default function Map({
   const [cardPos, setCardPos] = useState({ left: 0, top: 0, visible: false });
   const [cursorPos, setCursorPos] = useState(null);
   const [mobileIndex, setMobileIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -34,6 +35,8 @@ export default function Map({
   }, [selectedRegion, regionReviews]);
 
   const handleRegionClick = (region, event) => {
+    if (isAnimating) return;
+    
     if (event) {
       const containerRect = mapContainerRef.current.getBoundingClientRect();
       setCursorPos({
@@ -78,6 +81,14 @@ export default function Map({
     };
   }, [selectedRegion, review, cursorPos]);
 
+  const handleCloseReview = () => {
+    setIsAnimating(true);
+    setTimeout(() => {
+      onCloseReview();
+      setIsAnimating(false);
+    }, 300);
+  };
+
   return (
     <div className={styles.mapContainer} ref={mapContainerRef}>
       <svg
@@ -105,14 +116,14 @@ export default function Map({
             top: cardPos.top,
             pointerEvents: cardPos.visible ? "auto" : "none",
             opacity: cardPos.visible ? 1 : 0,
-            transition: "opacity 0.45s",
+            transition: "opacity 0.3s ease-in-out",
           }}
         >
           <ReviewCard
             {...(review || {})}
             onPrev={onPrevReview}
             onNext={onNextReview}
-            onClose={onCloseReview}
+            onClose={handleCloseReview}
             hasReviews={true}
             shiftRight={cardPos.left < cursorPos?.left}
             loading={loading}
@@ -127,7 +138,7 @@ export default function Map({
           reviews={regionReviews}
           currentIndex={mobileIndex}
           setCurrentIndex={setMobileIndex}
-          onClose={onCloseReview}
+          onClose={handleCloseReview}
         />
       )}
     </div>

@@ -1,5 +1,15 @@
 {
+  "name": "max-auto",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "concurrently \"cd backend && node server.js\" \"cd frontend && npm run dev\"",
+    "build": "cd frontend && npm run build",
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "postinstall": "cd frontend && npm run build"
+  },
   "dependencies": {
-    "child_process": "^1.0.2"
+    "concurrently": "^8.2.2"
   }
 }

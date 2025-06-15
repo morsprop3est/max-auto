@@ -18,6 +18,7 @@ export default async function Home() {
   const lotsData = await fetchLots({ page: 1, limit: 10, filters: {} });
   const bodyTypes = components.bodyTypes || [];
   const fuelTypes = components.fuelTypes || [];
+  const auctions = components.auctions || { copart: [], iaai: [] };
 
   return (
     <>
@@ -44,6 +45,7 @@ export default async function Home() {
           component={components.calculator}
           bodyTypes={bodyTypes}
           fuelTypes={fuelTypes}
+          auctions={auctions}
         />
         <Reviews component={components.reviews} />
         <ContactUs />

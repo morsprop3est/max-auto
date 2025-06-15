@@ -8,7 +8,33 @@ export default function PhotoSlider({ photos = [] }) {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [fullscreen, setFullscreen] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const photoRef = useRef(null);
+  const modalRef = useRef(null);
+  const overlayRef = useRef(null);
+
+  useEffect(() => {
+    if (!fullscreen) {
+      setIsClosing(false);
+    }
+  }, [fullscreen]);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    const modal = modalRef.current;
+    const overlay = overlayRef.current;
+
+    if (modal && overlay) {
+      modal.classList.add(styles.closing);
+      overlay.classList.add(styles.closing);
+
+      setTimeout(() => {
+        setFullscreen(false);
+      }, 300);
+    } else {
+      setFullscreen(false);
+    }
+  };
 
   const handleNextPhoto = (e) => {
     e.stopPropagation();
@@ -126,19 +152,20 @@ export default function PhotoSlider({ photos = [] }) {
 
   const fullscreenModal = fullscreen && typeof window !== "undefined"
     ? createPortal(
-        <div className={styles.fullscreenOverlay} onClick={() => setFullscreen(false)}>
+        <div className={styles.fullscreenOverlay} onClick={handleClose} ref={overlayRef}>
           <div
             className={styles.fullscreenPhotoWrapper}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
             onClick={e => e.stopPropagation()}
+            ref={modalRef}
           >
             <div className={styles.fullscreenImgBox}>
               <Image {...fullImgProps} />
             </div>
             <button
               className={styles.closeBtn}
-              onClick={() => setFullscreen(false)}
+              onClick={handleClose}
               aria-label="Закрити"
             >
               <span className={styles.closeLine}></span>
