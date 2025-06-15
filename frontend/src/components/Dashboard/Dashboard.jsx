@@ -5,8 +5,14 @@ import styles from './Dashboard.module.scss';
 import DashboardFilters from './DashboardFilters';
 import DashboardLotCard from './DashboardLotCard';
 import DashboardMobileFilters from './DashboardMobileFilters';
+import { useIsVisible } from "@/hooks/useIsVisible";
+import "@/app/animation.scss";
 
 export default function Dashboard({ components, lots = [], bodyTypes, fuelTypes }) {
+  const [dashboardRef, isVisible] = useIsVisible({ threshold: 0.5 });
+  const invisible = !isVisible ? styles.invisible : "";
+  const animBottom = isVisible ? "fade-in-bottom" : "";
+
   const [filters, setFilters] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
@@ -19,18 +25,18 @@ export default function Dashboard({ components, lots = [], bodyTypes, fuelTypes 
     : {};
 
   return (
-    <div className={styles.dashboardWrapper}>
+    <div className={styles.dashboardWrapper} ref={dashboardRef}>
       <DashboardMobileFilters
-  open={mobileFiltersOpen}
-  onClose={() => setMobileFiltersOpen(false)}
-  onApplyFilters={setFilters}
-  onResetFilters={() => setFilters({})}
-  bodyTypes={bodyTypes}
-  fuelTypes={fuelTypes}
-  initialFilters={filters}
-/>
+        open={mobileFiltersOpen}
+        onClose={() => setMobileFiltersOpen(false)}
+        onApplyFilters={setFilters}
+        onResetFilters={() => setFilters({})}
+        bodyTypes={bodyTypes}
+        fuelTypes={fuelTypes}
+        initialFilters={filters}
+      />
       <div className="container">
-        <div className={styles.innerWrapper}>
+        <div className={`${styles.innerWrapper} ${animBottom} ${invisible}`} style={isVisible ? { animationDelay: '0.2s' } : {}}>
           <div className={styles.header}>
             <div className={styles.titleWrapper}>
               <div className={styles.line}></div>

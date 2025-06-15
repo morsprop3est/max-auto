@@ -4,8 +4,14 @@ import { useState } from "react";
 import Report from "./Report";
 import { calculateCarPrice } from "@/api/calculator";
 import { useNotification } from "@/context/NotificationContext";
+import { useIsVisible } from "@/hooks/useIsVisible";
+import "@/app/animation.scss";
 
 export default function Calculator({ component, bodyTypes, fuelTypes, auctions }) {
+  const [calculatorRef, isVisible] = useIsVisible({ threshold: 0.5 });
+  const invisible = !isVisible ? styles.invisible : "";
+  const animBottom = isVisible ? "fade-in-bottom" : "";
+
   const title = component?.find(item => item.slug === "calculator_h1")?.text || "";
   const description = component?.find(item => item.slug === "calculator_p1")?.text || "";
 
@@ -110,9 +116,9 @@ export default function Calculator({ component, bodyTypes, fuelTypes, auctions }
   const isElectro = inputs.fuelType === "electric" || inputs.fuelType === "hybrid";
 
   return (
-    <div className={styles.calculatorWrapper}>
+    <div className={styles.calculatorWrapper} ref={calculatorRef}>
       <div className="container">
-        <div className={styles.innerWrapper}>
+        <div className={`${styles.innerWrapper} ${animBottom} ${invisible}`} style={isVisible ? { animationDelay: '0.2s' } : {}}>
           <div className={styles.leftBlock}>
             <div className={styles.inputGroup}>
               <label className={styles.inputLabel}>Вартість лоту</label>

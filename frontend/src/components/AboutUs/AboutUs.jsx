@@ -101,11 +101,11 @@ export default function AboutUs({ component, onLoaded }) {
             </div>
           </div>
 
-          <div className={`${styles.rightBlock} fade-in-right ${invisible}`} style={isVisible ? { animationDelay: '0.2s' } : {}}>
+          <div className={`${styles.rightBlock} ${invisible}`}>
           <div
-            className={`${styles.trapezoid} ${styles.trapezoid1}`}
+            className={`${styles.trapezoid} ${styles.trapezoid1} ${animRight}`}
             tabIndex={0}
-            style={{ cursor: "pointer" }}
+            style={isVisible ? { animationDelay: '0.2s' } : {}}
           >
             <img
               src={aboutUsData.image1}
@@ -114,9 +114,9 @@ export default function AboutUs({ component, onLoaded }) {
             />
           </div>
           <div
-            className={`${styles.trapezoid} ${styles.trapezoid2}`}
+            className={`${styles.trapezoid} ${styles.trapezoid2} ${animRight}`}
             tabIndex={0}
-            style={{ cursor: "pointer" }}
+            style={isVisible ? { animationDelay: '0.3s' } : {}}
           >
             <img
               src={aboutUsData.image2}

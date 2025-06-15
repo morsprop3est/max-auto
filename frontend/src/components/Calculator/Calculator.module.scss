@@ -8,6 +8,11 @@
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   
+  .invisible {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+  
   &::before {
     content: '';
     position: absolute;
