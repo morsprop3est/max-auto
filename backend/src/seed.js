@@ -1,6 +1,13 @@
-import { sequelize, Component, Region, Review, AuctionLocation, Port, AuctionLocationPort, BodyType, FuelType } from './models/index.js';
-import auctionLocations from './config/auctions.json' assert { type: 'json' };
-import ports from './config/ports.json' assert { type: 'json' };
+import { sequelize, Component, Region, Review, AuctionLocation, Port, AuctionLocationPort, BodyType, FuelType, AuctionDeliveryFee } from './models/index.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const auctionLocationsFull = JSON.parse(fs.readFileSync(path.join(__dirname, 'config', 'auctions.json'), 'utf8'));
+const ports = JSON.parse(fs.readFileSync(path.join(__dirname, 'config', 'ports.json'), 'utf8'));
 
 const seedDatabase = async () => {
   try {
@@ -14,6 +21,7 @@ const seedDatabase = async () => {
     await Review.destroy({ where: {}, truncate: true });
     await Region.destroy({ where: {}, truncate: true });
     await AuctionLocationPort.destroy({ where: {}, truncate: true });
+    await AuctionDeliveryFee.destroy({ where: {}, truncate: true });
     await AuctionLocation.destroy({ where: {}, truncate: true });
     await Port.destroy({ where: {}, truncate: true });
     await BodyType.destroy({ where: {}, truncate: true });
@@ -27,9 +35,43 @@ const seedDatabase = async () => {
     await Port.bulkCreate(ports);
     console.log('Default ports added.');
 
-    console.log('Seeding auction locations...');
-    await AuctionLocation.bulkCreate(auctionLocations);
-    console.log('Default auction locations added.');
+    console.log('Seeding auction locations and delivery fees...');
+    for (const auctionData of auctionLocationsFull) {
+      if (!auctionData.name || !auctionData.auctionType) continue;
+
+      const [auctionLocation, created] = await AuctionLocation.findOrCreate({
+        where: { name: auctionData.name, auctionType: auctionData.auctionType },
+        defaults: { name: auctionData.name, auctionType: auctionData.auctionType }
+      });
+
+      if (auctionData.port) {
+        const [port, portCreated] = await Port.findOrCreate({
+          where: { name: auctionData.port },
+          defaults: { name: auctionData.port }
+        });
+        auctionLocation.portId = port.id;
+        await auctionLocation.save();
+        await AuctionLocationPort.findOrCreate({
+          where: { auctionLocationId: auctionLocation.id, portId: port.id },
+          defaults: { auctionLocationId: auctionLocation.id, portId: port.id }
+        });
+      } else {
+        auctionLocation.portId = null;
+        await auctionLocation.save();
+      }
+
+      const carFee = auctionData.fee?.car || 0;
+      const suvFee = auctionData.fee?.suv || 0;
+      const motoFee = auctionData.fee?.moto || 0;
+
+      await AuctionDeliveryFee.upsert({
+        auctionLocationId: auctionLocation.id,
+        carFee: carFee,
+        suvFee: suvFee,
+        motoFee: motoFee
+      });
+    }
+    console.log('Default auction locations and delivery fees added.');
 
     console.log('Seeding components...');
     await Component.bulkCreate([

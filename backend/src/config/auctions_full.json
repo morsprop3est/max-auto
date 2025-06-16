@@ -1,0 +1,2397 @@
+[
+  {
+    "name": "ABILENE (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "ADELANTO (CA)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "AKRON (OH)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "ALBANY (NY)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "ALBUQUERQUE (NM)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "ALTOONA (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "AMARILLO (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 450, "suv": 450, "moto": 0 }
+  },
+  {
+    "name": "ANCHORAGE (AK)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 2000, "suv": 2000, "moto": 0 }
+  },
+  {
+    "name": "ANDREWS (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 450, "suv": 450, "moto": 0 }
+  },
+  {
+    "name": "ANTELOPE (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "APPLETON (WI)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 575, "suv": 575, "moto": 0 }
+  },
+  {
+    "name": "ATLANTA EAST (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "ATLANTA NORTH (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "ATLANTA SOUTH (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "ATLANTA WEST (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "AUGUSTA (GA)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "AUSTIN (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "BAKERSFIELD (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "BALTIMORE (MD)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "BALTIMORE EAST (MD)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "BATON ROUGE (LA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "BILLINGS (MT)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 1050, "suv": 1050, "moto": 0 }
+  },
+  {
+    "name": "BIRMINGHAM (AL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "BISMARCK (ND)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "BOISE (ID)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 600, "suv": 600, "moto": 0 }
+  },
+  {
+    "name": "BUFFALO (NY)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Calgary (AB)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "CANDIA (NH)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "CARTERSVILLE (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "CASPER (WY)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 875, "suv": 875, "moto": 0 }
+  },
+  {
+    "name": "CEDAR RAPIDS (IA)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "CHAMBERSBURG (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "CHARLESTON (WV)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "CHICAGO NORTH (IL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "CHICAGO SOUTH (IL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "CHINA GROVE (NC)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "CICERO (IN)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "CLEVELAND EAST (OH)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "CLEVELAND WEST (OH)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "COLORADO SPRINGS (CO)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "COLUMBIA (SC)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "COLUMBIA (MO)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "COLUMBUS (OH)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "CONCORD (NC)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "CORPUS CHRISTI (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "CRASHEDTOYS ATLANTA (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "CRASHEDTOYS DALLAS (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "CRASHEDTOYS MINNEAPOLIS (MN)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 800, "suv": 800, "moto": 0 }
+  },
+  {
+    "name": "CRASHEDTOYS SACRAMENTO (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "DALLAS (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "DALLAS SOUTH (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "DANVILLE (VA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "DAVENPORT (IA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 650, "suv": 650, "moto": 0 }
+  },
+  {
+    "name": "DAYTON (OH)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "DENVER (CO)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "DENVER CENTRAL (CO)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "DENVER SOUTH (CO)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "DES MOINES (IA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 650, "suv": 650, "moto": 0 }
+  },
+  {
+    "name": "DETROIT (MI)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "DOTHAN (AL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "DYER (IN)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "EARLINGTON (KY)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "Edmonton (AB)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "EL PASO (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "EUGENE (OR)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "EXETER (RI)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "FAIRBURN (GA)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "FAYETTEVILLE (AR)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "FLINT (MI)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "FORT WAYNE (IN)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "FREDERICKSBURG (VA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "FREETOWN (MA)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "FRESNO (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "FT. PIERCE (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "FT. WORTH (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "GASTONIA (NC)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "GLASSBORO EAST (NJ)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "GLASSBORO WEST (NJ)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "GRAHAM (WA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 800, "suv": 800, "moto": 0 }
+  },
+  {
+    "name": "GRENADA (MS)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "Halifax (NS)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "HAMMOND (IN)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "HAMPTON (VA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "HARRISBURG (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "HARTFORD (CT)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "HARTFORD SPRINGFIELD (CT)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "HAYWARD (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "HELENA (MT)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 1050, "suv": 1050, "moto": 0 }
+  },
+  {
+    "name": "HONOLULU (HI)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 1600, "suv": 1600, "moto": 0 }
+  },
+  {
+    "name": "HOUSTON (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "HOUSTON EAST (TX)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "INDIANAPOLIS (IN)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "IONIA (MI)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "JACKSON (MS)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "JACKSONVILLE NORTH (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "KANSAS CITY (KS)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "KINCHELOE (MI)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 850, "suv": 850, "moto": 0 }
+  },
+  {
+    "name": "Kindaquik Towing LLC (HI)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "KNIGHTDALE (NC)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "KNOXVILLE (TN)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "LANSING (MI)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "LAS VEGAS (NV)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Las Vegas West (NV)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "LAUREL (MD)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "LEXINGTON EAST (KY)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "LEXINGTON WEST (KY)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "LINCOLN (NE)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 650, "suv": 650, "moto": 0 }
+  },
+  {
+    "name": "LITTLE ROCK (AR)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "London (ON)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "LONG BEACH (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 130, "suv": 130, "moto": 0 }
+  },
+  {
+    "name": "LONG ISLAND (NY)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "LONGVIEW (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "LOS ANGELES (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "LOUISVILLE (KY)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "LUFKIN (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "LUMBERTON (NC)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "LYMAN (ME)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "MACON (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "MADISON SOUTH (WI)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)"
+  },
+  {
+    "name": "MARTINEZ (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "MCALLEN (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "MEBANE (NC)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "MEMPHIS (TN)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Mentone (CA)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "MIAMI CENTRAL (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "MIAMI NORTH (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "MIAMI SOUTH (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "MILWAUKEE NORTH (WI)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "MILWAUKEE SOUTH (WI)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "MINNEAPOLIS (MN)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "MINNEAPOLIS NORTH (MN)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "MOBILE (AL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "MOBILE South (AL)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "MOCKSVILLE (NC)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Moncton (NB)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "MONTGOMERY (AL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Montreal (QC)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "NAPA (CA)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "NASHVILLE (TN)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "NEW ORLEANS (LA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "NEWBURGH (NY)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "NORTH AUSTIN (TX)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "NORTH BOSTON (MA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "NORTH CHARLESTON (SC)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "NORTH SEATTLE (WA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 675, "suv": 675, "moto": 0 }
+  },
+  {
+    "name": "OCALA (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "OGDEN (UT)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "OKLAHOMA CITY (OK)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "ORLANDO NORTH (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "ORLANDO SOUTH (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Ottawa (ON)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "PASCO (WA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 800, "suv": 800, "moto": 0 }
+  },
+  {
+    "name": "PEORIA (IL)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "PHILADELPHIA (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "PHILADELPHIA EAST (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "PHOENIX (AZ)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "PHOENIX NORTH (AZ)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "PITTSBURGH NORTH (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "PITTSBURGH SOUTH (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "PITTSBURGH WEST (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "PORTLAND NORTH (OR)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "PORTLAND SOUTH (OR)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "PUNTA GORDA SOUTH (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "RALEIGH (NC)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "RALEIGH NORTH (NC)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "RANCHO CUCAMONGA (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "RAPID CITY (SD)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "Redding (CA)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "RENO (NV)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "RICHMOND (VA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "RICHMOND EAST (VA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "ROCHESTER (NY)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Rutland (VT)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "SACRAMENTO (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "SALT LAKE CITY (UT)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 450, "suv": 450, "moto": 0 }
+  },
+  {
+    "name": "SAN ANTONIO (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "SAN BERNARDINO (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "SAN DIEGO (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "SAN JOSE (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "SAVANNAH (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 125, "suv": 125, "moto": 0 }
+  },
+  {
+    "name": "SCRANTON (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "SEAFORD (DE)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "SHREVEPORT (LA)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "SIKESTON (MO)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "SO SACRAMENTO (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "SOMERVILLE (NJ)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 150, "suv": 150, "moto": 0 }
+  },
+  {
+    "name": "SOUTH BOSTON (MA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "SOUTHERN ILLINOIS (IL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "SPARTANBURG (SC)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "SPOKANE (WA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 800, "suv": 800, "moto": 0 }
+  },
+  {
+    "name": "SPRINGFIELD (MO)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "ST. CLOUD (MN)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "ST. LOUIS (MO)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "SUN VALLEY (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "SYRACUSE (NY)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "TALLAHASSEE (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "TAMPA SOUTH (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "TANNER (AL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "TIFTON (GA)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "Toronto (ON)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "TRENTON (NJ)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 150, "suv": 150, "moto": 0 }
+  },
+  {
+    "name": "TUCSON (AZ)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "TULSA (OK)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "VALLEJO (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "VAN NUYS (CA)",
+    "auctionType": "copart",
+    "port": "California",
+    "fee": { "car": 175, "suv": 175, "moto": 0 }
+  },
+  {
+    "name": "WACO (TX)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "WALTON (KY)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "WASHINGTON DC (MD)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Wayland (MI)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "Webster (NH)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "WEST PALM BEACH (FL)",
+    "auctionType": "copart",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "WEST WARREN (MA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "WHEELING (IL)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "WICHITA (KS)",
+    "auctionType": "copart",
+    "port": "Texas",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "Windham (ME)",
+    "auctionType": "copart"
+  },
+  {
+    "name": "YORK HAVEN (PA)",
+    "auctionType": "copart",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Abilene (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "ACE - Carson (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 150, "suv": 150, "moto": 0 }
+  },
+  {
+    "name": "ACE - Perris (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 170, "suv": 170, "moto": 0 }
+  },
+  {
+    "name": "ACE - Perris 2 (CA)",
+    "auctionType": "iaai",
+    "port": "California"
+  },
+  {
+    "name": "ADESA Birmingham (AL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Akron-Canton (OH)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Albany (NY)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Albuquerque (NM)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Altoona (PA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Amarillo (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 450, "suv": 450, "moto": 0 }
+  },
+  {
+    "name": "Anaheim (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Anchorage (AK)",
+    "auctionType": "iaai",
+    "port": "California"
+  },
+  {
+    "name": "Appleton (WI)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 575, "suv": 575, "moto": 0 }
+  },
+  {
+    "name": "Asheville (NC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Ashland (KY)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "Atlanta (GA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "Atlanta East (GA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "Atlanta North (GA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "Atlanta South (GA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "AUSTIN (TX)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Austin (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "AUSTIN North (TX)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Avenel New Jersey (NJ)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 125, "suv": 125, "moto": 0 }
+  },
+  {
+    "name": "Baltimore (MD)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Baton Rouge (LA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Billings (MT)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 1050, "suv": 1050, "moto": 0 }
+  },
+  {
+    "name": "Birmingham (AL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Boise (ID)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 600, "suv": 600, "moto": 0 }
+  },
+  {
+    "name": "Boston - Shirley (MA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Bowling Green (KY)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "Brandon (MB)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Bridgeport (PA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Buckhannon (WV)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "Buffalo (NY)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Burlington (VT)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "Calgary South (AB)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Casper (WY)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 875, "suv": 875, "moto": 0 }
+  },
+  {
+    "name": "Central New Jersey (NJ)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Charleston (SC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Charlotte (NC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Chattanooga (TN)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Chicago-North (IL)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "Chicago-South (IL)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "Chicago-West (IL)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "Cincinnati (OH)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Cincinnati-South (OH)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Clearwater (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Cleveland (OH)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Colorado Springs (CO)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Colton (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Columbia (SC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Columbus (OH)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Concord (NC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Corpus Christi (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Culpeper (VA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Dallas (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "Dallas/Ft Worth (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Davenport (IA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 650, "suv": 650, "moto": 0 }
+  },
+  {
+    "name": "Dayton (OH)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Denver (CO)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Denver East (CO)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Des Moines (IA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 650, "suv": 650, "moto": 0 }
+  },
+  {
+    "name": "Detroit (MI)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Dothan (AL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Dundalk (MD)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "East Bay (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Edmonton (AB)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "El Paso (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Elkton (MD)",
+    "auctionType": "iaai",
+    "port": "New Jersey"
+  },
+  {
+    "name": "Englishtown (NJ)",
+    "auctionType": "iaai",
+    "port": "New Jersey"
+  },
+  {
+    "name": "Erie (PA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "Eugene (OR)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Fargo (ND)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 1000, "suv": 1000, "moto": 0 }
+  },
+  {
+    "name": "Fayetteville (AR)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Flint (MI)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "Fontana (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "Fort Myers (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Fort Pierce (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Fort Wayne (IN)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Fort Worth North (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Fremont (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Fresno (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Grand Rapids (MI)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Greensboro (NC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "Greenville (SC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Grenada (MS)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Gulf Coast (MS)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Halifax (NS)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Hamilton (ON)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Hartford (CT)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "High Desert (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "High Point (NC)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Honolulu (HI)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 1600, "suv": 1600, "moto": 0 }
+  },
+  {
+    "name": "Houston (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Houston South (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Houston-North (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Huntsville (AL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Indianapolis (IN)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 475, "suv": 475, "moto": 0 }
+  },
+  {
+    "name": "Indianapolis South (IN)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Jackson (MS)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Jacksonville (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "Kansas City (KS)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "Kansas City East (MO)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Knoxville (TN)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Lafayette (LA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Las Vegas (NV)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "LEE'S TOWING KAUAI (HI)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Lexington (SC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 175, "suv": 175, "moto": 0 }
+  },
+  {
+    "name": "Lincoln (IL)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 575, "suv": 575, "moto": 0 }
+  },
+  {
+    "name": "Little Rock (AR)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "London (ON)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Long Island (NY)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "Longview (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "Los Angeles (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Los Angeles South (CA)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Louisville (KY)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "Louisville North (KY)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 575, "suv": 575, "moto": 0 }
+  },
+  {
+    "name": "Lubbock (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 450, "suv": 450, "moto": 0 }
+  },
+  {
+    "name": "Macon (GA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Manchester (NH)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Manitoba (MB)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "McAllen (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Memphis (TN)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Metro DC (MD)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Miami (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Miami-North (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Milwaukee (WI)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "MINNEAPOLIS SOUTH (MN)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Minneapolis/St. Paul (MN)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Missoula (MT)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 1050, "suv": 1050, "moto": 0 }
+  },
+  {
+    "name": "Moncton (NB)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Monticello (NY)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Montreal (QC)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Nashville (TN)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "New Castle (DE)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "New Orleans (LA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "New Orleans East (LA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Newburgh (NY)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "North Hollywood (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 150, "suv": 150, "moto": 0 }
+  },
+  {
+    "name": "Northern Virginia (VA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Oklahoma City (OK)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Omaha (NE)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 650, "suv": 650, "moto": 0 }
+  },
+  {
+    "name": "OMAHA SOUTH (NE)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Orlando (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Orlando-North (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Ottawa (ON)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Paducah (KY)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "Pensacola (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Permian Basin (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Philadelphia (PA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 190, "suv": 190, "moto": 0 }
+  },
+  {
+    "name": "Phoenix (AZ)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "Pittsburgh (PA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Pittsburgh-North (PA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Port Murray (NJ)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Portage (WI)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Portland (OR)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Portland - Gorham (ME)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Portland South (OR)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Portland West (OR)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Providence (RI)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Provo (UT)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Pulaski (VA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Quebec City (QC)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Raleigh (NC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Reno (NV)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 400, "suv": 400, "moto": 0 }
+  },
+  {
+    "name": "Richmond (VA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "RIVERSIDE (CA)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Roanoke (VA)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Rochester (NY)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Rosedale (MD)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Sacramento (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Salt Lake City (UT)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 450, "suv": 450, "moto": 0 }
+  },
+  {
+    "name": "San Antonio-South (TX)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "San Diego (CA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 225, "suv": 225, "moto": 0 }
+  },
+  {
+    "name": "Santa Clarita (CA)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Savannah (GA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 125, "suv": 125, "moto": 0 }
+  },
+  {
+    "name": "Sayreville (NJ)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Scranton (PA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  },
+  {
+    "name": "Seattle (WA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 675, "suv": 675, "moto": 0 }
+  },
+  {
+    "name": "Shady Spring (WV)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "Shreveport (LA)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "Sioux Falls (SD)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 900, "suv": 900, "moto": 0 }
+  },
+  {
+    "name": "South Bend (IN)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Southern New Jersey (NJ)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 200, "suv": 200, "moto": 0 }
+  },
+  {
+    "name": "Specialty Division (IL)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Spokane (WA)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 800, "suv": 800, "moto": 0 }
+  },
+  {
+    "name": "Springfield (MO)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "ST. CLOUD (MN)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "St. John's (NL)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "St. Louis (IL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 500, "suv": 500, "moto": 0 }
+  },
+  {
+    "name": "STATEN ISLAND (NY)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "STOCKTON (CA)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Sudbury (ON)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Suffolk (VA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Syracuse (NY)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 300, "suv": 300, "moto": 0 }
+  },
+  {
+    "name": "Tampa (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Tampa North (FL)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 350, "suv": 350, "moto": 0 }
+  },
+  {
+    "name": "Taunton (MA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Templeton (MA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Tidewater (VA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Tifton (GA)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 250, "suv": 250, "moto": 0 }
+  },
+  {
+    "name": "Toronto (ON)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Tucson (AZ)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 425, "suv": 425, "moto": 0 }
+  },
+  {
+    "name": "Tulsa (OK)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 375, "suv": 375, "moto": 0 }
+  },
+  {
+    "name": "Vancouver (BC)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "West Palm Beach (FL)",
+    "auctionType": "iaai"
+  },
+  {
+    "name": "Western Colorado (CO)",
+    "auctionType": "iaai",
+    "port": "California",
+    "fee": { "car": 525, "suv": 525, "moto": 0 }
+  },
+  {
+    "name": "Wichita (KS)",
+    "auctionType": "iaai",
+    "port": "Texas",
+    "fee": { "car": 550, "suv": 550, "moto": 0 }
+  },
+  {
+    "name": "Wilmington (NC)",
+    "auctionType": "iaai",
+    "port": "Savannah (Georgia)",
+    "fee": { "car": 325, "suv": 325, "moto": 0 }
+  },
+  {
+    "name": "Winnipeg (MB)",
+    "auctionType": "iaai"
+  },
+    {
+    "name": "York Springs (PA)",
+    "auctionType": "iaai",
+    "port": "New Jersey",
+    "fee": { "car": 275, "suv": 275, "moto": 0 }
+  }
+]

@@ -42,7 +42,7 @@ const fields = [
   { name: 'extraFees', label: 'Інші додаткові збори', type: 'number' },
   { name: 'deliveryFromPortCar', label: 'Вартість доставки з порту (авто)', type: 'number' },
   { name: 'deliveryFromPortMoto', label: 'Вартість доставки з порту (мото)', type: 'number' },
-  { name: 'deliveryFromPortElectric', label: 'Вартість доставки з порту (електро)', type: 'number' },
+  { name: 'deliveryFromPortElectric', label: 'Додаткова вартість доставки з порту (електро)', type: 'number' },
   { name: 'countSwiftFee', label: 'Враховувати комісію SWIFT', type: 'boolean' },
   { name: 'swiftFixed', label: 'Фіксована частина комісії SWIFT', type: 'number' },
   { name: 'swiftPercent', label: 'Відсоткова частина комісії SWIFT', type: 'number' },

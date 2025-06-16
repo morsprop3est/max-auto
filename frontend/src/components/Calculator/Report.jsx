@@ -106,7 +106,14 @@ export default function Report({ open, onClose, reportData }) {
           {breakdown.AuctionDeliveryFeeDetail && breakdown.AuctionDeliveryFeeDetail.breakdown
             ? renderSection(
                 "Аукціонний збір",
-                breakdown.AuctionDeliveryFeeDetail.breakdown,
+                {
+                  "Основний збір": breakdown.AuctionDeliveryFeeDetail.breakdown.mainFee,
+                  "В'їзний збір": breakdown.AuctionDeliveryFeeDetail.breakdown.gateFee,
+                  "Збір за віртуальні торги": breakdown.AuctionDeliveryFeeDetail.breakdown.virtualBidFee,
+                  "Збір за титул": breakdown.AuctionDeliveryFeeDetail.breakdown.titleShipping,
+                  "Екологічний збір": breakdown.AuctionDeliveryFeeDetail.breakdown.environmentalFee,
+                  "Додаткові збори": breakdown.AuctionDeliveryFeeDetail.breakdown.additionalFees
+                },
                 breakdown.AuctionDeliveryFee,
                 "$",
                 true
@@ -129,10 +136,19 @@ export default function Report({ open, onClose, reportData }) {
             <span className={styles.reportValue}>{breakdown.seaDelivery?.toLocaleString()} $</span>
           </div>
 
+          <div className={styles.reportRow}>
+            <span className={styles.reportKey}>Доставка з порту</span>
+            <span className={styles.reportValue}>{breakdown.portDelivery?.toLocaleString()} $</span>
+          </div>
+
           {breakdown.customs && Object.keys(breakdown.customs).length > 1
             ? renderSection(
                 "Розмитнення",
-                breakdown.customs,
+                {
+                  "Мито": breakdown.customs.importDuty,
+                  "Акциз": breakdown.customs.excise,
+                  "ПДВ": breakdown.customs.vat
+                },
                 breakdown.customs.total,
                 "$",
                 false

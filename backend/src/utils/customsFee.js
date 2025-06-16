@@ -3,20 +3,14 @@ export function calcCustomsUA({
   capacity, // об'єм двигуна (см³) або ємність батареї (кВт·год)
   fuelType,
   year,
-  isEU = false,
-  hasEUR1 = false,
   output = 'full'
 }) {
   // 1. Митна вартість (ціна лота + доставка до кордону)
   const customsValue = lotPrice;
 
-  // 2. Ввізне мито
+  // 2. Ввізне мито (10% від вартості авто)
   let importDuty = 0;
-  if (
-    fuelType !== 'electric' &&
-    fuelType !== 'hybrid' &&
-    !(isEU && hasEUR1)
-  ) {
+  if (fuelType !== 'electric' && fuelType !== 'hybrid') {
     importDuty = Math.round(customsValue * 0.1);
   }
 
@@ -40,11 +34,8 @@ export function calcCustomsUA({
     excise = 100; // фіксовано
   }
 
-  // 5. ПДВ (20%), для електро — 0%
-  let vat = 0;
-  if (fuelType !== 'electric') {
-    vat = Math.round((customsValue + importDuty + excise) * 0.2);
-  }
+  // 5. ПДВ (20% від суми вартості авто, мита та акцизу)
+  const vat = Math.round((customsValue + importDuty + excise) * 0.2);
 
   // 6. Разом
   const total = Math.round(importDuty + excise + vat);

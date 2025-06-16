@@ -99,15 +99,43 @@ export const bulkCreateAuctions = async (req, res) => {
     if (!Array.isArray(auctions)) {
       return res.status(400).json({ error: 'Array required' });
     }
-    for (const auction of auctions) {
-      if (!auction.name || !auction.auctionType) continue;
-      await AuctionLocation.findOrCreate({
-        where: { name: auction.name, auctionType: auction.auctionType },
-        defaults: { name: auction.name, auctionType: auction.auctionType }
+    for (const auctionData of auctions) {
+      if (!auctionData.name || !auctionData.auctionType) continue;
+
+      const [auctionLocation, created] = await AuctionLocation.findOrCreate({
+        where: { name: auctionData.name, auctionType: auctionData.auctionType },
+        defaults: { name: auctionData.name, auctionType: auctionData.auctionType }
+      });
+
+      if (auctionData.port) {
+        const [port, portCreated] = await Port.findOrCreate({
+          where: { name: auctionData.port },
+          defaults: { name: auctionData.port }
+        });
+        auctionLocation.portId = port.id;
+        await auctionLocation.save();
+        await AuctionLocationPort.findOrCreate({
+          where: { auctionLocationId: auctionLocation.id, portId: port.id },
+          defaults: { auctionLocationId: auctionLocation.id, portId: port.id }
+        });
+      } else {
+        auctionLocation.portId = null;
+        await auctionLocation.save();
+      }
+
+      const carFee = auctionData.fee?.car || 0;
+      const suvFee = auctionData.fee?.suv || 0;
+      const motoFee = auctionData.fee?.moto || 0;
+
+      await AuctionDeliveryFee.upsert({
+        auctionLocationId: auctionLocation.id,
+        carFee: carFee,
+        suvFee: suvFee,
+        motoFee: motoFee
       });
     }
     res.json({ success: true });
   } catch (error) {
-    res.status(500).json({ error: 'Failed to bulk create auctions' });
+    res.status(500).json({ error: 'Failed to bulk create auctions', details: error.message });
   }
 };

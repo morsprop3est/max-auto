@@ -1,12 +1,14 @@
-import copartConfig from '../config/fees/copart.json' assert { type: "json" };
-import iaaiConfig from '../config/fees/iaai.json' assert { type: "json" };
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const copartConfig = JSON.parse(fs.readFileSync(path.join(__dirname, '../config/fees/copart.json'), 'utf8'));
+const iaaiConfig = JSON.parse(fs.readFileSync(path.join(__dirname, '../config/fees/iaai.json'), 'utf8'));
 const configPath = path.join(__dirname, '../config/calculator.json');
+
 function getCalculatorConfig() {
   return JSON.parse(fs.readFileSync(configPath, 'utf-8'));
 }

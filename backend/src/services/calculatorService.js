@@ -1,6 +1,4 @@
 import { Port, PortFee, AuctionLocation, AuctionDeliveryFee, AuctionLocationPort } from '../models/index.js'
-import copartConfig from '../config/fees/copart.json' assert { type: "json" }
-import iaaiConfig from '../config/fees/iaai.json' assert { type: "json" }
 import fs from 'fs'
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,6 +7,7 @@ import { getAuctionDeliveryFee } from '../utils/auctionFee.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
 const configPath = path.join(__dirname, '../config/calculator.json');
 
 export async function calculateCarPrice({
@@ -16,7 +15,6 @@ export async function calculateCarPrice({
   auctionLocationId,
   bodyType,
   fuelType,
-  insurance,
   year, 
   capacity,   
   otherOptions = {}
@@ -82,21 +80,24 @@ export async function calculateCarPrice({
   // 7. Море/залізниця (беремо з порту)
   let seaDelivery = portFeeValue;
   
-  // Додаємо вартість доставки для мото та електрокарів
+  // 8. Доставка з порту
+  let portDelivery = 0;
   if (bodyType === 'moto') {
-    seaDelivery += calculatorConfig.deliveryFromPortMoto;
-  } else if (fuelType === 'electric') {
-    seaDelivery += calculatorConfig.deliveryFromPortElectric;
+    portDelivery = calculatorConfig.deliveryFromPortMoto;
   } else {
-    seaDelivery += calculatorConfig.deliveryFromPortCar;
+    portDelivery = calculatorConfig.deliveryFromPortCar;
+    if (fuelType === 'electric') {
+      portDelivery += calculatorConfig.deliveryFromPortElectric;
+    }
   }
 
-  // 8. Комісія за переказ
+  // 9. Комісія за переказ
+  const baseAmountForSwift = lotPrice + auctionConfigFee + inlandDelivery + seaDelivery;
   const transferFee = calculatorConfig.countSwiftFee
-    ? Math.round(calculatorConfig.swiftFixed + lotPrice * (calculatorConfig.swiftPercent / 100))
+    ? Math.round(calculatorConfig.swiftFixed + baseAmountForSwift * (calculatorConfig.swiftPercent / 100))
     : 0;
 
-  // 9. Розмитнення (використовуємо утиліту та customsOutput з конфіга)
+  // 10. Розмитнення (використовуємо утиліту та customsOutput з конфіга)
   const adjustedYear = calculatorConfig.addOneYear ? (year + 1) : year;
   const customs = calcCustomsUA({
     lotPrice: lotPrice + inlandDelivery + seaDelivery,
@@ -106,23 +107,24 @@ export async function calculateCarPrice({
     output: calculatorConfig.customsOutput || 'short'
   })
 
-  // 10. Страховка
-  const insuranceFee = insurance ? Math.round((lotPrice + auctionConfigFee) * (calculatorConfig.insurancePercent / 100)) : 0
+  // 11. Страховка
+  const insuranceFee = Math.round((lotPrice + auctionConfigFee) * (calculatorConfig.insurancePercent / 100))
 
-  // 11. Послуги компанії, експедиція, брокер, стоянка, кнопка
+  // 12. Послуги компанії, експедиція, брокер, стоянка, кнопка
   const companyService = calculatorConfig.serviceFee
   const expedition = calculatorConfig.expeditionFee
   const broker = calculatorConfig.brokerFee
   const parking = calculatorConfig.extraFees
   const buttonFee = calculatorConfig.buttonFee || 0
 
-  // 12. Разом
+  // 13. Разом
   const customsTotal = typeof customs === 'object' && customs.total !== undefined ? customs.total : customs
   const total =
     lotPrice +
     auctionConfigFee +
     inlandDelivery +
     seaDelivery +
+    portDelivery +
     transferFee +
     customsTotal +
     insuranceFee +
@@ -142,6 +144,7 @@ export async function calculateCarPrice({
       AuctionDeliveryFeeDetail,
       inlandDelivery,
       seaDelivery,
+      portDelivery,
       transferFee,
       customs,
       insurance: insuranceFee,
