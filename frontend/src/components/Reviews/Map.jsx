@@ -95,7 +95,6 @@ export default function Map({
         className={styles.map}
         viewBox="0 0 1200 800"
         width="100%"
-        height="auto"
         preserveAspectRatio="xMidYMid meet"
       >
         {regions.map((region) => (

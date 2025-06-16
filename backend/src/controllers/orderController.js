@@ -3,7 +3,7 @@ import { sendMessageToTelegram } from '../services/telegramService.js';
 import { sendOrderToCRM } from '../services/crmService.js';
 
 export const postOrder = async (req, res) => {
-  const { name, phone, lotIds, comment } = req.body;
+  const { name, phone, lotIds, comment, utmParams } = req.body;
 
   if (!name || !phone) {
     return res.status(400).json({ error: 'Name and phone are required' });
@@ -26,6 +26,15 @@ export const postOrder = async (req, res) => {
       name,
       phone,
       comment: comment || '',
+      ...(utmParams && {
+        prodex24source: utmParams.prodex24source,
+        prodex24medium: utmParams.prodex24medium,
+        prodex24campaign: utmParams.prodex24campaign,
+        prodex24content: utmParams.prodex24content,
+        prodex24term: utmParams.prodex24term,
+        prodex24page: utmParams.prodex24page,
+        prodex24source_full: utmParams.prodex24source_full
+      })
     });
 
     res.status(200).json({

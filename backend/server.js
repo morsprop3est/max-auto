@@ -11,6 +11,7 @@ const startServer = async () => {
 
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
     
+    // await seedDatabase();
 
   } catch (error) {
     console.error('Error starting server:', error);

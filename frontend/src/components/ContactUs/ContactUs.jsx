@@ -6,6 +6,7 @@ import { sendOrder } from "@/api/orders";
 import { useNotification } from "@/context/NotificationContext";
 import { useRef, useState } from "react";
 import "@/app/animation.scss";
+import { useUTM } from "@/context/UTMContext";
 
 export default function ContactUs() {
   const [wrapperRef, isVisible] = useIsVisible({ threshold: 0.3 });
@@ -18,6 +19,7 @@ export default function ContactUs() {
   const [loading, setLoading] = useState(false);
   const [cooldown, setCooldown] = useState(false);
   const { addNotification } = useNotification();
+  const { utmParams } = useUTM();
 
   const isValidPhone = (phone) => {
     return /^(\+?\d{10,15})$/.test(phone.replace(/\s/g, ""));
@@ -65,7 +67,20 @@ export default function ContactUs() {
 
     setLoading(true);
     try {
-      await sendOrder({ name, phone, comment });
+      await sendOrder({ 
+        name, 
+        phone, 
+        comment,
+        utmParams: {
+          prodex24source: utmParams.utm_source,
+          prodex24medium: utmParams.utm_medium,
+          prodex24campaign: utmParams.utm_campaign,
+          prodex24content: utmParams.utm_content,
+          prodex24term: utmParams.utm_term,
+          prodex24page: window.location.pathname,
+          prodex24source_full: window.location.href
+        }
+      });
       addNotification("success", "Успішно подано, очікуйте — з вами зв'яжуться!");
       if (nameRef.current) nameRef.current.value = "";
       if (phoneRef.current) phoneRef.current.value = "";
@@ -97,7 +112,7 @@ export default function ContactUs() {
               className={`fade-in-bottom`}
               style={isVisible ? { animationDelay: "0.3s" } : {}}
             >
-              Залиште заявку, і наші фахівці зв’яжуться з вами для консультації найближчим часом.
+              Залиште заявку, і наші фахівці зв'яжуться з вами для консультації найближчим часом.
             </p>
           </div>
           <div className={styles.rightBlock}>

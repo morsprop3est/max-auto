@@ -5,11 +5,12 @@ export async function fetchReviewsByRegion(regionId) {
       cache: 'no-store',
     });
     if (!res.ok) {
-      throw new Error("Failed to fetch reviews");
+      console.log("Failed to fetch reviews by region");
+      return { reviews: [] };
     }
     return res.json();
   } catch (error) {
-    console.error("Error fetching reviews:", error);
+    console.log("Error fetching reviews by region:", error);
     return { reviews: [] };
   }
 }
@@ -22,11 +23,12 @@ export async function fetchAllReviews() {
       cache: 'no-store',
     });
     if (!res.ok) {
-      throw new Error("Failed to fetch all reviews");
+      console.log("Failed to fetch all reviews");
+      return { reviews: [] };
     }
     return res.json();
   } catch (error) {
-    console.error("Error fetching all reviews:", error);
+    console.log("Error fetching all reviews:", error);
     return { reviews: [] };
   }
 }

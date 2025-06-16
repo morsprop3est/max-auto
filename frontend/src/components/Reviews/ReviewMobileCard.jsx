@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ReviewMobileCard.module.scss";
+import PhotoSlider from "../PhotoSlider/PhotoSlider";
 
 export default function ReviewMobileCard({
   region,
@@ -53,6 +54,10 @@ export default function ReviewMobileCard({
       ? `${BASE_URL}${review.userPhoto}`
       : "/default-review-user-icon.svg";
 
+  const reviewPhotos = Array.isArray(review?.reviewPhotos) 
+    ? review.reviewPhotos.map(photo => `${BASE_URL}${photo.photoUrl}`)
+    : [];
+
   return createPortal(
     <div
       className={styles.overlay}
@@ -66,7 +71,10 @@ export default function ReviewMobileCard({
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Закрити">✖</button>
+        <button className={styles.closeBtn} onClick={onClose} aria-label="Закрити">
+          <span className={styles.closeLine1}></span>
+          <span className={styles.closeLine2}></span>
+        </button>
         <div className={styles.regionTitle}>{region.name}</div>
         {reviews.length > 0 ? (
           <div className={styles.slider}>
@@ -94,16 +102,12 @@ export default function ReviewMobileCard({
                 </div>
               </div>
               <div className={styles.commentText}>{review?.comment}</div>
-              {Array.isArray(review?.reviewPhotos) && review.reviewPhotos.length > 0 && (
-                <div className={styles.sliderCol}>
-                  <img
-                    src={`${BASE_URL}${review.reviewPhotos[0].photoUrl}`}
-                    alt="review"
-                    className={styles.reviewImg}
-                  />
-                </div>
-              )}
             </div>
+            {reviewPhotos.length > 0 && (
+              <div className={styles.sliderCol}>
+                <PhotoSlider photos={reviewPhotos} />
+              </div>
+            )}
             <div className={styles.pagination}>
               <button className={styles.arrowBtn} onClick={handlePrev} aria-label="Попередній">‹</button>
               <span>{currentIndex + 1} / {reviews.length}</span>

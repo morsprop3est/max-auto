@@ -11,14 +11,29 @@ import Reviews from '@/components/Reviews/Reviews.jsx';
 import ContactUs from '@/components/ContactUs/ContactUs';
 import Footer from '@/components/Footer/Footer';
 import { fetchComponents } from '../api/components';
-import { fetchLots, fetchBodyTypes, fetchFuelTypes } from '../api/lots';
+import { fetchLots } from '../api/lots';
+import componentsData from '@/utils/components.json';
 
 export default async function Home() {
-  const components = await fetchComponents();
-  const lotsData = await fetchLots({ page: 1, limit: 10, filters: {} });
-  const bodyTypes = components.bodyTypes || [];
-  const fuelTypes = components.fuelTypes || [];
-  const auctions = components.auctions || { copart: [], iaai: [] };
+  let components;
+  let lotsData;
+  
+  try {
+    components = await fetchComponents();
+    if (!components) {
+      console.log('Failed to fetch components, using fallback data');
+      components = componentsData;
+    }
+    lotsData = await fetchLots({ page: 1, limit: 10, filters: {} });
+  } catch (error) {
+    console.log('Failed to fetch data from API, using fallback data:', error);
+    components = componentsData;
+    lotsData = { lots: [] };
+  }
+
+  const bodyTypes = components?.bodyTypes || [];
+  const fuelTypes = components?.fuelTypes || [];
+  const auctions = components?.auctions || { copart: [], iaai: [] };
 
   return (
     <>
@@ -30,24 +45,24 @@ export default async function Home() {
       </Head>
       <Navbar />
       <main>
-        <Main component={components.main} />
-        <AboutUs component={components.about_us} />
-        <Stats component={components.stats} />
-        <Services component={components.service} />
-        <Millitary component={components.millitary} />
+        <Main component={components?.main} />
+        <AboutUs component={components?.about_us} />
+        <Stats component={components?.stats} />
+        <Services component={components?.service} />
+        <Millitary component={components?.millitary} />
         <Dashboard
-          components={components.dashboard}
+          components={components?.dashboard}
           lots={lotsData.lots}
           bodyTypes={bodyTypes}
           fuelTypes={fuelTypes}
         />
         <Calculator 
-          component={components.calculator}
+          component={components?.calculator}
           bodyTypes={bodyTypes}
           fuelTypes={fuelTypes}
           auctions={auctions}
         />
-        <Reviews component={components.reviews} />
+        <Reviews component={components?.reviews} />
         <ContactUs />
         <Footer />
       </main>

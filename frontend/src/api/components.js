@@ -6,12 +6,13 @@ export async function fetchComponents() {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch components");
+      console.log("Failed to fetch components");
+      return null;
     }
     return res.json();
   } catch (error) {
-    console.error("Error fetching components:", error);
-    return { components: [] }; 
+    console.log("Error fetching components:", error);
+    return null; 
   }
 }
 
@@ -22,11 +23,12 @@ export async function fetchReviewsByRegion(regionId) {
       cache: 'no-store',
     });
     if (!res.ok) {
-      throw new Error("Failed to fetch reviews");
+      console.log("Failed to fetch reviews");
+      return { reviews: [] };
     }
     return res.json();
   } catch (error) {
-    console.error("Error fetching reviews:", error);
+    console.log("Error fetching reviews:", error);
     return { reviews: [] }; 
   }
 }
@@ -43,11 +45,12 @@ export async function postOrder(order) {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to post order");
+      console.log("Failed to post order");
+      return null;
     }
     return res.json();
   } catch (error) {
-    console.error("Error posting order:", error);
-    throw error;
+    console.log("Error posting order:", error);
+    return null;
   }
 }

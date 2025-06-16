@@ -12,8 +12,6 @@ export default function AboutUs({ component, onLoaded }) {
     ? {
         title: component.find((item) => item.slug === "about_us_h1")?.text || "",
         description: component.find((item) => item.slug === "about_us_p1")?.text || "",
-        image1: component.find((item) => item.slug === "about_us_image1")?.photoUrl || "",
-        image2: component.find((item) => item.slug === "about_us_image2")?.photoUrl || "",
         advantage1: component.find((item) => item.slug === "about_us_stat_1")?.text || "",
         advantage2: component.find((item) => item.slug === "about_us_stat_2")?.text || "",
         advantage3: component.find((item) => item.slug === "about_us_stat_3")?.text || "",
@@ -51,7 +49,7 @@ export default function AboutUs({ component, onLoaded }) {
                 style={isVisible ? { animationDelay: '0.2s' } : {}}
               >
                 <img
-                  src={aboutUsData.image1}
+                  src={'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg'}
                   alt="About Us 1"
                   className={styles.mobileIconImg}
                 />
@@ -61,7 +59,7 @@ export default function AboutUs({ component, onLoaded }) {
                 style={isVisible ? { animationDelay: '0.3s' } : {}}
               >
                 <img
-                  src={aboutUsData.image2}
+                  src={'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg'}
                   alt="About Us 2"
                   className={styles.mobileIconImg}
                 />
@@ -88,11 +86,12 @@ export default function AboutUs({ component, onLoaded }) {
                   tabIndex={0}
                 >
                   <div className={styles.icon}>
-                    <Image
+                    <img
                       src={`/aboutUsIcons/icon${idx + 1}.svg`}
                       alt={`Advantage ${idx + 1}`}
                       width={40}
                       height={idx === 3 ? 24 : 32}
+                      style={{ width: 'auto', height: 'auto' }}
                     />
                   </div>
                   <p className={styles.advantageText}>{adv}</p>
@@ -108,7 +107,7 @@ export default function AboutUs({ component, onLoaded }) {
             style={isVisible ? { animationDelay: '0.2s' } : {}}
           >
             <img
-              src={aboutUsData.image1}
+              src={'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg'}
               alt="About Us 1"
               className={styles.trapezoidImage}
             />
@@ -119,7 +118,7 @@ export default function AboutUs({ component, onLoaded }) {
             style={isVisible ? { animationDelay: '0.3s' } : {}}
           >
             <img
-              src={aboutUsData.image2}
+              src={'https://cdn.jdpower.com/Car%20Shipping%20Companies.jpg'}
               alt="About Us 2"
               className={styles.trapezoidImage}
             />

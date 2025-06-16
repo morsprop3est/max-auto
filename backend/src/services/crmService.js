@@ -3,7 +3,18 @@ import axios from 'axios';
 const CRM_URL = process.env.CRM_URL;
 const CRM_API_KEY = process.env.CRM_API_KEY;
 
-export const sendOrderToCRM = async ({ name, phone, comment }) => {
+export const sendOrderToCRM = async ({ 
+  name, 
+  phone, 
+  comment,
+  prodex24source,
+  prodex24medium,
+  prodex24campaign,
+  prodex24content,
+  prodex24term,
+  prodex24page,
+  prodex24source_full
+}) => {
   let fName = name || '';
 
   const crmData = {
@@ -13,6 +24,13 @@ export const sendOrderToCRM = async ({ name, phone, comment }) => {
     phone,
     comment: comment || '',
     con_comment: comment || '',
+    ...(prodex24source && { prodex24source }),
+    ...(prodex24medium && { prodex24medium }),
+    ...(prodex24campaign && { prodex24campaign }),
+    ...(prodex24content && { prodex24content }),
+    ...(prodex24term && { prodex24term }),
+    ...(prodex24page && { prodex24page }),
+    ...(prodex24source_full && { prodex24source_full })
   };
 
   try {

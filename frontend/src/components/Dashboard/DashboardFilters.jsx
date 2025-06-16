@@ -6,8 +6,8 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
   const [selectedBodyTypeSlug, setSelectedBodyTypeSlug] = useState(null);
   const [selectedFuelTypeSlug, setSelectedFuelTypeSlug] = useState(null);
   const [priceRange, setPriceRange] = useState([0, 100000]);
-  const [yearRange, setYearRange] = useState([2000, 2025]);
-  const [engineSizeRange, setEngineSizeRange] = useState([0, 5]);
+  const [yearRange, setYearRange] = useState([1990, 2025]);
+  const [engineSizeRange, setEngineSizeRange] = useState([0, 10]);
 
   const handleApplyFilters = () => {
     onApplyFilters({
@@ -26,8 +26,8 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
     setSelectedBodyTypeSlug(null);
     setSelectedFuelTypeSlug(null);
     setPriceRange([0, 100000]);
-    setYearRange([2000, 2025]);
-    setEngineSizeRange([0, 5]);
+    setYearRange([1990, 2025]);
+    setEngineSizeRange([0, 10]);
     onApplyFilters({});
   };
 
@@ -91,7 +91,7 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
           className={styles.slider}
           thumbClassName={styles.thumb}
           trackClassName={styles.track}
-          min={2000}
+          min={1990}
           max={2025}
           step={1}
           value={yearRange}
@@ -110,7 +110,7 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
           thumbClassName={styles.thumb}
           trackClassName={styles.track}
           min={0}
-          max={5}
+          max={10}
           step={0.1}
           value={engineSizeRange}
           onChange={(values) => setEngineSizeRange(values)}

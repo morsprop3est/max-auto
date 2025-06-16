@@ -44,7 +44,7 @@ const animationClassBottom = isVisible ? "fade-in-bottom" : "";
           <div className={styles.emptyBlock}></div>
 
           <div className={`${styles.contentBlock} ${animationClassLeft}`} style={{ animationDelay: '0.2s' }}>
-            <Image
+            <img
               src="/logo.svg"
               alt="Logo"
               width={150}
@@ -93,7 +93,7 @@ const animationClassBottom = isVisible ? "fade-in-bottom" : "";
                 className={`${styles.socialLink} ${animationClassBottom}`}
                 style={{ display: "inline-block", animationDelay: `${0.8 + index * 0.1}s` }}
               >
-                <Image
+                <img
                   src={`/socialNetworkIcons/${social.icon}`}
                   alt={social.alt}
                   width={32}
@@ -109,23 +109,23 @@ const animationClassBottom = isVisible ? "fade-in-bottom" : "";
             className={`${styles.car1} scale-hover`}
             style={{ cursor: "pointer" }}
           >
-            <Image src="/main/car1.png" alt="Car 1" width={800} height={500} />
+            <img src="/main/car1.png" alt="Car 1" width={800} height={500} />
           </div>
           <div
             className={`${styles.car2} scale-hover`}
             style={{ cursor: "pointer" }}
           >
-            <Image src="/main/car2.png" alt="Car 2" width={800} height={500} />
+            <img src="/main/car2.png" alt="Car 2" width={800} height={500} />
           </div>
         </div>
       </div>
 
       <div className={`${styles.trapezoid} ${animationClassLeft}`} style={{ animationDelay: '0.1s' }}>
-        <Image
+        <img
           src="/main/background_optimized.webp"
           alt="Background"
           layout="fill"
-          objectFit="cover"
+          style={{ objectFit: 'cover' }}
           quality={25}
           className={styles.trapezoidImage}
         />

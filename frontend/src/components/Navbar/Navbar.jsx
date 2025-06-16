@@ -45,11 +45,11 @@ export default function Navbar() {
         <div className={styles.sidebarContent}>
           <div className={styles.topBlock}>
             <div className={`${styles.logo} scale-hover`}>
-              <Image
+              <img
                 src="/logo.svg"
                 alt="Logo"
-                width={40}
                 height={40}
+                width={40}
               />
             </div>
             <div

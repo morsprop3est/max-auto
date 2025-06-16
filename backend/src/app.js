@@ -58,6 +58,8 @@ app.use('/uploads', express.static('uploads'));
 
 app.use(adminJs.options.rootPath, adminRouter);
 
-await sequelize.sync({ alter: true});
+await sequelize.query('SET FOREIGN_KEY_CHECKS = 0;');
+await sequelize.sync({ force: false });
+await sequelize.query('SET FOREIGN_KEY_CHECKS = 1;');
 
 export default app;

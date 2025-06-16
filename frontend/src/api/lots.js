@@ -20,13 +20,14 @@ export const fetchLots = async ({ page = 1, limit = 50, filters = null }) => {
     });
 
     if (!res.ok) {
+      console.log("Failed to fetch lots");
       return { lots: [] };
     }
 
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error('Error fetching lots:', error.message);
+    console.log('Error fetching lots:', error.message);
     return { lots: [] };
   }
 };

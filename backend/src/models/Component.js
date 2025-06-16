@@ -15,10 +15,7 @@ export default (sequelize) => {
     },
     text: { 
       type: DataTypes.TEXT,
-    },
-    photoUrl: { 
-      type: DataTypes.STRING,
-    },
+    }
   }, {
     tableName: 'Components',
     timestamps: true,
