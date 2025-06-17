@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./ReviewMobileCard.module.scss";
 import PhotoSlider from "../PhotoSlider/PhotoSlider";
@@ -11,6 +11,8 @@ export default function ReviewMobileCard({
   onClose,
 }) {
   const overlayRef = useRef(null);
+  const [isClosing, setIsClosing] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (overlayRef.current) {
@@ -20,6 +22,21 @@ export default function ReviewMobileCard({
       }, 10);
     }
   }, []);
+
+  useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [currentIndex]);
+
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  };
 
   if (!region) return null;
 
@@ -58,51 +75,73 @@ export default function ReviewMobileCard({
     ? review.reviewPhotos.map(photo => `${BASE_URL}${photo.photoUrl}`)
     : [];
 
+  const renderSkeleton = () => (
+    <div className={styles.card}>
+      <div className={styles.userBlock}>
+        <div className={styles.userPhotoBox}>
+          <div className={`${styles.skeleton} ${styles.skeletonUserPhoto}`} />
+        </div>
+        <div className={styles.userInfoBox}>
+          <div className={`${styles.skeleton} ${styles.skeletonName}`} />
+          <div className={styles.skeletonRating}>
+            {[1,2,3,4,5].map(i => (
+              <div key={i} className={`${styles.skeleton} ${styles.star}`} />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className={`${styles.skeleton} ${styles.skeletonComment}`} />
+      <div className={`${styles.skeleton} ${styles.skeletonComment}`} />
+      <div className={`${styles.skeleton} ${styles.skeletonComment}`} />
+    </div>
+  );
+
   return createPortal(
     <div
-      className={styles.overlay}
+      className={`${styles.overlay} ${isClosing ? styles.closing : ''}`}
       ref={overlayRef}
-      style={{ opacity: 1, transition: "opacity 0.3s" }}
-      onClick={onClose}
+      onClick={handleClose}
     >
       <div
-        className={styles.modal}
+        className={`${styles.modal} ${isClosing ? styles.closing : ''}`}
         onClick={e => e.stopPropagation()}
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Закрити">
+        <button className={styles.closeBtn} onClick={handleClose} aria-label="Закрити">
           <span className={styles.closeLine1}></span>
           <span className={styles.closeLine2}></span>
         </button>
         <div className={styles.regionTitle}>{region.name}</div>
         {reviews.length > 0 ? (
           <div className={styles.slider}>
-            <div className={styles.card}>
-              <div className={styles.userBlock}>
-                <div className={styles.userPhotoBox}>
-                  <img
-                    src={userPhotoUrl}
-                    alt={review?.name}
-                    className={styles.userPhoto}
-                  />
-                </div>
-                <div className={styles.userInfoBox}>
-                  <div className={styles.name}>{review?.name}</div>
-                  <div className={styles.rating}>
-                    {[1,2,3,4,5].map(i => (
-                      <img
-                        key={i}
-                        src={i <= (review?.rating || 0) ? "/starFilled.svg" : "/star.svg"}
-                        alt={i <= (review?.rating || 0) ? "Filled Star" : "Empty Star"}
-                        className={styles.star}
-                      />
-                    ))}
+            {isLoading ? renderSkeleton() : (
+              <div className={styles.card}>
+                <div className={styles.userBlock}>
+                  <div className={styles.userPhotoBox}>
+                    <img
+                      src={userPhotoUrl}
+                      alt={review?.name}
+                      className={styles.userPhoto}
+                    />
+                  </div>
+                  <div className={styles.userInfoBox}>
+                    <div className={styles.name}>{review?.name}</div>
+                    <div className={styles.rating}>
+                      {[1,2,3,4,5].map(i => (
+                        <img
+                          key={i}
+                          src={i <= (review?.rating || 0) ? "/starFilled.svg" : "/star.svg"}
+                          alt={i <= (review?.rating || 0) ? "Filled Star" : "Empty Star"}
+                          className={styles.star}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
+                <div className={styles.commentText}>{review?.comment}</div>
               </div>
-              <div className={styles.commentText}>{review?.comment}</div>
-            </div>
+            )}
             {reviewPhotos.length > 0 && (
               <div className={styles.sliderCol}>
                 <PhotoSlider photos={reviewPhotos} />

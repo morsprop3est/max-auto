@@ -52,7 +52,7 @@ export default async function Home() {
         <Millitary component={components?.millitary} />
         <Dashboard
           components={components?.dashboard}
-          lots={lotsData.lots}
+          initialLots={lotsData.lots}
           bodyTypes={bodyTypes}
           fuelTypes={fuelTypes}
         />

@@ -149,6 +149,33 @@
     word-break: break-word;
     white-space: pre-line;
     text-align: left;
+    position: relative;
+    max-height: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .commentWrapper {
+    position: relative;
+  }
+
+  .showMoreButton {
+    background: none;
+    border: none;
+    color: #038405;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 4px 0;
+    margin-top: 4px;
+    text-align: left;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 
   .sliderCol {
@@ -187,6 +214,10 @@
     }
     .commentText {
       font-size: 13px;
+      max-height: 52px;
+    }
+    .showMoreButton {
+      font-size: 12px;
     }
     .noComments {
       font-size: 13px;
@@ -235,6 +266,10 @@
     }
     .commentText {
       font-size: 10px;
+      max-height: 40px;
+    }
+    .showMoreButton {
+      font-size: 9px;
     }
     .noComments {
       font-size: 10px;
@@ -292,6 +327,10 @@
     }
     .commentText {
       font-size: 8px;
+      max-height: 32px;
+    }
+    .showMoreButton {
+      font-size: 7px;
     }
     .noComments {
       font-size: 8px;
@@ -347,6 +386,10 @@
     }
     .commentText {
       font-size: 6px;
+      max-height: 24px;
+    }
+    .showMoreButton {
+      font-size: 5px;
     }
     .noComments {
       font-size: 6px;
@@ -358,5 +401,214 @@
       max-width: 20px;
       height: 12px;
     }
+  }
+}
+
+@keyframes wave {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.skeleton {
+  background: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: wave 1.6s linear infinite;
+  }
+}
+
+.skeletonUserPhoto {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+}
+
+.skeletonName {
+  width: 120px;
+  height: 18px;
+  margin-bottom: 4px;
+}
+
+.skeletonRating {
+  display: flex;
+  gap: 3px;
+  .star {
+    width: 18px;
+    height: 18px;
+    border-radius: 2px;
+  }
+}
+
+.skeletonComment {
+  width: 100%;
+  height: 16px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+
+  &:last-child {
+    width: 80%;
+  }
+}
+
+.skeletonPhoto {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 4px;
+}
+
+.skeletonSlider {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.skeletonDots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.skeletonDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+@media (max-width: 1440px) {
+  .skeletonUserPhoto {
+    width: 36px;
+    height: 36px;
+  }
+
+  .skeletonName {
+    width: 100px;
+    height: 15px;
+  }
+
+  .skeletonRating {
+    .star {
+      width: 15px;
+      height: 15px;
+    }
+  }
+
+  .skeletonComment {
+    height: 14px;
+  }
+
+  .skeletonSlider {
+    gap: 6px;
+  }
+  .skeletonDot {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .skeletonUserPhoto {
+    width: 24px;
+    height: 24px;
+  }
+
+  .skeletonName {
+    width: 80px;
+    height: 12px;
+  }
+
+  .skeletonRating {
+    .star {
+      width: 11px;
+      height: 11px;
+    }
+  }
+
+  .skeletonComment {
+    height: 12px;
+  }
+
+  .skeletonSlider {
+    gap: 4px;
+  }
+  .skeletonDot {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+@media (max-width: 600px) {
+  .skeletonUserPhoto {
+    width: 15px;
+    height: 15px;
+  }
+
+  .skeletonName {
+    width: 60px;
+    height: 9px;
+  }
+
+  .skeletonRating {
+    .star {
+      width: 8px;
+      height: 8px;
+    }
+  }
+
+  .skeletonComment {
+    height: 10px;
+  }
+
+  .skeletonSlider {
+    gap: 3px;
+  }
+  .skeletonDot {
+    width: 3px;
+    height: 3px;
+  }
+}
+
+@media (max-width: 400px) {
+  .skeletonUserPhoto {
+    width: 8px;
+    height: 8px;
+  }
+
+  .skeletonName {
+    width: 40px;
+    height: 7px;
+  }
+
+  .skeletonRating {
+    .star {
+      width: 5px;
+      height: 5px;
+    }
+  }
+
+  .skeletonComment {
+    height: 8px;
+  }
+
+  .skeletonSlider {
+    gap: 2px;
+  }
+  .skeletonDot {
+    width: 2px;
+    height: 2px;
   }
 }

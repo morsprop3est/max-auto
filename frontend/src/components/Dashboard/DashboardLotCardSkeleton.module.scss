@@ -1,0 +1,220 @@
+.lotCardSkeleton {
+  display: flex;
+  gap: 20px;
+  background-color: #EAEAEA;
+  border: 2px solid #D9D9D9;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  align-items: stretch;
+
+  .lotCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1 1 0;
+    min-width: 0;
+    gap: 12px;
+
+    &:first-child {
+      flex: 0 0 auto;
+      width: 200px;
+    }
+
+    &:last-child {
+      flex: 0 0 100px;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  .imageSkeleton {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150px;
+      height: 100%;
+      width: 150px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: wave 1.6s linear infinite;
+    }
+  }
+
+  .titleSkeleton {
+    height: 24px;
+    width: 80%;
+    background: #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150px;
+      height: 100%;
+      width: 150px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: wave 1.6s linear infinite;
+    }
+  }
+
+  .yearSkeleton, .bodyFuelSkeleton, .priceSkeleton, .infoSkeleton {
+    height: 16px;
+    width: 60%;
+    background: #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150px;
+      height: 100%;
+      width: 150px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: wave 1.6s linear infinite;
+    }
+  }
+
+  .statusSkeleton {
+    width: 56px;
+    height: 56px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -150px;
+      height: 100%;
+      width: 150px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: wave 1.6s linear infinite;
+    }
+  }
+
+  @media (max-width: 1200px) {
+    .lotCol:first-child {
+      width: 180px;
+    }
+
+    .titleSkeleton {
+      height: 20px;
+    }
+
+    .yearSkeleton, .bodyFuelSkeleton, .priceSkeleton, .infoSkeleton {
+      height: 14px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .lotCol:first-child {
+      width: 160px;
+    }
+
+    .infoSkeleton {
+      width: 50%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 16px;
+
+    .lotCol:first-child {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .titleSkeleton {
+      width: 90%;
+    }
+
+    .yearSkeleton, .bodyFuelSkeleton, .priceSkeleton {
+      width: 70%;
+    }
+
+    .infoSkeleton {
+      width: 45%;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    align-items: center;
+
+    .lotCol:first-child {
+      width: 100%;
+      max-width: 150px;
+      margin: 0 auto;
+    }
+
+    .titleSkeleton {
+      height: 18px;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    .yearSkeleton, .bodyFuelSkeleton, .priceSkeleton {
+      height: 13px;
+      width: 70%;
+      margin: 0 auto;
+    }
+
+    .infoSkeleton {
+      height: 13px;
+      width: 45%;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 400px) {
+    padding: 8px;
+    gap: 8px;
+
+    .lotCol:first-child {
+      max-width: 120px;
+    }
+
+    .titleSkeleton {
+      height: 16px;
+      width: 95%;
+    }
+
+    .yearSkeleton, .bodyFuelSkeleton, .priceSkeleton {
+      height: 12px;
+      width: 75%;
+    }
+
+    .infoSkeleton {
+      height: 12px;
+      width: 50%;
+    }
+  }
+}
+
+@keyframes wave {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+} 

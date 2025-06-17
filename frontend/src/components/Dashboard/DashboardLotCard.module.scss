@@ -8,16 +8,40 @@
   align-items: stretch;
 
   .lotCol {
+    flex: 0 0 auto;
+    width: 200px;
+  }
+
+  .infoContainer {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    flex: 1 1 0;
+    gap: 12px;
     min-width: 0;
-    &:last-child {
-      flex: 0 0 100px;
-      justify-content: center;
-      align-items: center;
+  }
+
+  .mainInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .lotDetails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    
+    > div {
+      flex: 1;
+      min-width: 120px;
     }
+  }
+
+  .statusCol {
+    flex: 0 0 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .lotImage {
@@ -32,15 +56,12 @@
     font-size: 18px;
     font-weight: bold;
     color: #121212;
-    margin-bottom: 8px;
-    margin-top: 2px;
     word-break: break-word;
   }
 
   .lotYear {
     font-size: 15px;
     color: #444;
-    margin-bottom: 4px;
     font-weight: 500;
   }
 
@@ -49,16 +70,36 @@
     flex-direction: column;
     font-size: 15px;
     color: #666;
-    margin-bottom: 12px;
+  }
+
+  .priceContainer {
+    width: 100%;
+    padding-top: 12px;
+    border-top: 1px solid #D9D9D9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .lotPrice {
-    margin-top: auto;
     font-size: 18px;
     font-weight: 500;
     color: #038405;
     span {
       color: #038405;
+    }
+  }
+
+  .statusText {
+    font-size: 16px;
+    font-weight: 500;
+    
+    &.active {
+      color: #038405;
+    }
+    
+    &.inactive {
+      color: #666666;
     }
   }
 
@@ -84,5 +125,165 @@
     width: 32px;
     height: 32px;
     display: block;
+  }
+
+  @media (max-width: 1440px) {
+    .lotCol {
+      width: 180px;
+    }
+
+    .lotTitle {
+      font-size: 17px;
+    }
+
+    .lotYear, .lotBodyFuel {
+      font-size: 14px;
+    }
+
+    .lotPrice {
+      font-size: 17px;
+    }
+
+    .statusText {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .lotCol {
+      width: 160px;
+    }
+
+    .lotDetails {
+      > div {
+        min-width: 100px;
+        font-size: 14px;
+      }
+    }
+
+    .lotTitle {
+      font-size: 16px;
+    }
+
+    .lotYear, .lotBodyFuel {
+      font-size: 13px;
+    }
+
+    .lotPrice {
+      font-size: 16px;
+    }
+
+    .statusText {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 12px;
+    padding: 12px;
+    align-items: center;
+    text-align: center;
+
+    .lotCol {
+      width: 100%;
+      max-width: 150px;
+      margin: 0 auto;
+    }
+
+    .infoContainer {
+      width: 100%;
+      align-items: center;
+    }
+
+    .mainInfo {
+      align-items: center;
+    }
+
+    .lotDetails {
+      justify-content: center;
+      gap: 8px;
+      
+      > div {
+        min-width: 120px;
+        font-size: 13px;
+        text-align: center;
+      }
+    }
+
+    .lotTitle {
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .lotYear, .lotBodyFuel {
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .lotPrice {
+      font-size: 15px;
+      text-align: center;
+    }
+
+    .statusText {
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .priceContainer {
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+      padding-top: 8px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    padding: 8px;
+    gap: 8px;
+
+    .lotCol {
+      max-width: 120px;
+    }
+    
+    .mainInfo {
+      gap: 5px;
+    }
+
+    .lotDetails {
+      gap: 6px;
+      
+      > div {
+        min-width: 100px;
+        font-size: 12px;
+      }
+    }
+
+    .lotTitle {
+      font-size: 14px;
+    }
+
+    .lotYear, .lotBodyFuel {
+      font-size: 11px;
+    }
+
+    .lotBodyFuel {
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    .lotPrice {
+      font-size: 14px;
+    }
+
+    .statusText {
+      font-size: 12px;
+    }
+
+    .priceContainer {
+      padding-top: 6px;
+      gap: 4px;
+    }
   }
 }

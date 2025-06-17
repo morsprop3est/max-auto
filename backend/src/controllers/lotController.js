@@ -161,3 +161,39 @@ export const deleteLotPhoto = async (req, res) => {
     res.status(500).json({ error: 'Failed to delete lot photo' });
   }
 };
+
+export const addBulkLots = async (req, res) => {
+  try {
+    const { lots } = req.body;
+
+    if (!lots || !Array.isArray(lots)) {
+      return res.status(400).json({ 
+        error: 'Invalid request format. Expected an array of lots in the request body.' 
+      });
+    }
+
+    // Validate each lot has required fields
+    const requiredFields = ['title', 'price', 'year', 'bodyTypeId', 'fuelTypeId'];
+    const invalidLots = lots.filter(lot => {
+      return requiredFields.some(field => !lot[field]);
+    });
+
+    if (invalidLots.length > 0) {
+      return res.status(400).json({
+        error: 'Some lots are missing required fields',
+        requiredFields,
+        invalidLots
+      });
+    }
+
+    const createdLots = await Lot.bulkCreate(lots);
+    res.status(201).json({ 
+      message: 'Lots created successfully', 
+      count: createdLots.length,
+      lots: createdLots 
+    });
+  } catch (error) {
+    console.error('Error creating lots:', error);
+    res.status(500).json({ error: 'Failed to create lots' });
+  }
+};

@@ -19,7 +19,6 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-
   }
 
   .header {
@@ -88,6 +87,23 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
+        min-height: 200px;
+
+        .noLotsMessage {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 100%;
+          min-height: 200px;
+          
+          p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 18px;
+            color: #666;
+            text-align: center;
+            margin: 0;
+          }
+        }
       }
 
       .buttonsWrapper {
@@ -96,7 +112,6 @@
     }
   }
 }
-
 
 @media (max-width: 1440px) {
   .dashboardWrapper {
@@ -251,88 +266,95 @@
       }
     }
 
-    .dashboardPanel {
-      .leftBlock {
-        display: none;
-      }
+    .innerWrapper {
+      .dashboardPanel {
+        box-shadow: none;
+        background-color: transparent;
+        padding: 0;
+        gap: 20px;
 
-      .rightBlock {
-        width: 100%;
-        max-height: none;
-        overflow-y: auto;
-        padding: 20px;
+        .leftBlock {
+          display: none;
+        }
 
-        .mobileFiltersWrapper {
-          display: flex;
+        .rightBlock {
           width: 100%;
-          align-items: center;
-          justify-content: flex-end;
+          max-height: 600px;
+          overflow-y: auto;
+          padding: 20px;
 
-          .mobileFiltersButton {
+          .mobileFiltersWrapper {
+            display: flex;
+            width: 100%;
+            align-items: center;
+            justify-content: flex-end;
+
+            .mobileFiltersButton {
+              display: flex;
+              flex-direction: row;
+              gap: 20px;
+              padding: 15px;
+              background: #038405;
+              color: #fff;
+              border: none;
+              cursor: pointer;
+
+              img {
+                width: 20px;
+              }
+            }
+          }
+
+          .buttonsWrapper {
             display: flex;
             flex-direction: row;
-            gap: 20px;
-            padding: 15px;
-            background: #038405;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-
-            img {
-              width: 20px;
-            }
-          }
-        }
-
-        .buttonsWrapper {
-          display: flex;
-          flex-direction: row;
-          width: 100%;
-          padding-top: 20px;
-          align-items: center;
-          justify-content: center;
-
-          .applyButton {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 12px;
-            font-weight: 400;
-            letter-spacing: 0%;
-            display: flex;
+            width: 100%;
+            padding-top: 20px;
+            align-items: center;
             justify-content: center;
-            align-items: center;
-            background-color: #038405;
-            color: white;
-            padding: 10px 16px 10px 10px;
-            border: none;
-            clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
-            cursor: pointer;
 
-            &:hover {
+            .applyButton {
+              font-family: 'Montserrat', sans-serif;
+              font-size: 12px;
+              font-weight: 400;
+              letter-spacing: 0%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
               background-color: #038405;
+              color: white;
+              padding: 10px 16px 10px 10px;
+              border: none;
+              clip-path: polygon(0 0, 100% 0, calc(100% - 30px) 100%, 0 100%);
+              cursor: pointer;
+
+              &:hover {
+                background-color: #038405;
+              }
+            }
+
+            .resetButton {
+              font-family: 'Montserrat', sans-serif;
+              display: flex;
+              align-items: center;
+              justify-content: end;
+              background-color: #ccc;
+              color: black;
+              padding: 10px 10px 10px 20px;
+              border: none;
+              cursor: pointer;
+              text-align: center;
+              clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%);
+
+              &:hover {
+                background-color: #aaa;
+              }
             }
           }
 
-          .resetButton {
-            font-family: 'Montserrat', sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: end;
-            background-color: #ccc;
-            color: black;
-            padding: 10px 10px 10px 20px;
-            border: none;
-            cursor: pointer;
-            text-align: center;
-            clip-path: polygon(30px 0, 100% 0, 100% 100%, 0 100%);
-
-            &:hover {
-              background-color: #aaa;
-            }
+          .lotsList {
+            padding-top: 20px;
           }
-        }
-
-        .lotsList {
-          padding-top: 20px;
         }
       }
     }

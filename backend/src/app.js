@@ -13,11 +13,30 @@ import lotRoutes from './routes/lotRoutes.js';
 import reviewRoutes from './routes/reviewRoutes.js';
 import locationRoutes from './routes/locationRoutes.js';
 
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const app = express();
+
+app.use((req, res, next) => {
+  const ext = path.extname(req.path).toLowerCase();
+  const mimeTypes = {
+    '.webp': 'image/webp',
+    '.jpg': 'image/jpeg',
+    '.jpeg': 'image/jpeg',
+    '.png': 'image/png',
+    '.gif': 'image/gif',
+    '.svg': 'image/svg+xml',
+    '.bmp': 'image/bmp',
+    '.tiff': 'image/tiff',
+    '.ico': 'image/x-icon'
+  };
+  
+  if (mimeTypes[ext]) {
+    res.type(mimeTypes[ext]);
+  }
+  next();
+});
 
 // const allowedOrigins = [
 //   'http://localhost:3000',

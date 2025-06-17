@@ -1,3 +1,44 @@
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes slideInBottom {
+  from { 
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideOutBottom {
+  from { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to { 
+    opacity: 0;
+    transform: translateY(100px);
+  }
+}
+
+@keyframes wave {
+  0% {
+    left: -150px;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
 .overlay {
   position: fixed;
   inset: 0;
@@ -6,7 +47,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.3s;
+  will-change: opacity;
+  animation: fadeIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  &.closing {
+    animation: fadeOut 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
 .modal {
@@ -23,6 +69,12 @@
   position: relative;
   padding: 36px 32px 28px 32px;
   overflow: hidden;
+  will-change: transform, opacity;
+  animation: slideInBottom 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+
+  &.closing {
+    animation: slideOutBottom 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
 }
 
 .closeBtn {
@@ -151,6 +203,10 @@
   align-items: center;
   width: 100%;
   height: 120px;
+  max-width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+
   img.reviewImg {
     width: 120px;
     height: 120px;
@@ -187,6 +243,57 @@
   text-align: center;
 }
 
+.skeleton {
+  background: #e0e0e0;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150px;
+    height: 100%;
+    width: 150px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: wave 1.6s linear infinite;
+  }
+}
+
+.skeletonUserPhoto {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+}
+
+.skeletonName {
+  width: 120px;
+  height: 16px;
+  margin-bottom: 4px;
+}
+
+.skeletonRating {
+  display: flex;
+  gap: 2px;
+  .star {
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+  }
+}
+
+.skeletonComment {
+  width: 100%;
+  height: 16px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+
+  &:last-child {
+    width: 80%;
+  }
+}
+
 @media (max-width: 600px) {
   .modal {
     padding: 24px 16px 20px 16px;
@@ -210,9 +317,69 @@
 
   .sliderCol {
     height: 100px;
+    max-width: 100px;
+
     img.reviewImg {
       width: 100px;
       height: 100px;
     }
+  }
+
+  .skeletonUserPhoto {
+    width: 24px;
+    height: 24px;
+  }
+
+  .skeletonName {
+    width: 100px;
+    height: 14px;
+  }
+
+  .skeletonRating {
+    .star {
+      width: 11px;
+      height: 11px;
+    }
+  }
+
+  .skeletonComment {
+    height: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal {
+    padding-top: 60px;
+  }
+
+  .sliderCol {
+    height: 80px;
+    max-width: 80px;
+
+    img.reviewImg {
+      width: 80px;
+      height: 80px;
+    }
+  }
+
+  .skeletonUserPhoto {
+    width: 20px;
+    height: 20px;
+  }
+
+  .skeletonName {
+    width: 80px;
+    height: 12px;
+  }
+
+  .skeletonRating {
+    .star {
+      width: 9px;
+      height: 9px;
+    }
+  }
+
+  .skeletonComment {
+    height: 12px;
   }
 }
