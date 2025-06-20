@@ -104,23 +104,13 @@ export default function ReviewCard({
 
     setIsVisible(true);
     if (cardRef.current) {
-      const startX = shiftRight ? 160 : -200;
       gsap.fromTo(
         cardRef.current,
-        { 
-          opacity: 0, 
-          y: 60, 
-          x: startX, 
-          scale: 0.1,
-          transformOrigin: "center center"
-        },
+        { opacity: 0 },
         {
           opacity: 1,
-          y: 0,
-          x: 0,
-          scale: 1,
-          duration: 0.25,
-          ease: "power3.out",
+          duration: 0.3,
+          ease: "power2.out",
         }
       );
     }
@@ -143,11 +133,8 @@ export default function ReviewCard({
     if (cardRef.current) {
       gsap.to(cardRef.current, {
         opacity: 0,
-        y: 60,
-        x: shiftRight ? 160 : -200,
-        scale: 0.1,
-        duration: 0.25,
-        ease: "power3.in",
+        duration: 0.3,
+        ease: "power2.in",
         onComplete: callback,
       });
     } else {
@@ -157,34 +144,21 @@ export default function ReviewCard({
 
   const animateComment = (callback) => {
     if (commentRef.current) {
-      const startX = shiftRight ? 160 : -200;
       gsap.to(commentRef.current, {
         opacity: 0,
-        y: 60,
-        x: startX,
-        scale: 0.1,
-        duration: 0.25,
-        ease: "power3.in",
+        duration: 0.2,
+        ease: "power2.in",
         onComplete: () => {
           callback();
           setTimeout(() => {
             if (commentRef.current) {
               gsap.fromTo(
                 commentRef.current,
-                { 
-                  opacity: 0, 
-                  y: 60, 
-                  x: startX, 
-                  scale: 0.1,
-                  transformOrigin: "center center"
-                },
+                { opacity: 0 },
                 {
                   opacity: 1,
-                  y: 0,
-                  x: 0,
-                  scale: 1,
-                  duration: 0.25,
-                  ease: "power3.out",
+                  duration: 0.3,
+                  ease: "power2.out",
                 }
               );
             }
@@ -219,8 +193,6 @@ export default function ReviewCard({
           src={i <= rating ? "/starFilled.svg" : "/star.svg"}
           alt={i <= rating ? "Filled Star" : "Empty Star"}
           className={styles.star}
-          onMouseEnter={e => gsap.to(e.currentTarget, { scale: 1.25, duration: 0.1 })}
-          onMouseLeave={e => gsap.to(e.currentTarget, { scale: 1, duration: 0.1 })}
         />
       );
     }
@@ -316,8 +288,6 @@ export default function ReviewCard({
                         src={userPhotoUrl}
                         alt={name}
                         className={styles.userPhoto}
-                        onMouseEnter={e => gsap.to(e.currentTarget, { scale: 1.18, duration: 0.2 })}
-                        onMouseLeave={e => gsap.to(e.currentTarget, { scale: 1, duration: 0.2 })}
                       />
                     </div>
                     <div className={styles.userInfoBox}>

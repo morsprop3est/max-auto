@@ -69,9 +69,11 @@ const adminJs = new AdminJS({
       options: {
         properties: {
           userPhoto: {
+            isVisible: { list: false, edit: true, show: true },
             components: {
               edit: UserPhotoUpload, 
             },
+            type: 'string',
           },
           reviewPhotos: {
             isVisible: { list: false, edit: true, show: true },

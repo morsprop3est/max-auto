@@ -295,7 +295,6 @@ export default function PhotoSlider({ photos = [] }) {
             onTouchEnd={onTouchEnd}
             ref={modalRef}
           >
-            {/* Close button */}
             <button
               className={styles.closeBtn}
               onClick={handleClose}
@@ -305,19 +304,16 @@ export default function PhotoSlider({ photos = [] }) {
               <span className={styles.closeLineRev}></span>
             </button>
 
-            {/* Photo counter */}
             {photos.length > 1 && (
               <div className={styles.photoCounter}>
                 {currentPhotoIndex + 1} / {photos.length}
               </div>
             )}
 
-            {/* Main photo */}
             <div className={styles.fullscreenImgBox}>
               <Image {...fullImgProps} />
             </div>
 
-            {/* Navigation buttons */}
             {photos.length > 1 && (
               <>
                 <button
@@ -345,7 +341,6 @@ export default function PhotoSlider({ photos = [] }) {
               </>
             )}
 
-            {/* Gallery thumbnails */}
             {photos.length > 1 && (
               <div className={styles.galleryContainer} ref={galleryRef}>
                 <div className={styles.galleryWrapper}>

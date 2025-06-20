@@ -172,7 +172,6 @@ export const addBulkLots = async (req, res) => {
       });
     }
 
-    // Validate each lot has required fields
     const requiredFields = ['title', 'price', 'year', 'bodyTypeId', 'fuelTypeId'];
     const invalidLots = lots.filter(lot => {
       return requiredFields.some(field => !lot[field]);

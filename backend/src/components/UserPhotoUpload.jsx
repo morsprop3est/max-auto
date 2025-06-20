@@ -65,39 +65,75 @@ const FileInput = styled.input`
 `;
 
 const UserPhotoUpload = (props) => {
-  const { record } = props;
+  const { record, onChange } = props;
   const [userPhoto, setUserPhoto] = useState(record?.params?.userPhoto || '');
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleUpload = (event) => {
     const file = event.target.files[0];
+    if (!file) {
+      setError('No file selected');
+      return;
+    }
+
+    setIsUploading(true);
+    setError('');
+
     const formData = new FormData();
     formData.append('photo', file);
     formData.append('isUserPhoto', 'true');
+
+    console.log('Uploading to:', `${publicUrl}/api/reviews/${record.id}/user-photo`);
+    console.log('Record ID:', record.id);
+    console.log('File:', file.name);
 
     fetch(`${publicUrl}/api/reviews/${record.id}/user-photo`, {
       method: 'POST',
       body: formData,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        console.log('Response status:', response.status);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         console.log('User photo uploaded:', data);
-        setUserPhoto(data.userPhoto); 
+        setUserPhoto(data.userPhoto);
+        setIsUploading(false);
+        
+        if (onChange) {
+          onChange('userPhoto', data.userPhoto);
+        }
       })
-      .catch((error) => console.error('Error uploading user photo:', error));
+      .catch((error) => {
+        console.error('Error uploading user photo:', error);
+        setError(error.message);
+        setIsUploading(false);
+      });
   };
 
   return (
     <>
       <h6>Upload User Photo</h6>
       <UploadContainer>
-      {userPhoto && (
-        <UploadedImage
-          src={`${publicUrl}${userPhoto}`}
-          alt="User Photo"
+        {userPhoto && (
+          <UploadedImage
+            src={`${publicUrl}${userPhoto}`}
+            alt="User Photo"
+          />
+        )}
+        {error && <div style={{ color: 'red', fontSize: '12px' }}>{error}</div>}
+        {isUploading && <div style={{ color: 'blue', fontSize: '12px' }}>Uploading...</div>}
+        <FileInput 
+          type="file" 
+          accept="image/*" 
+          onChange={handleUpload}
+          disabled={isUploading}
         />
-      )}
-      <FileInput type="file" accept="image/*" onChange={handleUpload} />
-    </UploadContainer>
+      </UploadContainer>
     </>
   );
 };
