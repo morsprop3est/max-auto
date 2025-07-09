@@ -1,13 +1,16 @@
 .floatingContainer {
   position: fixed;
   bottom: 20px;
-  right: 20px;
+  right: 40px;
   z-index: 1000;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
   transition: all 0.3s ease;
+  
+  opacity: 0;
+  animation: initialAppear 0.6s ease-out 2s forwards;
 
   &.expanded {
     .triggerButton {
@@ -94,14 +97,12 @@
 
 @media (max-width: 768px) {
   .floatingContainer {
-    bottom: 15px;
-    right: 15px;
+    bottom: 20px;
+    right: 40px;
   }
 
   .socialBlock {
-    padding: 12px;
-    gap: 10px;
-    width: 70px;
+    width: 55px;
   }
 
   .iconWrapper {
@@ -109,25 +110,19 @@
   }
 
   .triggerButton {
-    width: 50px;
-    height: 50px;
-  }
-
-  .triggerIcon {
-    font-size: 20px;
+    width: 55px;
+    height: 55px;
   }
 }
 
 @media (max-width: 480px) {
   .floatingContainer {
-    bottom: 10px;
-    right: 10px;
+    bottom: 20px;
+    right: 20px;
   }
 
   .socialBlock {
-    padding: 10px;
-    gap: 8px;
-    width: 60px;
+    width: 50px;
   }
 
   .iconWrapper {
@@ -140,11 +135,20 @@
   }
 
   .triggerButton {
-    width: 45px;
-    height: 45px;
+    width: 50px;
+    height: 50px;
   }
+}
 
-  .triggerIcon {
-    font-size: 18px;
+
+@keyframes initialAppear {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
   }
 }
