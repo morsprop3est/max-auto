@@ -35,7 +35,7 @@ const servicesData = component
   const invisible = !isVisible ? styles.invisible : "";
 
   return (
-    <div className={styles.servicesWrapper} ref={wrapperRef}>
+    <div className={styles.servicesWrapper} ref={wrapperRef} id="services">
       <div className="container">
         <div className={`${styles.serviceWrapper} ${anim} ${invisible}`}>
           <div className={styles.header}>

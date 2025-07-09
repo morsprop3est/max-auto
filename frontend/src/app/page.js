@@ -10,6 +10,7 @@ import Calculator from '@/components/Calculator/Calculator';
 import Reviews from '@/components/Reviews/Reviews.jsx';
 import ContactUs from '@/components/ContactUs/ContactUs';
 import Footer from '@/components/Footer/Footer';
+import FloatingSocial from '@/components/FloatingSocial/FloatingSocial';
 import { fetchComponents } from '../api/components';
 import { fetchLots } from '../api/lots';
 import componentsData from '@/utils/components.json';
@@ -45,27 +46,44 @@ export default async function Home() {
       </Head>
       <Navbar />
       <main>
-        <Main component={components?.main} />
-        <AboutUs component={components?.about_us} />
-        <Stats component={components?.stats} />
-        <Services component={components?.service} />
-        <Millitary component={components?.millitary} />
-        <Dashboard
-          components={components?.dashboard}
-          initialLots={lotsData.lots}
-          bodyTypes={bodyTypes}
-          fuelTypes={fuelTypes}
-        />
-        <Calculator 
-          component={components?.calculator}
-          bodyTypes={bodyTypes}
-          fuelTypes={fuelTypes}
-          auctions={auctions}
-        />
-        <Reviews component={components?.reviews} />
-        <ContactUs />
+        <section id="main">
+          <Main component={components?.main} />
+        </section>
+        <section id="about-us">
+          <AboutUs component={components?.about_us} />
+        </section>
+        <section id="stats">
+          <Stats component={components?.stats} />
+        </section>
+          <Services component={components?.service} />
+        <section id="millitary">
+          <Millitary component={components?.millitary} />
+        </section>
+        <section id="dashboard">
+          <Dashboard
+            components={components?.dashboard}
+            initialLots={lotsData.lots}
+            bodyTypes={bodyTypes}
+            fuelTypes={fuelTypes}
+          />
+        </section>
+        <section id="calculator">
+          <Calculator 
+            component={components?.calculator}
+            bodyTypes={bodyTypes}
+            fuelTypes={fuelTypes}
+            auctions={auctions}
+          />
+        </section>
+        <section id="reviews">
+          <Reviews component={components?.reviews} />
+        </section>
+        <section id="contact-us">
+          <ContactUs />
+        </section>
         <Footer />
       </main>
+      <FloatingSocial />
     </>
   );
 }

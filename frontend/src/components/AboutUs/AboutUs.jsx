@@ -30,7 +30,7 @@ export default function AboutUs({ component, onLoaded }) {
   const invisible = !isVisible ? styles.invisible : "";
 
   return (
-    <div className={styles.aboutUsWrapper} ref={aboutRef}>
+    <div className={styles.aboutUsWrapper} ref={aboutRef} id = "about-us">
       <div className="container">
         <div className={styles.aboutUsWrapper2}>
           <div className={styles.leftBlock}>

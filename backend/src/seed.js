@@ -76,8 +76,8 @@ const seedDatabase = async () => {
     console.log('Seeding components...');
     await Component.bulkCreate([
       { group: 'main', slug: 'main_h1', text: 'MAKS AUTO' },
-      { group: 'main', slug: 'main_h2', text: 'Авто з Європи та США під ключ!' },
-      { group: 'main', slug: 'main_p1', text: 'Привеземо для вас авто з Європи та США за вигідною ціною! Замовляйте мрію вже сьогодні!' },
+      { group: 'main', slug: 'main_h2', text: 'Доставка авто з Європи, Канади США та Кореї під ключ.' },
+      { group: 'main', slug: 'main_p1', text: 'Принципи роботи, чесно вигідно та порядно.' },
       { group: 'main', slug: 'main_button', text: 'Хочу замовити!' },
 
       { group: 'about_us', slug: 'about_us_h1', text: 'Про нас' },

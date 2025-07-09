@@ -8,6 +8,7 @@ import { useAdaptive } from "@/context/AdaptiveContext";
 import { useIsVisible } from "@/hooks/useIsVisible";
 import ScrollMouse from './ScrollMouse';
 import '../../app/animation.scss';
+import { socialLinks } from "@/data/socialLinks";
 
 export default function Main({ component, onLoaded }) {
   const { addNotification } = useNotification();
@@ -80,11 +81,7 @@ const animationClassBottom = isVisible ? "fade-in-bottom" : "";
           </div>
 
           <div className={styles.socialBlock}>
-            {[
-              { href: 'https://facebook.com', icon: 'facebook.svg', alt: 'Facebook' },
-              { href: 'https://instagram.com', icon: 'instagram.svg', alt: 'Instagram' },
-              { href: 'https://telegram.org', icon: 'telegram.svg', alt: 'Telegram' },
-            ].map((social, index) => (
+            {socialLinks.map((social, index) => (
               <a
                 key={index}
                 href={social.href}
@@ -93,7 +90,7 @@ const animationClassBottom = isVisible ? "fade-in-bottom" : "";
                 className={`${styles.socialLink} ${animationClassBottom}`}
                 style={{ display: "inline-block", animationDelay: `${0.8 + index * 0.1}s` }}
               >
-                <img
+                <Image
                   src={`/socialNetworkIcons/${social.icon}`}
                   alt={social.alt}
                   width={32}

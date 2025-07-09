@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "./Navbar.module.scss";
 import "../../app/animation.scss";
 import { useIsVisible } from "@/hooks/useIsVisible";
+import { socialLinks } from "@/data/socialLinks";
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -63,31 +64,35 @@ export default function Navbar() {
           </div>
 
           <div className={styles.centerBlock}>
-            {["Головна", "Про нас", "Наші цифри", "Наші послуги"].map(
-              (label, index) => (
-                <div
-                  key={index}
-                  className={`${styles.linkWrapper} scale-hover-text`}
-                  tabIndex={0}
+            {[
+              { label: "Головна", href: "#main" },
+              { label: "Про нас", href: "#about-us" },
+              { label: "Наші цифри", href: "#stats" },
+              { label: "Наші послуги", href: "#services" },
+              { label: "Військова техніка", href: "#millitary" },
+              { label: "Лоти", href: "#dashboard" },
+              { label: "Калькулятор", href: "#calculator" },
+              { label: "Відгуки", href: "#reviews" },
+              { label: "Контакти", href: "#contact-us" }
+            ].map((item, index) => (
+              <div
+                key={index}
+                className={`${styles.linkWrapper} scale-hover-text`}
+                tabIndex={0}
+              >
+                <a 
+                  href={item.href}
+                  className={styles.link}
+                  onClick={() => setIsSidebarOpen(false)}
                 >
-                  <a 
-                    href={`#section${index + 1}`} 
-                    className={styles.link}
-                    onClick={() => setIsSidebarOpen(false)}
-                  >
-                    {label}
-                  </a>
-                </div>
-              )
-            )}
+                  {item.label}
+                </a>
+              </div>
+            ))}
           </div>
 
           <div className={styles.bottomBlock}>
-            {[
-              { href: "https://facebook.com", icon: "facebook.svg", alt: "Facebook" },
-              { href: "https://instagram.com", icon: "instagram.svg", alt: "Instagram" },
-              { href: "https://telegram.org", icon: "telegram.svg", alt: "Telegram" },
-            ].map((social, index) => (
+            {socialLinks.map((social, index) => (
               <a
                 key={index}
                 href={social.href}

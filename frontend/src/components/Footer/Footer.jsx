@@ -4,6 +4,7 @@ import Image from 'next/image';
 import styles from './Footer.module.scss';
 import { useIsVisible } from "@/hooks/useIsVisible";
 import "@/app/animation.scss";
+import { socialLinks } from "@/data/socialLinks";
 
 export default function Footer() {
   const [footerRef, isVisible] = useIsVisible({ threshold: 0.1 });
@@ -32,33 +33,24 @@ export default function Footer() {
           <div className={styles.socialBlock}>
             <div className={styles.empty}></div>
             <div className={styles.socialIcons}>
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.icon}
-                tabIndex={0}
-              >
-                <Image src="/socialNetworkIcons/facebook.svg" alt="Facebook" className={styles.icon} width={32} height={32} />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.icon}
-                tabIndex={0}
-              >
-                <Image src="/socialNetworkIcons/instagram.svg" alt="Instagram" className={styles.icon} width={32} height={32} />
-              </a>
-              <a
-                href="https://telegram.org"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.icon}
-                tabIndex={0}
-              >
-                <Image src="/socialNetworkIcons/telegram.svg" alt="Telegram" className={styles.icon} width={32} height={32} />
-              </a>
+              {socialLinks.map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.icon}
+                  tabIndex={0}
+                >
+                  <Image 
+                    src={`/socialNetworkIcons/${social.icon}`} 
+                    alt={social.alt} 
+                    className={styles.icon} 
+                    width={32} 
+                    height={32} 
+                  />
+                </a>
+              ))}
             </div>
             <div
               className={styles.scrollTop}

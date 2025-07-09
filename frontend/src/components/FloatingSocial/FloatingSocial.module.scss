@@ -1,0 +1,150 @@
+.floatingContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  transition: all 0.3s ease;
+
+  &.expanded {
+    .triggerButton {
+      background-color: #121212;
+    }
+  }
+}
+
+.socialBlock {
+  background: #038405;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 60px;
+  align-items: stretch;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+  }
+}
+
+.socialItem {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+
+  .socialBlock.visible & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 60px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease;
+  }
+}
+
+.triggerButton {
+  width: 60px;
+  height: 60px;
+  background: #038405;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.triggerIcon {
+  transition: transform 0.3s ease;
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .floatingContainer {
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .socialBlock {
+    padding: 12px;
+    gap: 10px;
+    width: 70px;
+  }
+
+  .iconWrapper {
+    height: 55px;
+  }
+
+  .triggerButton {
+    width: 50px;
+    height: 50px;
+  }
+
+  .triggerIcon {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .floatingContainer {
+    bottom: 10px;
+    right: 10px;
+  }
+
+  .socialBlock {
+    padding: 10px;
+    gap: 8px;
+    width: 60px;
+  }
+
+  .iconWrapper {
+    height: 50px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .triggerButton {
+    width: 45px;
+    height: 45px;
+  }
+
+  .triggerIcon {
+    font-size: 18px;
+  }
+}

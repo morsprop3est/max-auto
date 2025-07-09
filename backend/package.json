@@ -1,6 +1,11 @@
 {
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Max Auto Backend",
+  "main": "server.js",
   "scripts": {
-  "start": "node server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   },
   "type": "module",
   "dependencies": {

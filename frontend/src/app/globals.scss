@@ -15,6 +15,7 @@
     letter-spacing: 0%;
     background-color: #EAEAEA;
     color: #121212;
+    scroll-behavior: smooth;
   }
 
   .container {
@@ -43,6 +44,11 @@
   a {
     text-decoration: none;
     color: inherit;
+  }
+  
+  // Scroll margin for fixed navbar
+  section {
+    scroll-margin-top: 75px;
   }
   
   img {
