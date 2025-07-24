@@ -13,7 +13,7 @@ export default function Millitary({ component }) {
       }
     : {};
 
-  const sliderImages = Array.from({ length: 5 }, (_, i) => `/millitary/millitary${i + 1}.jpg`);
+  const sliderImages = Array.from({ length: 5 }, (_, i) => `/millitary/millitary${i + 1}.webp`);
 
   const [wrapperRef, isVisible] = useIsVisible({ threshold: 0.4 });
 

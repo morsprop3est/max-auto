@@ -6,6 +6,7 @@ import styles from "./AboutUs.module.scss";
 import Image from "next/image";
 import AnimatedText from "../AnimationComponents/AnimatedText/AnimatedText";
 import "@/app/animation.scss";
+import React, { useState, useEffect } from "react";
 
 export default function AboutUs({ component, onLoaded }) {
   const aboutUsData = Array.isArray(component)
@@ -48,21 +49,22 @@ export default function AboutUs({ component, onLoaded }) {
                 className={`${styles.mobileIconWrap} ${animLeft} ${invisible}`}
                 style={isVisible ? { animationDelay: '0.2s' } : {}}
               >
-                <img
-                  src={'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg'}
-                  alt="About Us 1"
-                  className={styles.mobileIconImg}
-                />
-              </div>
-              <div
-                className={`${styles.mobileIconWrap} ${animLeft} ${invisible}`}
-                style={isVisible ? { animationDelay: '0.3s' } : {}}
-              >
-                <img
-                  src={'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg'}
-                  alt="About Us 2"
-                  className={styles.mobileIconImg}
-                />
+                <video
+                  className={styles.mobileIconVideo}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/video/avtovoz.jpg"
+                  tabIndex={0}
+                >
+                  <source src="/video/avtovoz.mp4" type="video/mp4" />
+                  Ваш браузер не підтримує відео.
+                </video>
+                <div className={`${styles.hoverHint} ${isVisible ? styles.visible : ""}`}>
+                  <img src="/mouseScroll.svg" alt="Наведіться" className={styles.hoverHintIcon} />
+                  <span>Наведіться для кольору</span>
+                </div>
               </div>
             </div>
             <div
@@ -101,29 +103,29 @@ export default function AboutUs({ component, onLoaded }) {
           </div>
 
           <div className={`${styles.rightBlock} ${invisible}`}>
-          <div
-            className={`${styles.trapezoid} ${styles.trapezoid1} ${animRight}`}
-            tabIndex={0}
-            style={isVisible ? { animationDelay: '0.2s' } : {}}
-          >
-            <img
-              src={'https://ntslogistics.com/wp-content/uploads/2020/07/60142-1-1.jpeg'}
-              alt="About Us 1"
-              className={styles.trapezoidImage}
-            />
+            <div
+              className={`${styles.trapezoid} ${styles.trapezoid1} ${animRight}`}
+              tabIndex={0}
+              style={isVisible ? { animationDelay: '0.2s' } : {}}
+            >
+              <video
+                className={styles.trapezoidVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+                poster="/video/avtovoz.jpg"
+                tabIndex={0}
+              >
+                <source src="/video/avtovoz.mp4" type="video/mp4" />
+                Ваш браузер не підтримує відео.
+              </video>
+            </div>
+            <div className={`${styles.hoverHint} ${isVisible ? styles.visible : ""}`}>
+              <img src="/mouseScroll.svg" alt="Наведіться" className={styles.hoverHintIcon} />
+              <span>Наведіться для кольору</span>
+            </div>
           </div>
-          <div
-            className={`${styles.trapezoid} ${styles.trapezoid2} ${animRight}`}
-            tabIndex={0}
-            style={isVisible ? { animationDelay: '0.3s' } : {}}
-          >
-            <img
-              src={'https://cdn.jdpower.com/Car%20Shipping%20Companies.jpg'}
-              alt="About Us 2"
-              className={styles.trapezoidImage}
-            />
-          </div>
-        </div>
         </div>
       </div>
     </div>

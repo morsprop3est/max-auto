@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./DashboardFilters.module.scss";
 import ReactSlider from "react-slider";
 
@@ -8,6 +8,28 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
   const [priceRange, setPriceRange] = useState([0, 100000]);
   const [yearRange, setYearRange] = useState([1990, 2025]);
   const [engineSizeRange, setEngineSizeRange] = useState([0, 10]);
+
+  const selectedFuelType = fuelTypes.find(type => type.slug === selectedFuelTypeSlug);
+  const isElectricSelected = selectedFuelType && (
+    selectedFuelType.name.toLowerCase().includes('електро') || 
+    selectedFuelType.name.toLowerCase().includes('electric') ||
+    selectedFuelType.name.toLowerCase().includes('електричний') ||
+    selectedFuelType.name.toLowerCase().includes('гібрид') ||
+    selectedFuelType.name.toLowerCase().includes('hybrid')
+  );
+
+  const engineLabel = isElectricSelected ? "Потужність:" : "Об'єм двигуна:";
+  const engineUnit = isElectricSelected ? "кВт" : "л";
+  const engineMax = isElectricSelected ? 150 : 10;
+  const engineStep = isElectricSelected ? 1 : 0.1;
+
+  useEffect(() => {
+    if (isElectricSelected) {
+      setEngineSizeRange([0, 150]);
+    } else {
+      setEngineSizeRange([0, 10]);
+    }
+  }, [isElectricSelected]);
 
   const handleApplyFilters = () => {
     onApplyFilters({
@@ -104,20 +126,20 @@ export default function DashboardFilters({ onApplyFilters, bodyTypes, fuelTypes 
       </div>
 
       <div className={styles.sliderWrapper}>
-        <label>Об'єм двигуна:</label>
+        <label>{engineLabel}</label>
         <ReactSlider
           className={styles.slider}
           thumbClassName={styles.thumb}
           trackClassName={styles.track}
           min={0}
-          max={10}
-          step={0.1}
+          max={engineMax}
+          step={engineStep}
           value={engineSizeRange}
           onChange={(values) => setEngineSizeRange(values)}
         />
         <div className={styles.rangeValues}>
-          <span>{engineSizeRange[0]} л</span>
-          <span>{engineSizeRange[1]} л</span>
+          <span>{engineSizeRange[0]} {engineUnit}</span>
+          <span>{engineSizeRange[1]} {engineUnit}</span>
         </div>
       </div>
 

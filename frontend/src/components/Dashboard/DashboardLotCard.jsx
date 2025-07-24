@@ -6,6 +6,16 @@ export default function DashboardLotCard({ lot, bodyTypes, fuelTypes }) {
   const bodyType = bodyTypes.find((type) => type.id === lot.bodyTypeId)?.name || "Невідомо";
   const fuelType = fuelTypes.find((type) => type.id === lot.fuelTypeId)?.name || "Невідомо";
   const isActive = lot.status === "active";
+  
+  const isElectric = fuelType.toLowerCase().includes('електро') || 
+                     fuelType.toLowerCase().includes('electric') ||
+                     fuelType.toLowerCase().includes('електричний') ||
+                     fuelType.toLowerCase().includes('гібрид') ||
+                     fuelType.toLowerCase().includes('hybrid');
+  
+  const engineDisplay = isElectric 
+    ? `Потужність: ${lot.engineSize} кВт`
+    : `Об'єм: ${lot.engineSize} л`;
 
   const BASE_URL = process.env.NEXT_PUBLIC_URL || "";
   const photoUrls = (lot.photos || []).map(photo =>
@@ -35,7 +45,7 @@ export default function DashboardLotCard({ lot, bodyTypes, fuelTypes }) {
           </div>
           <div className={styles.lotDetails}>
             <div>Пробіг: {lot.odometer} км</div>
-            <div>Об'єм: {lot.engineSize} л</div>
+            <div>{engineDisplay}</div>
             <div>Трансмісія: {lot.transmission}</div>
             <div>Привід: {lot.drive}</div>
           </div>

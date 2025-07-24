@@ -30,11 +30,33 @@ export default function DashboardMobileFilters({
     initialFilters.maxEngineSize ?? 5,
   ]);
 
+  const selectedFuelType = fuelTypes.find(type => type.slug === selectedFuelTypeSlug);
+  const isElectricSelected = selectedFuelType && (
+    selectedFuelType.name.toLowerCase().includes('електро') || 
+    selectedFuelType.name.toLowerCase().includes('electric') ||
+    selectedFuelType.name.toLowerCase().includes('електричний') ||
+    selectedFuelType.name.toLowerCase().includes('гібрид') ||
+    selectedFuelType.name.toLowerCase().includes('hybrid')
+  );
+
+  const engineLabel = isElectricSelected ? "Потужність:" : "Об'єм двигуна:";
+  const engineUnit = isElectricSelected ? "кВт" : "л";
+  const engineMax = isElectricSelected ? 150 : 5;
+  const engineStep = isElectricSelected ? 1 : 0.1;
+
   useEffect(() => {
     if (!open) {
       setIsClosing(false);
     }
   }, [open]);
+
+  useEffect(() => {
+    if (isElectricSelected) {
+      setEngineSizeRange([0, 150]);
+    } else {
+      setEngineSizeRange([0, 5]);
+    }
+  }, [isElectricSelected]);
 
   const handleClose = () => {
     setIsClosing(true);
@@ -74,7 +96,7 @@ export default function DashboardMobileFilters({
     setSelectedFuelTypeSlug(null);
     setPriceRange([0, 100000]);
     setYearRange([2000, 2025]);
-    setEngineSizeRange([0, 5]);
+    setEngineSizeRange([0, isElectricSelected ? 150 : 5]);
     if (onResetFilters) onResetFilters();
   };
 
@@ -157,20 +179,20 @@ export default function DashboardMobileFilters({
           </div>
 
           <div className={styles.sliderWrapper}>
-            <label>Об'єм двигуна:</label>
+            <label>{engineLabel}</label>
             <ReactSlider
               className={styles.slider}
               thumbClassName={styles.thumb}
               trackClassName={styles.track}
               min={0}
-              max={5}
-              step={0.1}
+              max={engineMax}
+              step={engineStep}
               value={engineSizeRange}
               onChange={(values) => setEngineSizeRange(values)}
             />
             <div className={styles.rangeValues}>
-              <span>{engineSizeRange[0]} л</span>
-              <span>{engineSizeRange[1]} л</span>
+              <span>{engineSizeRange[0]} {engineUnit}</span>
+              <span>{engineSizeRange[1]} {engineUnit}</span>
             </div>
           </div>
 
