@@ -63,7 +63,7 @@ export default function AboutUs({ component, onLoaded }) {
                 </video>
                 <div className={`${styles.hoverHint} ${isVisible ? styles.visible : ""}`}>
                   <img src="/mouseScroll.svg" alt="Наведіться" className={styles.hoverHintIcon} />
-                  <span>Наведіться для кольору</span>
+                  <span>Наведіться курсором на відео</span>
                 </div>
               </div>
             </div>
@@ -123,7 +123,7 @@ export default function AboutUs({ component, onLoaded }) {
             </div>
             <div className={`${styles.hoverHint} ${isVisible ? styles.visible : ""}`}>
               <img src="/mouseScroll.svg" alt="Наведіться" className={styles.hoverHintIcon} />
-              <span>Наведіться для кольору</span>
+              <span>Наведіться курсором на відео</span>
             </div>
           </div>
         </div>
