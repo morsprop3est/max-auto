@@ -15,6 +15,7 @@ export default function Map({
   loading,
   noReviews,
   regionReviews = [],
+  reviewCounts = [],
 }) {
   const mapContainerRef = useRef(null);
   const [cardPos, setCardPos] = useState({ left: 0, top: 0, visible: false });
@@ -97,14 +98,19 @@ export default function Map({
         width="100%"
         preserveAspectRatio="xMidYMid meet"
       >
-        {regions.map((region) => (
-          <Region
-            key={region.id}
-            region={region}
-            isSelected={selectedRegion?.id === region.id}
-            onClick={(r, e) => handleRegionClick(r, e)}
-          />
-        ))}
+        {regions.map((region) => {
+          const countObj = reviewCounts.find(rc => rc.regionId === region.id);
+          const count = countObj ? countObj.count : 0;
+          return (
+            <Region
+              key={region.id}
+              region={region}
+              isSelected={selectedRegion?.id === region.id}
+              onClick={(r, e) => handleRegionClick(r, e)}
+              count={count}
+            />
+          );
+        })}
       </svg>
       {!isMobile && (
         <div

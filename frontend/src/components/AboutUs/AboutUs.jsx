@@ -55,10 +55,10 @@ export default function AboutUs({ component, onLoaded }) {
                   loop
                   muted
                   playsInline
-                  poster="/video/avtovoz.jpg"
+                  poster="/video/avtovoz_preview.jpg"
                   tabIndex={0}
                 >
-                  <source src="/video/avtovoz.mp4" type="video/mp4" />
+                  <source src="/video/avtovoz2.mp4" type="video/mp4" />
                   Ваш браузер не підтримує відео.
                 </video>
                 <div className={`${styles.hoverHint} ${isVisible ? styles.visible : ""}`}>
@@ -114,10 +114,10 @@ export default function AboutUs({ component, onLoaded }) {
                 loop
                 muted
                 playsInline
-                poster="/video/avtovoz.jpg"
+                poster="/video/avtovoz_preview.jpg"
                 tabIndex={0}
               >
-                <source src="/video/avtovoz.mp4" type="video/mp4" />
+                <source src="/video/avtovoz2.mp4" type="video/mp4" />
                 Ваш браузер не підтримує відео.
               </video>
             </div>

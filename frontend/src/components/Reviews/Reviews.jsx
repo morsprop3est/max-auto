@@ -9,11 +9,12 @@ import { useIsVisible } from "@/hooks/useIsVisible";
 export default function Reviews({ component }) {
   const [wrapperRef, isVisible] = useIsVisible({ threshold: 0.2 });
   const [selectedRegion, setSelectedRegion] = useState(null);
-  const [allReviews, setAllReviews] = useState([]);
-  const [regionReviews, setRegionReviews] = useState([]);
+  const [allReviews, setAllReviews] = useState(component?.allReviews || []);
+  const [regionReviews, setRegionReviews] = useState(component?.allReviews || []);
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [reviewCounts, setReviewCounts] = useState(component?.reviewCounts || []);
 
   const reviewsHeaderData = Array.isArray(component)
     ? {
@@ -23,12 +24,14 @@ export default function Reviews({ component }) {
     : {};
 
   useEffect(() => {
-    if (isVisible && allReviews.length === 0 && !loading) {
+    if (!component?.allReviews && isVisible && allReviews.length === 0 && !loading) {
       setLoading(true);
       setError(false);
       fetchAllReviews()
         .then((data) => {
           setAllReviews(data.reviews || []);
+          setRegionReviews(data.reviews || []);
+          setReviewCounts(data.reviewCounts || component?.reviewCounts || []);
           setLoading(false);
         })
         .catch(() => {
@@ -45,7 +48,7 @@ export default function Reviews({ component }) {
       setRegionReviews(filtered);
       setCurrentReviewIndex(0);
     } else {
-      setRegionReviews([]);
+      setRegionReviews(allReviews); 
     }
   };
 
@@ -90,6 +93,7 @@ export default function Reviews({ component }) {
                 onCloseReview={() => setSelectedRegion(null)}
                 loading={loading}
                 noReviews={regionReviews.length === 0 && !loading && !error}
+                reviewCounts={reviewCounts}
               />
             </div>
           </div>

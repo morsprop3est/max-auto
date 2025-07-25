@@ -24,11 +24,19 @@ export async function fetchAllReviews() {
     });
     if (!res.ok) {
       console.log("Failed to fetch all reviews");
-      return { reviews: [] };
+      return { reviews: [], reviewCounts: [] };
     }
-    return res.json();
+    const data = await res.json();
+    if (!data.reviewCounts) {
+      const counts = {};
+      (data.reviews || []).forEach(r => {
+        counts[r.regionId] = (counts[r.regionId] || 0) + 1;
+      });
+      data.reviewCounts = Object.entries(counts).map(([regionId, count]) => ({ regionId: Number(regionId), count }));
+    }
+    return data;
   } catch (error) {
     console.log("Error fetching all reviews:", error);
-    return { reviews: [] };
+    return { reviews: [], reviewCounts: [] };
   }
 }

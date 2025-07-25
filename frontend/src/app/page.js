@@ -18,7 +18,9 @@ import componentsData from '@/utils/components.json';
 export default async function Home() {
   let components;
   let lotsData;
-  
+  let allReviews = [];
+  let reviewCounts = [];
+
   try {
     components = await fetchComponents();
     if (!components) {
@@ -26,6 +28,22 @@ export default async function Home() {
       components = componentsData;
     }
     lotsData = await fetchLots({ page: 1, limit: 10, filters: {} });
+
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || process.env.API_URL;
+    const res = await fetch(`${apiUrl}/reviews`, { cache: 'no-store' });
+    if (res.ok) {
+      const data = await res.json();
+      allReviews = data.reviews || [];
+      if (data.reviewCounts) {
+        reviewCounts = data.reviewCounts;
+      } else {
+        const counts = {};
+        allReviews.forEach(r => {
+          counts[r.regionId] = (counts[r.regionId] || 0) + 1;
+        });
+        reviewCounts = Object.entries(counts).map(([regionId, count]) => ({ regionId: Number(regionId), count }));
+      }
+    }
   } catch (error) {
     console.log('Failed to fetch data from API, using fallback data:', error);
     components = componentsData;
@@ -76,7 +94,11 @@ export default async function Home() {
           />
         </section>
         <section id="reviews">
-          <Reviews component={components?.reviews} />
+          <Reviews component={{
+            ...(components?.reviews || []),
+            allReviews,
+            reviewCounts
+          }} />
         </section>
         <section id="contact-us">
           <ContactUs />

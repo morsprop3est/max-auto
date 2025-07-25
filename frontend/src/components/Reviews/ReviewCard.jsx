@@ -283,13 +283,13 @@ export default function ReviewCard({
               ) : hasAnyComment ? (
                 <>
                   <div className={styles.userBlock}>
-                    <div className={styles.userPhotoBox}>
+                    {/* <div className={styles.userPhotoBox}>
                       <img
                         src={userPhotoUrl}
                         alt={name}
                         className={styles.userPhoto}
                       />
-                    </div>
+                    </div> */}
                     <div className={styles.userInfoBox}>
                       <div className={styles.name}>{name}</div>
                       <div className={styles.rating}>{renderStars()}</div>

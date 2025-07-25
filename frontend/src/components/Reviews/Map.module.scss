@@ -25,7 +25,7 @@
 .region {
   transition: filter 0.2s;
   &:hover {
-    filter: brightness(0.8);
+    filter: brightness(0.2);
   }
 }
 
@@ -33,4 +33,40 @@
   width: 340px;
   min-height: 200px;
   pointer-events: auto;
+}
+
+.reviewCountBox {
+  width: 36px;
+  height: 36px;
+  background: #038405;
+  border: 2px solid #026c04;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  color: #EAEAEA;
+  box-shadow: 0 2px 8px #0002;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+
+.darkness0 {
+  filter: brightness(1);
+}
+.darkness1 {
+  filter: brightness(0.9);
+}
+.darkness2 {
+  filter: brightness(0.8);
+}
+.darkness3 {
+  filter: brightness(0.7);
+}
+.darkness4 {
+  filter: brightness(0.6);
 }

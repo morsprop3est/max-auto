@@ -118,13 +118,13 @@ export default function ReviewMobileCard({
             {isLoading ? renderSkeleton() : (
               <div className={styles.card}>
                 <div className={styles.userBlock}>
-                  <div className={styles.userPhotoBox}>
+                  {/* <div className={styles.userPhotoBox}>
                     <img
                       src={userPhotoUrl}
                       alt={review?.name}
                       className={styles.userPhoto}
                     />
-                  </div>
+                  </div> */}
                   <div className={styles.userInfoBox}>
                     <div className={styles.name}>{review?.name}</div>
                     <div className={styles.rating}>
