@@ -65,44 +65,7 @@ export default function Dashboard({ components, initialLots = [], bodyTypes, fue
     setFilters({});
   }, []);
 
-  const filteredLots = lots.filter(lot => {
-    if (filters.bodyTypeSlug) {
-      const selectedBodyType = bodyTypes.find(type => type.slug === filters.bodyTypeSlug);
-      if (!selectedBodyType || lot.bodyTypeId !== selectedBodyType.id) {
-        return false;
-      }
-    }
-
-    if (filters.fuelTypeSlug) {
-      const selectedFuelType = fuelTypes.find(type => type.slug === filters.fuelTypeSlug);
-      if (!selectedFuelType || lot.fuelTypeId !== selectedFuelType.id) {
-        return false;
-      }
-    }
-
-    if (filters.minPrice !== undefined && lot.price < filters.minPrice) {
-      return false;
-    }
-    if (filters.maxPrice !== undefined && lot.price > filters.maxPrice) {
-      return false;
-    }
-
-    if (filters.minYear !== undefined && lot.year < filters.minYear) {
-      return false;
-    }
-    if (filters.maxYear !== undefined && lot.year > filters.maxYear) {
-      return false;
-    }
-
-    if (filters.minEngineSize !== undefined && lot.engineSize < filters.minEngineSize) {
-      return false;
-    }
-    if (filters.maxEngineSize !== undefined && lot.engineSize > filters.maxEngineSize) {
-      return false;
-    }
-
-    return true;
-  });
+  const filteredLots = lots;
 
   return (
     <div className={styles.dashboardWrapper} ref={dashboardRef}>

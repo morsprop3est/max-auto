@@ -17,6 +17,37 @@ export default function DashboardLotCard({ lot, bodyTypes, fuelTypes }) {
     ? `Потужність: ${lot.engineSize} кВт`
     : `Об'єм: ${lot.engineSize} л`;
 
+  const getColorLabel = (color) => {
+    const colorMap = {
+      'White': 'Білий',
+      'Black': 'Чорний',
+      'Silver': 'Срібний',
+      'Gray': 'Сірий',
+      'Red': 'Червоний',
+      'Blue': 'Синій',
+      'Green': 'Зелений',
+      'Yellow': 'Жовтий',
+      'Orange': 'Помаранчевий',
+      'Purple': 'Фіолетовий',
+      'Brown': 'Коричневий',
+      'Beige': 'Бежевий',
+      'Pink': 'Рожевий',
+      'Gold': 'Золотий',
+      'Bronze': 'Бронзовий'
+    };
+    return colorMap[color] || color;
+  };
+
+  const getTransmissionLabel = (transmission) => {
+    const transmissionMap = {
+      'Automatic': 'Автоматична',
+      'Manual': 'Механічна',
+      'CVT': 'Безступінчаста',
+      'Semi-Automatic': 'Напівавтоматична'
+    };
+    return transmissionMap[transmission] || transmission;
+  };
+
   const BASE_URL = process.env.NEXT_PUBLIC_URL || "";
   const photoUrls = (lot.photos || []).map(photo =>
     photo.photoUrl.startsWith("http")
@@ -46,8 +77,9 @@ export default function DashboardLotCard({ lot, bodyTypes, fuelTypes }) {
           <div className={styles.lotDetails}>
             <div>Пробіг: {lot.odometer} км</div>
             <div>{engineDisplay}</div>
-            <div>Трансмісія: {lot.transmission}</div>
+            <div>Трансмісія: {getTransmissionLabel(lot.transmission)}</div>
             <div>Привід: {lot.drive}</div>
+            {lot.color && <div>Колір: {getColorLabel(lot.color)}</div>}
           </div>
         </div>
         <div className={styles.priceContainer}>

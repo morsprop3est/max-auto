@@ -94,11 +94,11 @@ export default async function Home() {
           />
         </section>
         <section id="reviews">
-          <Reviews component={{
-            ...(components?.reviews || []),
-            allReviews,
-            reviewCounts
-          }} />
+          <Reviews
+            component={components?.reviews || []}
+            allReviews={allReviews}
+            reviewCounts={reviewCounts}
+          />
         </section>
         <section id="contact-us">
           <ContactUs />

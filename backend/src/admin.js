@@ -110,9 +110,68 @@ const adminJs = new AdminJS({
       "properties": {
         "length": "Довжина",
         "from": "Від",
-        "to": "До"
+        "to": "До",
+        "title": "Назва",
+        "auctionDate": "Дата аукціону",
+        "odometer": "Пробіг",
+        "price": "Ціна",
+        "year": "Рік",
+        "drive": "Привід",
+        "transmission": "Трансмісія",
+        "color": "Колір",
+        "status": "Статус",
+        "engineSize": "Об'єм двигуна",
+        "locationId": "Локація",
+        "bodyTypeId": "Тип кузова",
+        "fuelTypeId": "Тип палива",
+        "link": "Посилання"
       },
-      "resources": {},
+      "resources": {
+        "Lot": {
+          "properties": {
+            "transmission": {
+              "availableValues": [
+                { "value": "Automatic", "label": "Автоматична" },
+                { "value": "Manual", "label": "Механічна" },
+                { "value": "CVT", "label": "Безступінчаста" },
+                { "value": "Semi-Automatic", "label": "Напівавтоматична" }
+              ]
+            },
+            "color": {
+              "availableValues": [
+                { "value": "White", "label": "Білий" },
+                { "value": "Black", "label": "Чорний" },
+                { "value": "Silver", "label": "Срібний" },
+                { "value": "Gray", "label": "Сірий" },
+                { "value": "Red", "label": "Червоний" },
+                { "value": "Blue", "label": "Синій" },
+                { "value": "Green", "label": "Зелений" },
+                { "value": "Yellow", "label": "Жовтий" },
+                { "value": "Orange", "label": "Помаранчевий" },
+                { "value": "Purple", "label": "Фіолетовий" },
+                { "value": "Brown", "label": "Коричневий" },
+                { "value": "Beige", "label": "Бежевий" },
+                { "value": "Pink", "label": "Рожевий" },
+                { "value": "Gold", "label": "Золотий" },
+                { "value": "Bronze", "label": "Бронзовий" }
+              ]
+            },
+            "status": {
+              "availableValues": [
+                { "value": "active", "label": "Активний" },
+                { "value": "inactive", "label": "Неактивний" }
+              ]
+            },
+            "drive": {
+              "availableValues": [
+                { "value": "4WD", "label": "4WD" },
+                { "value": "RWD", "label": "RWD" },
+                { "value": "FWD", "label": "FWD" }
+              ]
+            }
+          }
+        }
+      },
       "messages": {
         "successfullyBulkDeleted": "Успішно видалено {{count}} запис",
         "successfullyBulkDeleted_plural": "Успішно видалено {{count}} записів",
@@ -173,7 +232,7 @@ const adminJs = new AdminJS({
   },
   componentLoader,
   pages: {
-    mainDashboard: {
+    "Калькулятор": {
       label: 'Головна',
       component: MainDashboard,
     },
@@ -191,7 +250,54 @@ const adminJs = new AdminJS({
               edit: LotPhotoUpload,
             },
           },
+          transmission: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+            availableValues: [
+              { value: 'Automatic', label: 'Автоматична' },
+              { value: 'Manual', label: 'Механічна' },
+              { value: 'CVT', label: 'Безступінчаста' },
+              { value: 'Semi-Automatic', label: 'Напівавтоматична' }
+            ]
+          },
+          color: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+            availableValues: [
+              { value: 'White', label: 'Білий' },
+              { value: 'Black', label: 'Чорний' },
+              { value: 'Silver', label: 'Срібний' },
+              { value: 'Gray', label: 'Сірий' },
+              { value: 'Red', label: 'Червоний' },
+              { value: 'Blue', label: 'Синій' },
+              { value: 'Green', label: 'Зелений' },
+              { value: 'Yellow', label: 'Жовтий' },
+              { value: 'Orange', label: 'Помаранчевий' },
+              { value: 'Purple', label: 'Фіолетовий' },
+              { value: 'Brown', label: 'Коричневий' },
+              { value: 'Beige', label: 'Бежевий' },
+              { value: 'Pink', label: 'Рожевий' },
+              { value: 'Gold', label: 'Золотий' },
+              { value: 'Bronze', label: 'Бронзовий' }
+            ]
+          },
+          status: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+            availableValues: [
+              { value: 'active', label: 'Активний' },
+              { value: 'inactive', label: 'Неактивний' }
+            ]
+          },
+          drive: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+            availableValues: [
+              { value: '4WD', label: '4WD' },
+              { value: 'RWD', label: 'RWD' },
+              { value: 'FWD', label: 'FWD' }
+            ]
+          }
         },
+        listProperties: ['id', 'title', 'price', 'year', 'color', 'transmission', 'status'],
+        showProperties: ['id', 'title', 'auctionDate', 'odometer', 'price', 'year', 'drive', 'transmission', 'color', 'status', 'engineSize', 'link'],
+        editProperties: ['title', 'auctionDate', 'odometer', 'price', 'year', 'drive', 'transmission', 'color', 'status', 'engineSize', 'locationId', 'bodyTypeId', 'fuelTypeId', 'link', 'photos'],
       },
     },
     { resource: Component, options: { navigation: 'Компоненти' } },

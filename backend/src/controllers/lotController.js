@@ -18,6 +18,10 @@ export const getLots = async (req, res) => {
       maxOdometer,
       minEngineSize,
       maxEngineSize,
+      color,
+      transmission,
+      status,
+      drive,
       sortBy = "price", 
     } = req.query;
 
@@ -47,6 +51,23 @@ export const getLots = async (req, res) => {
       where.engineSize = {};
       if (minEngineSize) where.engineSize[Op.gte] = parseFloat(minEngineSize);
       if (maxEngineSize) where.engineSize[Op.lte] = parseFloat(maxEngineSize);
+    }
+
+    // Додаємо фільтри для нових полів
+    if (color) {
+      where.color = color;
+    }
+
+    if (transmission) {
+      where.transmission = transmission;
+    }
+
+    if (status) {
+      where.status = status;
+    }
+
+    if (drive) {
+      where.drive = drive;
     }
 
     const include = [
@@ -93,7 +114,12 @@ export const getLots = async (req, res) => {
 export const getLotPhotos = async (req, res) => {
   try {
     const { lotId } = req.params;
-    const photos = await LotPhoto.findAll({ where: { lotId } });
+
+    if (!lotId || lotId === 'undefined') {
+      return res.status(400).json({ error: 'Invalid lotId provided' });
+    }
+
+    const photos = await LotPhoto.findAll({ where: { lotId: parseInt(lotId) } });
     res.status(200).json(photos);
   } catch (error) {
     console.error('Error fetching lot photos:', error);
@@ -122,12 +148,22 @@ export const addLotPhotos = async (req, res) => {
   try {
     const { lotId } = req.params;
 
+    if (!lotId || lotId === 'undefined') {
+      return res.status(400).json({ error: 'Invalid lotId provided' });
+    }
+
     if (!req.files || req.files.length === 0) {
       return res.status(400).json({ error: 'No files uploaded' });
     }
 
+    // Перевіряємо чи існує лот
+    const lot = await Lot.findByPk(lotId);
+    if (!lot) {
+      return res.status(404).json({ error: 'Lot not found' });
+    }
+
     const newPhotos = req.files.map((file) => ({
-      lotId,
+      lotId: parseInt(lotId),
       photoUrl: `/uploads/lots/${lotId}/${file.originalname}`,
     }));
 
@@ -159,6 +195,41 @@ export const deleteLotPhoto = async (req, res) => {
   } catch (error) {
     console.error('Error deleting lot photo:', error);
     res.status(500).json({ error: 'Failed to delete lot photo' });
+  }
+};
+
+export const deleteAllLotPhotos = async (req, res) => {
+  try {
+    const { lotId } = req.params;
+
+    if (!lotId || lotId === 'undefined') {
+      return res.status(400).json({ error: 'Invalid lotId provided' });
+    }
+
+    // Перевіряємо чи існує лот
+    const lot = await Lot.findByPk(lotId);
+    if (!lot) {
+      return res.status(404).json({ error: 'Lot not found' });
+    }
+
+    // Знаходимо всі фотографії лота
+    const photos = await LotPhoto.findAll({ where: { lotId: parseInt(lotId) } });
+
+    // Видаляємо файли з файлової системи
+    for (const photo of photos) {
+      const photoPath = path.join('uploads', 'lots', lotId.toString(), path.basename(photo.photoUrl));
+      if (fs.existsSync(photoPath)) {
+        fs.unlinkSync(photoPath);
+      }
+    }
+
+    // Видаляємо записи з бази даних
+    await LotPhoto.destroy({ where: { lotId: parseInt(lotId) } });
+
+    res.status(200).json({ message: 'All photos deleted successfully', deletedCount: photos.length });
+  } catch (error) {
+    console.error('Error deleting all lot photos:', error);
+    res.status(500).json({ error: 'Failed to delete all lot photos' });
   }
 };
 

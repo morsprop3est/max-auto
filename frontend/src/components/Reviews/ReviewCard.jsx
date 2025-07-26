@@ -278,7 +278,7 @@ export default function ReviewCard({
             <div ref={commentRef}>
               {noReviews ? (
                 <div className={styles.noComments}>
-                  Коментарів до цієї області ще немає
+                  Відгуків до цієї області ще немає
                 </div>
               ) : hasAnyComment ? (
                 <>

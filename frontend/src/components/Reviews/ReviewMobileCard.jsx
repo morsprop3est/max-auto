@@ -154,7 +154,7 @@ export default function ReviewMobileCard({
             </div>
           </div>
         ) : (
-          <div className={styles.noReviews}>Коментарів до цієї області ще немає</div>
+          <div className={styles.noReviews}>Відгуків до цієї області ще немає</div>
         )}
       </div>
     </div>,

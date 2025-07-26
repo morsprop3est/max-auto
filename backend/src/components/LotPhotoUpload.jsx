@@ -28,6 +28,38 @@ const UploadContainer = styled.div`
   }
 `;
 
+const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 10px;
+`;
+
+const Title = styled.h4`
+  margin: 0;
+`;
+
+const DeleteAllButton = styled.button`
+  padding: 5px 10px;
+  background-color: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+
+  &:hover {
+    background-color: #ff5252;
+  }
+
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+`;
+
 const PhotoList = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -94,51 +126,155 @@ const FileInput = styled.input`
   }
 `;
 
+const ErrorMessage = styled.div`
+  color: #ff4d4d;
+  font-size: 14px;
+  text-align: center;
+  margin: 10px 0;
+`;
+
+const LoadingMessage = styled.div`
+  color: #666;
+  font-size: 14px;
+  text-align: center;
+  margin: 10px 0;
+`;
+
 const LotPhotoUpload = (props) => {
   const { record } = props;
   const [photos, setPhotos] = useState([]);
+  const [error, setError] = useState(null);
+  const [isDeletingAll, setIsDeletingAll] = useState(false);
 
   useEffect(() => {
     if (record?.id) {
       fetch(`${publicUrl}/api/lots/${record.id}/photos`)
-        .then((response) => response.json())
-        .then((data) => setPhotos(data))
-        .catch((error) => console.error('Error fetching lot photos:', error));
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch photos');
+          }
+          return response.json();
+        })
+        .then((data) => {
+          const photosArray = Array.isArray(data) ? data : (data.photos || []);
+          setPhotos(photosArray);
+        })
+        .catch((error) => {
+          console.error('Error fetching lot photos:', error);
+          setError('Помилка завантаження фотографій');
+        });
     }
   }, [record?.id]);
 
   const handleAddPhotos = (event) => {
-    const files = Array.from(event.target.files);
-    const formData = new FormData();
+    if (!record?.id) {
+      setError('Спочатку збережіть лот');
+      return;
+    }
 
+    const files = Array.from(event.target.files);
+    if (files.length === 0) return;
+
+    const formData = new FormData();
     files.forEach((file) => {
       formData.append('photos', file);
     });
+
+    setError(null);
 
     fetch(`${publicUrl}/api/lots/${record.id}/photos`, {
       method: 'POST',
       body: formData,
     })
-      .then((response) => response.json())
-      .then((data) => {
-        setPhotos((prev) => [...prev, ...data.photos]);
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to upload photos');
+        }
+        return response.json();
       })
-      .catch((error) => console.error('Error uploading photos:', error));
+      .then((data) => {
+        const newPhotos = Array.isArray(data.photos) ? data.photos : [];
+        setPhotos((prev) => [...prev, ...newPhotos]);
+        event.target.value = '';
+      })
+      .catch((error) => {
+        console.error('Error uploading photos:', error);
+        setError('Помилка завантаження фотографій');
+      });
   };
 
   const handleDeletePhoto = (photoId) => {
+    if (!record?.id) {
+      setError('Спочатку збережіть лот');
+      return;
+    }
+
     fetch(`${publicUrl}/api/lots/${record.id}/photos/${photoId}`, {
       method: 'DELETE',
     })
-      .then(() => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to delete photo');
+        }
         setPhotos((prev) => prev.filter((photo) => photo.id !== photoId));
       })
-      .catch((error) => console.error('Error deleting photo:', error));
+      .catch((error) => {
+        console.error('Error deleting photo:', error);
+        setError('Помилка видалення фотографії');
+      });
+  };
+
+  const handleDeleteAllPhotos = async () => {
+    if (!record?.id) {
+      setError('Спочатку збережіть лот');
+      return;
+    }
+
+    if (photos.length === 0) {
+      return;
+    }
+
+    if (!confirm('Ви дійсно хочете видалити всі фотографії?')) {
+      return;
+    }
+
+    setIsDeletingAll(true);
+    setError(null);
+
+    try {
+      const deletePromises = photos.map(photo => 
+        fetch(`${publicUrl}/api/lots/${record.id}/photos/${photo.id}`, {
+          method: 'DELETE',
+        })
+      );
+
+      await Promise.all(deletePromises);
+      setPhotos([]);
+    } catch (error) {
+      console.error('Error deleting all photos:', error);
+      setError('Помилка видалення всіх фотографій');
+    } finally {
+      setIsDeletingAll(false);
+    }
   };
 
   return (
     <UploadContainer>
-      <h4>Lot Photos</h4>
+      <HeaderContainer>
+        <Title>Фотографії лота</Title>
+        {photos.length > 0 && (
+          <DeleteAllButton 
+            onClick={handleDeleteAllPhotos}
+            disabled={isDeletingAll}
+          >
+            {isDeletingAll ? 'Видаляю...' : 'Видалити всі'}
+          </DeleteAllButton>
+        )}
+      </HeaderContainer>
+      
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+      {isDeletingAll && <LoadingMessage>Видаляю всі фотографії...</LoadingMessage>}
+      
       <PhotoList>
         {photos.map((photo) => (
           <PhotoItem key={photo.id}>
@@ -146,11 +282,22 @@ const LotPhotoUpload = (props) => {
               src={`${publicUrl}${photo.photoUrl}`}
               alt="Lot Photo"
             />
-            <DeleteButton onClick={() => handleDeletePhoto(photo.id)}>Delete</DeleteButton>
+            <DeleteButton onClick={() => handleDeletePhoto(photo.id)}>Видалити</DeleteButton>
           </PhotoItem>
         ))}
       </PhotoList>
-      <FileInput type="file" multiple accept="image/*" onChange={handleAddPhotos} />
+      <FileInput 
+        type="file" 
+        multiple 
+        accept="image/*" 
+        onChange={handleAddPhotos}
+        disabled={!record?.id}
+      />
+      {!record?.id && (
+        <div style={{ fontSize: '12px', color: '#666', textAlign: 'center' }}>
+          Спочатку збережіть лот для завантаження фотографій
+        </div>
+      )}
     </UploadContainer>
   );
 };

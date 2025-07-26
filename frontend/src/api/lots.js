@@ -11,6 +11,10 @@ export const fetchLots = async ({ page = 1, limit = 50, filters = null }) => {
       ...(filters?.maxYear && { maxYear: filters.maxYear }),
       ...(filters?.minEngineSize && { minEngineSize: filters.minEngineSize }),
       ...(filters?.maxEngineSize && { maxEngineSize: filters.maxEngineSize }),
+      ...(filters?.color && { color: filters.color }),
+      ...(filters?.transmission && { transmission: filters.transmission }),
+      ...(filters?.status && { status: filters.status }),
+      ...(filters?.drive && { drive: filters.drive }),
       ...(filters?.sortBy && { sortBy: filters.sortBy }),
     });
 

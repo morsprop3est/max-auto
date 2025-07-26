@@ -15,12 +15,12 @@ export default function Region({ region, isSelected, onClick, count }) {
   return (
     <g
       id={`region-${region.id}`}
-      className={`${styles.region} ${styles.darkness2} ${isSelected ? styles.selected : ""}`}
+      className={`${styles.region} ${isSelected ? styles.selected : ""}`}
       transform={`translate(${region.x}, ${region.y})`}
       onClick={(e) => onClick(region, e)}
       style={{ cursor: "pointer" }}
     >
-      <Svg style={{ filter: 'brightness(0.7)' }} />
+      <Svg style={{ filter: `brightness(${darkness})` }} />
     </g>
   );
 }

@@ -32,16 +32,20 @@ export default (sequelize) => {
       allowNull: true,
     },
     transmission: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('Automatic', 'Manual', 'CVT', 'Semi-Automatic'),
       allowNull: true,
     },
     color: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM(
+        'White', 'Black', 'Silver', 'Gray', 'Red', 'Blue', 'Green', 
+        'Yellow', 'Orange', 'Purple', 'Brown', 'Beige', 'Pink', 'Gold', 'Bronze'
+      ),
       allowNull: true,
     },
     status: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('active', 'inactive'),
       allowNull: true,
+      defaultValue: 'active',
     },
     engineSize: {
       type: DataTypes.FLOAT,
