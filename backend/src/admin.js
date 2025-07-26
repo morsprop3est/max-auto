@@ -124,11 +124,37 @@ const adminJs = new AdminJS({
         "locationId": "Локація",
         "bodyTypeId": "Тип кузова",
         "fuelTypeId": "Тип палива",
-        "link": "Посилання"
+        "link": "Посилання",
+        "name": "Ім'я",
+        "rating": "Рейтинг",
+        "comment": "Коментар",
+        "userPhoto": "Фото користувача",
+        "reviewPhotos": "Фотографії відгуку",
+        "regionId": "Регіон",
+        "id": "ID",
+        "createdAt": "Створено",
+        "updatedAt": "Оновлено"
       },
       "resources": {
         "Lot": {
           "properties": {
+            "title": "Назва",
+            "auctionDate": "Дата аукціону",
+            "odometer": "Пробіг",
+            "price": "Ціна",
+            "year": "Рік",
+            "drive": "Привід",
+            "transmission": "Трансмісія",
+            "color": "Колір",
+            "status": "Статус",
+            "engineSize": "Об'єм двигуна",
+            "locationId": "Локація",
+            "bodyTypeId": "Тип кузова",
+            "fuelTypeId": "Тип палива",
+            "link": "Посилання",
+            "id": "ID",
+            "createdAt": "Створено",
+            "updatedAt": "Оновлено",
             "transmission": {
               "availableValues": [
                 { "value": "Automatic", "label": "Автоматична" },
@@ -167,6 +193,28 @@ const adminJs = new AdminJS({
                 { "value": "4WD", "label": "4WD" },
                 { "value": "RWD", "label": "RWD" },
                 { "value": "FWD", "label": "FWD" }
+              ]
+            }
+          }
+        },
+        "Review": {
+          "properties": {
+            "name": "Ім'я",
+            "rating": "Рейтинг",
+            "comment": "Коментар",
+            "userPhoto": "Фото користувача",
+            "reviewPhotos": "Фотографії відгуку",
+            "regionId": "Регіон",
+            "id": "ID",
+            "createdAt": "Створено",
+            "updatedAt": "Оновлено",
+            "rating": {
+              "availableValues": [
+                { "value": 1, "label": "1 зірка" },
+                { "value": 2, "label": "2 зірки" },
+                { "value": 3, "label": "3 зірки" },
+                { "value": 4, "label": "4 зірки" },
+                { "value": 5, "label": "5 зірок" }
               ]
             }
           }
@@ -306,6 +354,23 @@ const adminJs = new AdminJS({
       options: {
         navigation: 'Відгуки',
         properties: {
+          name: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+          },
+          rating: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+            availableValues: [
+              { value: 1, label: '1 зірка' },
+              { value: 2, label: '2 зірки' },
+              { value: 3, label: '3 зірки' },
+              { value: 4, label: '4 зірки' },
+              { value: 5, label: '5 зірок' }
+            ]
+          },
+          comment: {
+            isVisible: { list: false, filter: false, show: true, edit: true },
+            type: 'textarea',
+          },
           userPhoto: {
             isVisible: { list: false, edit: true, show: true },
             components: {
@@ -319,7 +384,13 @@ const adminJs = new AdminJS({
               edit: ReviewPhotoUpload, 
             },
           },
+          regionId: {
+            isVisible: { list: true, filter: true, show: true, edit: true },
+          },
         },
+        listProperties: ['id', 'name', 'rating', 'regionId'],
+        showProperties: ['id', 'name', 'rating', 'comment', 'userPhoto', 'reviewPhotos', 'regionId'],
+        editProperties: ['name', 'rating', 'comment', 'userPhoto', 'reviewPhotos', 'regionId'],
       },
     },
     { resource: Region, options: { navigation: 'Регіони' } },

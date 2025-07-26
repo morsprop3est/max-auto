@@ -149,7 +149,7 @@ const ReviewPhotoUpload = (props) => {
 
   return (
     <>
-      <h4>Review Photos</h4>
+      <h4>Фото відгуку</h4>
       <UploadContainer>
       <PhotoList>
         {photos.map((photo) => (
@@ -158,7 +158,7 @@ const ReviewPhotoUpload = (props) => {
               src={`${publicUrl}${photo.photoUrl}`}
               alt="Review Photo"
             />
-            <DeleteButton onClick={() => handleDeletePhoto(photo.id)}>Delete</DeleteButton>
+            <DeleteButton onClick={() => handleDeletePhoto(photo.id)}>Видалити</DeleteButton>
           </PhotoItem>
         ))}
       </PhotoList>

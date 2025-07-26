@@ -242,13 +242,16 @@ const LotPhotoUpload = (props) => {
     setError(null);
 
     try {
-      const deletePromises = photos.map(photo => 
-        fetch(`${publicUrl}/api/lots/${record.id}/photos/${photo.id}`, {
-          method: 'DELETE',
-        })
-      );
+      // Використовуємо новий API endpoint для масового видалення
+      const response = await fetch(`${publicUrl}/api/lots/${record.id}/photos`, {
+        method: 'DELETE',
+      });
 
-      await Promise.all(deletePromises);
+      if (!response.ok) {
+        throw new Error('Failed to delete all photos');
+      }
+
+      const result = await response.json();
       setPhotos([]);
     } catch (error) {
       console.error('Error deleting all photos:', error);

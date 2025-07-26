@@ -117,7 +117,7 @@ const UserPhotoUpload = (props) => {
 
   return (
     <>
-      <h6>Upload User Photo</h6>
+      <h6>Фото користувача(НЕ ПОТРІБНО)</h6>
       <UploadContainer>
         {userPhoto && (
           <UploadedImage
