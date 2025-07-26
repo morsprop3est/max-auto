@@ -28,6 +28,7 @@
 
         img {
           height: 20px;
+          animation: mouseMove 1s infinite cubic-bezier(0.4,0,0.2,0.5);
         }
       }
 
@@ -152,4 +153,10 @@
       }
     }
   }
+}
+
+@keyframes mouseMove {
+  0% { transform: translateY(0);}
+  50% { transform: translateY(5px);}
+  100% { transform: translateY(0);}
 }

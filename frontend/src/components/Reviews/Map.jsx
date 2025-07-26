@@ -3,6 +3,7 @@ import regions from "../../data/regions";
 import Region from "./Region";
 import ReviewCard from "./ReviewCard";
 import ReviewMobileCard from "./ReviewMobileCard"; 
+import ColorLegend from "./ColorLegend";
 import styles from "./Map.module.scss";
 
 export default function Map({
@@ -126,6 +127,7 @@ export default function Map({
         >
           <ReviewCard
             {...(review || {})}
+            regionName={selectedRegion?.name}
             onPrev={onPrevReview}
             onNext={onNextReview}
             onClose={handleCloseReview}
@@ -146,6 +148,7 @@ export default function Map({
           onClose={handleCloseReview}
         />
       )}
+      <ColorLegend />
     </div>
   );
 }

@@ -83,7 +83,9 @@ export default function DashboardLotCard({ lot, bodyTypes, fuelTypes }) {
           </div>
         </div>
         <div className={styles.priceContainer}>
-          <div className={styles.lotPrice}>Ціна: <span>{lot.price} $</span></div>
+          <div className={styles.lotPrice}>
+            Ціна: <span>{lot.price === 0 ? "не вказана" : `${lot.price} $`}</span>
+          </div>
           <div className={`${styles.statusText} ${isActive ? styles.active : styles.inactive}`}>
             {isActive ? "В наявності" : "Немає в наявності"}
           </div>

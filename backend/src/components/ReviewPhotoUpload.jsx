@@ -83,6 +83,11 @@ const FileInput = styled.input`
     border-color: #038405;
   }
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   @media (max-width: 768px) {
     padding: 8px;
     width: 80%;
@@ -94,26 +99,50 @@ const FileInput = styled.input`
   }
 `;
 
+const ErrorMessage = styled.div`
+  color: #ff4d4d;
+  font-size: 14px;
+  text-align: center;
+  margin: 10px 0;
+`;
+
 const ReviewPhotoUpload = (props) => {
   const { record } = props;
   const [photos, setPhotos] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (record?.id) {
       fetch(`${publicUrl}/api/reviews/${record.id}/review-photos`)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error('Failed to fetch photos');
+          }
+          return response.json();
+        })
         .then((data) => setPhotos(data))
-        .catch((error) => console.error('Error fetching review photos:', error));
+        .catch((error) => {
+          console.error('Error fetching review photos:', error);
+          setError('Помилка завантаження фотографій');
+        });
     }
   }, [record?.id]);
 
   const handleAddPhotos = (event) => {
-    const files = Array.from(event.target.files);
-    const formData = new FormData();
+    if (!record?.id) {
+      setError('Спочатку збережіть відгук');
+      return;
+    }
 
+    const files = Array.from(event.target.files);
+    if (files.length === 0) return;
+
+    const formData = new FormData();
     files.forEach((file) => {
       formData.append('photos', file);
     });
+
+    setError(null);
 
     fetch(`${publicUrl}/api/reviews/${record.id}/review-photos`, {
       method: 'POST',
@@ -131,39 +160,64 @@ const ReviewPhotoUpload = (props) => {
           throw new Error('Invalid response format from server');
         }
         setPhotos((prev) => [...prev, ...data.photos]);
+        event.target.value = '';
       })
       .catch((error) => {
         console.error('Error uploading photos:', error);
+        setError('Помилка завантаження фотографій');
       });
   };
 
   const handleDeletePhoto = (photoId) => {
+    if (!record?.id) {
+      setError('Спочатку збережіть відгук');
+      return;
+    }
+
     fetch(`${publicUrl}/api/reviews/${record.id}/review-photos/${photoId}`, {
       method: 'DELETE',
     })
-      .then(() => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to delete photo');
+        }
         setPhotos((prev) => prev.filter((photo) => photo.id !== photoId));
       })
-      .catch((error) => console.error('Error deleting photo:', error));
+      .catch((error) => {
+        console.error('Error deleting photo:', error);
+        setError('Помилка видалення фотографії');
+      });
   };
 
   return (
     <>
       <h4>Фото відгуку</h4>
       <UploadContainer>
-      <PhotoList>
-        {photos.map((photo) => (
-          <PhotoItem key={photo.id}>
-            <UploadedImage
-              src={`${publicUrl}${photo.photoUrl}`}
-              alt="Review Photo"
-            />
-            <DeleteButton onClick={() => handleDeletePhoto(photo.id)}>Видалити</DeleteButton>
-          </PhotoItem>
-        ))}
-      </PhotoList>
-      <FileInput type="file" multiple accept="image/*" onChange={handleAddPhotos} />
-    </UploadContainer>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <PhotoList>
+          {photos.map((photo) => (
+            <PhotoItem key={photo.id}>
+              <UploadedImage
+                src={`${publicUrl}${photo.photoUrl}`}
+                alt="Review Photo"
+              />
+              <DeleteButton onClick={() => handleDeletePhoto(photo.id)}>Видалити</DeleteButton>
+            </PhotoItem>
+          ))}
+        </PhotoList>
+        <FileInput 
+          type="file" 
+          multiple 
+          accept="image/*" 
+          onChange={handleAddPhotos}
+          disabled={!record?.id}
+        />
+        {!record?.id && (
+          <div style={{ fontSize: '12px', color: '#666', textAlign: 'center' }}>
+            Спочатку збережіть відгук для завантаження фотографій
+          </div>
+        )}
+      </UploadContainer>
     </>
   );
 };

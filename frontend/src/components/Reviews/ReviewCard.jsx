@@ -78,6 +78,7 @@ export default function ReviewCard({
   comment,
   userPhoto,
   reviewPhotos = [],
+  regionName,
   onClose,
   onPrev,
   onNext,
@@ -259,6 +260,9 @@ export default function ReviewCard({
       <button className={styles.closeButton} onClick={handleClose}>
         ✖
       </button>
+      {regionName && (
+        <div className={styles.regionName}>{regionName}</div>
+      )}
       {loading ? renderSkeleton() : (
         <div className={styles.row}>
           {hasAnyComment && (

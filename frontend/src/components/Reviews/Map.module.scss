@@ -3,9 +3,11 @@
   width: 100%;
   height: auto;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   overflow: visible;
+  gap: 20px;
 }
 
 .map {
@@ -69,4 +71,16 @@
 }
 .darkness4 {
   filter: brightness(0.6);
+}
+
+@media (max-width: 768px) {
+  .mapContainer {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mapContainer {
+    gap: 10px;
+  }
 }

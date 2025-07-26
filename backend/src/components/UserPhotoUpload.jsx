@@ -53,6 +53,11 @@ const FileInput = styled.input`
     border-color: #038405;
   }
 
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   @media (max-width: 768px) {
     padding: 8px;
     width: 80%;
@@ -117,7 +122,7 @@ const UserPhotoUpload = (props) => {
 
   return (
     <>
-      <h6>Фото користувача(НЕ ПОТРІБНО)</h6>
+      <h6>Фото користувача</h6>
       <UploadContainer>
         {userPhoto && (
           <UploadedImage
@@ -131,8 +136,11 @@ const UserPhotoUpload = (props) => {
           type="file" 
           accept="image/*" 
           onChange={handleUpload}
-          disabled={isUploading}
+          disabled={true}
         />
+        <div style={{ fontSize: '12px', color: '#666', textAlign: 'center' }}>
+          Функція відключена
+        </div>
       </UploadContainer>
     </>
   );

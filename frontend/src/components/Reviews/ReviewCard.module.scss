@@ -27,6 +27,18 @@
     &:active { transform: scale(0.9);}
   }
 
+  .regionName {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+    z-index: 2;
+    text-align: center;
+  }
+
   .row {
     display: flex;
     flex-direction: row;
@@ -197,6 +209,13 @@
     padding: 16px 40px 16px 40px;
     clip-path: polygon(40px 0, 100% 0, calc(100% - 40px) 100%, 0 100%);
 
+    .regionName {
+      font-size: 11px;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     .commentCol {
       width: auto;
       padding: 0 12px;
@@ -237,6 +256,13 @@
     height: 90px;
     padding: 10px 18px 10px 18px;
     clip-path: polygon(18px 0, 100% 0, calc(100% - 18px) 100%, 0 100%);
+
+    .regionName {
+      font-size: 10px;
+      top: 4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
     .sideNav {
       width: 25px;
@@ -298,6 +324,13 @@
     padding: 6px 8px 6px 8px;
     clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
 
+    .regionName {
+      font-size: 9px;
+      top: 2px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     .sideNav {
       width: 25px;
       min-width: 25px;
@@ -356,6 +389,13 @@
     height: 50px;
     padding: 3px 4px 3px 4px;
     clip-path: polygon(4px 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+
+    .regionName {
+      font-size: 8px;
+      top: 1px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
 
     .sideNav {
       width: 18px;

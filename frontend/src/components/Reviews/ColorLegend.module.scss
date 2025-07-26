@@ -1,0 +1,135 @@
+.legendContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  background: #f0f0f0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  margin-top: 20px;
+  max-width: 600px;
+  width: 100%;
+}
+
+.legendTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #121212;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.legendItems {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 120px;
+}
+
+.colorIndicator {
+  position: relative;
+  width: 40px;
+  height: 30px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.sampleRegion {
+  width: 100%;
+  height: 100%;
+}
+
+.legendText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.levelLabel {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #038405;
+  line-height: 1;
+}
+
+.description {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #555;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .legendContainer {
+    padding: 15px;
+    margin-top: 15px;
+  }
+
+  .legendTitle {
+    font-size: 14px;
+  }
+
+  .legendItems {
+    gap: 15px;
+  }
+
+  .legendItem {
+    min-width: 100px;
+    gap: 8px;
+  }
+
+  .colorIndicator {
+    width: 35px;
+    height: 25px;
+  }
+
+  .levelLabel {
+    font-size: 13px;
+  }
+
+  .description {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .legendContainer {
+    padding: 12px;
+    margin-top: 10px;
+  }
+
+  .legendItems {
+    gap: 10px;
+  }
+
+  .legendItem {
+    min-width: 90px;
+    gap: 6px;
+  }
+
+  .colorIndicator {
+    width: 30px;
+    height: 22px;
+  }
+
+  .levelLabel {
+    font-size: 12px;
+  }
+
+  .description {
+    font-size: 10px;
+  }
+} 
