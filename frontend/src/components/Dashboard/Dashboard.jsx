@@ -93,7 +93,8 @@ export default function Dashboard({ components, initialLots = [], bodyTypes, fue
                 className={styles.mobileFiltersButton}
                 onClick={() => setMobileFiltersOpen(true)}
               >
-                <img src='/dashboardIcons/filters.svg' />
+                <span>Показати фільтри</span>
+                <img src='/dashboardIcons/filters.svg' alt="Фільтри" />
               </button>
             </div>
             <div className={styles.leftBlock}>

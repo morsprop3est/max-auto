@@ -103,28 +103,10 @@ export default function Report({ open, onClose, reportData }) {
             <span className={styles.reportValue}>{breakdown.lotPrice?.toLocaleString() || "-"}</span>
           </div>
 
-          {breakdown.AuctionDeliveryFeeDetail && breakdown.AuctionDeliveryFeeDetail.breakdown
-            ? renderSection(
-                "Аукціонний збір",
-                {
-                  "Основний збір": breakdown.AuctionDeliveryFeeDetail.breakdown.mainFee,
-                  "В'їзний збір": breakdown.AuctionDeliveryFeeDetail.breakdown.gateFee,
-                  "Збір за віртуальні торги": breakdown.AuctionDeliveryFeeDetail.breakdown.virtualBidFee,
-                  "Збір за титул": breakdown.AuctionDeliveryFeeDetail.breakdown.titleShipping,
-                  "Екологічний збір": breakdown.AuctionDeliveryFeeDetail.breakdown.environmentalFee,
-                  "Додаткові збори": breakdown.AuctionDeliveryFeeDetail.breakdown.additionalFees
-                },
-                breakdown.AuctionDeliveryFee,
-                "$",
-                true
-              )
-            : (
-              <div className={styles.reportRow}>
-                <span className={styles.reportKey}>Аукціонний збір</span>
-                <span className={styles.reportValue}>{breakdown.AuctionDeliveryFee?.toLocaleString()} $</span>
-              </div>
-            )
-          }
+          <div className={styles.reportRow}>
+            <span className={styles.reportKey}>Аукціонний збір</span>
+            <span className={styles.reportValue}>{breakdown.AuctionDeliveryFee?.toLocaleString()} $</span>
+          </div>
 
           <div className={styles.reportRow}>
             <span className={styles.reportKey}>Доставка по США</span>

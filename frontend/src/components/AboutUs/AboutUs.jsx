@@ -61,10 +61,6 @@ export default function AboutUs({ component, onLoaded }) {
                   <source src="/video/avtovoz2.mp4" type="video/mp4" />
                   Ваш браузер не підтримує відео.
                 </video>
-                <div className={`${styles.hoverHint} ${isVisible ? styles.visible : ""}`}>
-                  <img src="/mouseScroll.svg" alt="Наведіться" className={styles.hoverHintIcon} />
-                  <span>Наведіться курсором на відео</span>
-                </div>
               </div>
             </div>
             <div
@@ -120,10 +116,6 @@ export default function AboutUs({ component, onLoaded }) {
                 <source src="/video/avtovoz2.mp4" type="video/mp4" />
                 Ваш браузер не підтримує відео.
               </video>
-            </div>
-            <div className={`${styles.hoverHint} ${isVisible ? styles.visible : ""}`}>
-              <img src="/mouseScroll.svg" alt="Наведіться" className={styles.hoverHintIcon} />
-              <span>Наведіться курсором на відео</span>
             </div>
           </div>
         </div>
