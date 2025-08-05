@@ -189,6 +189,29 @@
   transform: scale(1.1);
 }
 
+
+@media (min-width: 1024px) and (max-height: 800px) {
+  .carImages .car1 {
+    top: 300px !important;
+  }
+  
+  .carImages .car2 {
+    bottom: 100px !important;
+  }
+}
+
+@media (min-width: 1440px) and (max-height: 800px) {
+  .carImages .car1 {
+    top: 200px !important;
+  }
+  
+  .carImages .car2 {
+    bottom: 200px !important;
+  }
+}
+
+
+
 @media (max-width: 1440px) {
   .mainWrapper{
     padding: 0;
@@ -203,12 +226,12 @@
     width: 600px;
   }
   .carImages .car1 {
-    top: 380px;
+    top: 300px;
     left: 50px;
   }
   .carImages .car2 {
     left: 350px;
-    top: 100px;
+    top: -0px;
   }
   .contentBlock {
     width: 400px;
@@ -316,7 +339,7 @@
   .carImages .car1 {
     top: -50px;
     left: 25px;
-  }s
+  }
   .carImages .car2 {
     top: 150px;
     left: 100px;

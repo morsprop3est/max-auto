@@ -53,7 +53,6 @@ export const getLots = async (req, res) => {
       if (maxEngineSize) where.engineSize[Op.lte] = parseFloat(maxEngineSize);
     }
 
-    // Додаємо фільтри для нових полів
     if (color) {
       where.color = color;
     }
@@ -156,7 +155,6 @@ export const addLotPhotos = async (req, res) => {
       return res.status(400).json({ error: 'No files uploaded' });
     }
 
-    // Перевіряємо чи існує лот
     const lot = await Lot.findByPk(lotId);
     if (!lot) {
       return res.status(404).json({ error: 'Lot not found' });
@@ -206,16 +204,13 @@ export const deleteAllLotPhotos = async (req, res) => {
       return res.status(400).json({ error: 'Invalid lotId provided' });
     }
 
-    // Перевіряємо чи існує лот
     const lot = await Lot.findByPk(lotId);
     if (!lot) {
       return res.status(404).json({ error: 'Lot not found' });
     }
 
-    // Знаходимо всі фотографії лота
     const photos = await LotPhoto.findAll({ where: { lotId: parseInt(lotId) } });
 
-    // Видаляємо файли з файлової системи
     for (const photo of photos) {
       const photoPath = path.join('uploads', 'lots', lotId.toString(), path.basename(photo.photoUrl));
       if (fs.existsSync(photoPath)) {
@@ -223,7 +218,6 @@ export const deleteAllLotPhotos = async (req, res) => {
       }
     }
 
-    // Видаляємо записи з бази даних
     await LotPhoto.destroy({ where: { lotId: parseInt(lotId) } });
 
     res.status(200).json({ message: 'All photos deleted successfully', deletedCount: photos.length });

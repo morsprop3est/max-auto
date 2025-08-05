@@ -34,6 +34,28 @@
   100% { transform: translateY(0);}
 }
 
+@media (max-width: 1100px) {
+  .scrollMouse {
+    gap: 5px;
+    font-size: 14px;
+    bottom: 5px;
+    
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+
+@media (max-height: 600px) {
+  .scrollMouse {
+    bottom: 0px;
+
+    flex-direction: column;
+  }
+}
+
 @media (max-width: 600px) {
   .scrollMouse {
     font-size: 14px;
